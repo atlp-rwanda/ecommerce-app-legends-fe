@@ -6,13 +6,16 @@ This is a front-end web application built with React and Vite for an e-commerce 
 
 To install the application, follow these steps:
 
-1. Clone the repository: 
+1. Clone the repository:
+
 ```bash
-git clone https://github.com/your-username/ecommerce-web-app.git 
+git clone https://github.com/atlp-rwanda/ecommerce-app-legends-fe.git
 ```
-2. Install dependencies: 
-```bash 
-npm install 
+
+2. Install dependencies:
+
+```bash
+npm install
 ```
 
 ## Usage
@@ -32,5 +35,3 @@ We welcome contributions from the ATLP community! Please see our [https://github
 ## License
 
 This project is released under the terms of the [MIT license](LICENSE). See the [LISENCE](LICENSE)file for more information.
-
-

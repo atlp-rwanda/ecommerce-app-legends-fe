@@ -19,6 +19,8 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     'no-unused-vars': 'warn',
     'no-undef': 'warn',
+    "react/prop-types": "off",
+    "react/destructuring-assignment": "off",
     quotes: ['error', 'single', { allowTemplateLiterals: true }],
   },
 };
