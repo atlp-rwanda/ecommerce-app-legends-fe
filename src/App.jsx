@@ -6,11 +6,11 @@ function App() {
 
   return (
     <div className="App">
-      <p className="read-the-docs">
-        ecommerce legend
+      <p className="text-6xl font-bold text-center text-secondaryBlueColor sm:text-3xl sm:px-6 sm:py-6">
+        Ecommerce Legends
       </p>
     </div>
-  )
+  );
 }
 
 export default App
