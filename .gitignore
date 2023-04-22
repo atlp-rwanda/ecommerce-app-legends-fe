@@ -24,3 +24,7 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+# custom gitignore files
+.storybook
+src/stories
