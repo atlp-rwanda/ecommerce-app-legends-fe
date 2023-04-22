@@ -1,5 +1,9 @@
 # E-commerce Web App
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/6295162785e9ca59c83f/maintainability)](https://codeclimate.com/github/atlp-rwanda/ecommerce-app-legends-fe/maintainability)
+
+[![CI/CD Pipeline](https://github.com/atlp-rwanda/ecommerce-app-legends-fe/actions/workflows/testing.yml/badge.svg)](https://github.com/atlp-rwanda/ecommerce-app-legends-fe/actions/workflows/testing.yml)
+
 This is a front-end web application built with React and Vite for an e-commerce website. The website is a standard e-commerce platform with three types of users: admin, vendors, and buyers.
 
 ## Installation
