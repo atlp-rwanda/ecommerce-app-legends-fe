@@ -1,53 +1,82 @@
-name: Build and Deploy Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
     branches:
       - main
   pull_request:
-     - main
-
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm install
 
-      - name: Run tests
-        run: npm run test
+    - name: Lint code
+      run: npm run lint
 
-      - name: Download Code Climate Test Reporter
-        run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
+    - name: Test project
+      run: npm test
 
-      - name: Upload coverage data
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        run: |
-          ./cc-test-reporter format-coverage -t lcov ./coverage/lcov.info
-          ./cc-test-reporter upload-coverage
+    - name: Upload test coverage to Code Climate
+      uses: "codeclimate/test-reporter-action@v2.1.0"
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      if: success()
 
-      - name: Download Code Climate CLI
-        run: |
-          curl -L https://github.com/codeclimate/codeclimate/archive/v0.126.1.tar.gz | tar xvz
-          sudo mv codeclimate-* /usr/local/share/codeclimate
+    - name: Build project
+      run: npm run build
 
-      - name: Upload analysis data
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        run: |
-          /usr/local/share/codeclimate/codeclimate analyze -f json > codeclimate.json
-          cat codeclimate.json | ./cc-test-reporter upload-analyzed-results
+    - name: Deploy to staging
+      uses: easingthemes/ssh-deploy@v2.1.6
+      with:
+        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+        remote_host: ${{ secrets.STAGING_HOST }}
+        remote_user: ${{ secrets.STAGING_USER }}
+        remote_path: "/var/www/html/staging"
 
-      - name: Deploy to production
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: npm run deploy
+    - name: Deploy to production
+      if: github.ref == 'refs/heads/main'
+      uses: easingthemes/ssh-deploy@v2.1.6
+      with:
+        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+        remote_host: ${{ secrets.PRODUCTION_HOST }}
+        remote_user: ${{ secrets.PRODUCTION_USER }}
+        remote_path: "/var/www/html/production"
 
-    env:
-      CI: true
+  codeclimate:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Download Code Climate CLI
+      uses: codeclimate/action-download-cli@v1.4.1
+    - name: Download test coverage data
+      uses: actions/download-artifact@v2
+      with:
+        name: coverage_report
+    - name: Upload analysis to Code Climate
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      run: |
+        ./cc-test-reporter format-coverage --input-type lcov coverage_report/lcov.info
+        ./cc-test-reporter upload-coverage
+    - name: Add maintainability badge
+      uses: shieldsio/shields@v6.0.0
+      with:
+        label: Maintainability
+        message: ${{ env.CODECLIMATE_MNT }}
+        color: green
+      if: always()
+    - name: Add code coverage badge
+      uses: shieldsio/shields@v6.0.0
+      with:
+        label: Code coverage
+        message: ${{ env.CODECLIMATE_COV }}%
+        color: green
+      if: always()
