@@ -16,7 +16,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    "linebreak-style": ["off", "unix"],
+    'linebreak-style': ['off', 'unix'],
     'react/react-in-jsx-scope': 0,
     'no-unused-vars': 'warn',
     'no-undef': 'warn',
