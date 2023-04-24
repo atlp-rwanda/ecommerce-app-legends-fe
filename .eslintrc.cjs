@@ -16,11 +16,12 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    "linebreak-style": ["off", "unix"],
     'react/react-in-jsx-scope': 0,
     'no-unused-vars': 'warn',
     'no-undef': 'warn',
     'react/prop-types': 'off',
-    'react/destructuring-assignment': 'off',
+    'react/destructuring-assignment': 'warn',
     'spaced-comment': ['warn', 'always', { exceptions: ['-', '+'] }],
     'import/no-extraneous-dependencies': [
       'warn',

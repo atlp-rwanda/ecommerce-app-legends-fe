@@ -8,7 +8,7 @@ export const greetingSlice = createSlice({
   // defining actions through reducer
   reducers: {
     greet: (state) => {
-      return { ...state, agreet: 'hello devs' };
+      return { ...state, greet: 'hello devs' };
     },
     sayBye: (state) => {
       return { ...state, greet: 'bye bye happy coding' };
