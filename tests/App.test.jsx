@@ -12,7 +12,7 @@ describe('App', () => {
         <Provider store={store}>
           <App />
         </Provider>
-      </BrowserRouter>
+      </BrowserRouter>,
     );
     expect(screen.getByText(/Ecommerce Legends/i)).toBeInTheDocument();
   });
