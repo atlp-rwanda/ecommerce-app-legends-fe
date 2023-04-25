@@ -9,7 +9,9 @@
     "test": "vitest --coverage",
     "preview": "vite preview",
     "format": "npx prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
@@ -20,6 +22,13 @@
     "react-router-dom": "^6.10.0"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.0.6",
+    "@storybook/addon-interactions": "^7.0.6",
+    "@storybook/addon-links": "^7.0.6",
+    "@storybook/blocks": "^7.0.6",
+    "@storybook/react": "^7.0.6",
+    "@storybook/react-vite": "^7.0.6",
+    "@storybook/testing-library": "^0.0.14-next.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
@@ -36,12 +45,15 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-storybook": "^0.6.11",
     "husky": "^8.0.0",
     "jsdom": "^21.1.1",
     "lint-staged": "^13.2.1",
     "postcss": "^8.4.22",
     "pre-commit": "^1.2.2",
     "prettier": "^2.8.7",
+    "prop-types": "^15.8.1",
+    "storybook": "^7.0.7",
     "tailwindcss": "^3.3.1",
     "vite": "^4.2.0",
     "vitest": "^0.30.1"
@@ -58,9 +70,11 @@
     "*.{json,md,css,html,yaml,yml,scss, js,jsx}": [
       "npm run format"
     ],
-    "jsdom": "^21.1.1",
     "autoprefixer": "^10.4.14",
+    "jsdom": "^21.1.1",
     "postcss": "^8.4.22",
+    "prop-types": "^15.8.1",
+    "storybook": "^7.0.6",
     "tailwindcss": "^3.3.1",
     "vite": "^4.2.0",
     "vitest": "^0.30.1"
