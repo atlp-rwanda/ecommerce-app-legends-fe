@@ -4,7 +4,6 @@ export const greetingSlice = createSlice({
   name: 'greeting',
   initialState: {
     greet: 'I can greet',
-    greet: 'I can greet',
   },
   // defining actions through reducer
   reducers: {
