@@ -1,0 +1,53 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Download Code Climate Test Reporter
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+
+      - name: Upload coverage data
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        run: |
+          ./cc-test-reporter format-coverage -t lcov ./coverage/lcov.info
+          ./cc-test-reporter upload-coverage
+
+      - name: Download Code Climate CLI
+        run: |
+          curl -L https://github.com/codeclimate/codeclimate/archive/v0.126.1.tar.gz | tar xvz
+          sudo mv codeclimate-* /usr/local/share/codeclimate
+
+      - name: Upload analysis data
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        run: |
+          /usr/local/share/codeclimate/codeclimate analyze -f json > codeclimate.json
+          cat codeclimate.json | ./cc-test-reporter upload-analyzed-results
+
+      - name: Deploy to production
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: npm run deploy
+
+    env:
+      CI: true
