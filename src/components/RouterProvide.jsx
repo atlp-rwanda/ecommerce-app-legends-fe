@@ -4,12 +4,24 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import App from '../views/App';
 import Login from '../views/Login';
-import store from '../redux/store';
+import store from '../store';
+import Products from './dashboards/admin/contents/Products';
+import DashBoardIndex from './dashboards/admin/contents/DashBoardIndex';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+  },
+  {
+    path: '/*',
+    element: <DashBoardIndex />,
+    children: [
+      {
+        path: '/*dashboard',
+        element: <Products />,
+      },
+    ],
   },
   {
     path: '/Login',
