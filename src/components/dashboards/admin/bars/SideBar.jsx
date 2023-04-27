@@ -54,8 +54,7 @@ function SideBar({ isOpen }) {
     dispatch(setActiveButton('setting'));
   };
   const handleLogout = () => {
-    navigate('/login');
-    dispatch(logout());
+    navigate('/');
     dispatch(clearUser());
   };
 
@@ -96,7 +95,6 @@ function SideBar({ isOpen }) {
             )}`}
           >
             <div className="icon">
-              {' '}
               <button type="button">
                 <AiFillShopping className="text-3xl" />
               </button>

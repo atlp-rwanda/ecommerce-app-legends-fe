@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import CART from '../assets/CART.png';
 import { URL } from './auths/Login';
-import { login } from '../redux/reducers/user';
+import { setUser, setRole, setToken } from '../redux/reducers/AuthUser';
 
 class FormField {
   constructor(placeholder, label, type) {
@@ -65,8 +65,10 @@ function SignUpBuyer() {
     })
       .then((res) => res.json())
       .then((res) => {
-        if (res.status === 'ok') {
-          dispatch(login(body));
+        if (res.token) {
+          dispatch(setUser(body));
+          dispatch(setRole('buyer'));
+          dispatch(setToken(res.token));
           toast.success(res.message, { theme: 'colored' });
           setTimeout(() => {
             navigate('/login');
@@ -87,15 +89,15 @@ function SignUpBuyer() {
   };
 
   return (
-    <div className="bg-[#D9D9D9]  min-h-[100vh] pt-20 ">
-      <div className="lg:w-full  w-[80em] h-[80em]  bg-[#011B32] fixed  -right-[35vw]   -top-[20em] rounded-[50%] overflow-hidden " />
+    <div className="bg-[#D9D9D9]  min-h-[100vh] pt-[12vh] ">
+      <div className="w-[60vw] h-[150vh]  bg-[#011B32] fixed right-0   -top-[25vh] rounded-[50%] overflow-hidden rounded-r" />
       <div className=" flex flex-row-reverse justify-center mx-auto ">
         <img
           src={CART}
           alt="cart"
           className="lg:hidden grid backdrop-blur-3xl bg-[#D9D9D9] max-w-[30em] px-6 py-14 rounded-sm rounded-l-none shadow-2xl"
         />
-        <div className=" lg:w-[95vw] min-w-[270px] max-w-[30em] w-[40vw] lg:px-4 px-6 h-fit py-10 pt-5 bg-[white] backdrop-blur-md rounded-md lg:rounded-r rounded-r-none shadow-2xl flex flex-col ">
+        <div className=" lg:w-[95vw] min-w-[270px] max-w-[30em] w-[40vw] lg:px-4 px-6 h-fit py-10 pt-[5vh] bg-[white] backdrop-blur-md rounded-md lg:rounded-r rounded-r-none shadow-2xl flex flex-col min-h-[50vh]">
           <h1 className="h-fit text-2xl  font-medium text-[#011B32]">
             Excellent shoppify experience
           </h1>
