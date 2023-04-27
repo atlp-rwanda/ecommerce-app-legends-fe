@@ -28,3 +28,4 @@ coverage
 # custom gitignore files
 .storybook
 src/stories
+build

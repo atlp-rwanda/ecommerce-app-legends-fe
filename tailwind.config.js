@@ -10,11 +10,12 @@ export default {
     },
     extend: {
       colors: {
-        primaryWhiteColor: '#FFFFFF',
-        secondaryBlueColor: '#0E98C4',
-        blackColor: '#000000',
-        brightGrey: '#797777',
+        whiteColor: '#FFFFFF',
+        darkBlueColor: '#011B32',
         darkGrey: '#D9D9D9',
+        lightGrey: '#F9FAFB',
+        imageBgColor: '#DFDFE1',
+        lightYellow: '#CBA008',
       },
     },
   },
