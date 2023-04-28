@@ -1,2 +1,5 @@
-**/App.test.jsx
-**/package.json
+node_modules
+build
+coverage
+package-lock.json
+.storybook
