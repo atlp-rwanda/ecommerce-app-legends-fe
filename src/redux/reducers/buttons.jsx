@@ -25,10 +25,24 @@ export const activeButtonSlice = createSlice({
   },
 });
 
+export const localesButtonSlice = createSlice({
+  name: 'localesButton',
+  initialState: {
+    selectedLocale: 'en',
+  },
+  reducers: {
+    setLocale: (state, action) => {
+      return { ...state, selectedLocale: action.payload };
+    },
+  },
+});
+
+export const { setLocale } = localesButtonSlice.actions;
 export const { greet, sayBye } = greetingSlice.actions;
 export const { setActiveButton } = activeButtonSlice.actions;
 
 export default {
   greeting: greetingSlice.reducer,
   activeButton: activeButtonSlice.reducer,
+  localesButton: activeButtonSlice.reducer,
 };

@@ -4,10 +4,14 @@ import { IoMdNotificationsOutline } from 'react-icons/io';
 import { FaUserCircle } from 'react-icons/fa';
 import { useNavigate } from 'react-router';
 import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 import BurgerButton from './BurgerButton';
 import SideBar from './SideBar';
+import ECOMLOG from '../../../../assets/ECOMLOG.png';
+import LocalesButton from '../../../buttons/LocalesButton';
 
 function NavBar() {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   const isMediumScreen = useMediaQuery({ maxWidth: 768 });
@@ -21,11 +25,13 @@ function NavBar() {
       <div className="fixed top-0 left-0 w-full h-16 bg-white shadow-sm shadow-gray-900  flex items-center justify-between pl-0 md:justify-end pr-4">
         {!isSmallScreen && (
           <div className="relative logo w-full ml-2 h-1/12 pl-2 text-3xl left-0 float-left">
-            Legends
+            <img src={ECOMLOG} alt="logo" className="w-28 h-16" />
           </div>
         )}
         {isSmallScreen && (
-          <div className="logo w-full h-1/12 pr-2 text-3xl text-black">L</div>
+          <div className="logo w-full h-1/12 pr-2 mb-4 text-3xl text-black">
+            <img src={ECOMLOG} alt="logo" className="w-20 h-12" />
+          </div>
         )}
         {!isMediumScreen && (
           <div className="mr-28">
@@ -33,7 +39,7 @@ function NavBar() {
               <div className="relative search-div flex w-80">
                 <input
                   type="text"
-                  placeholder="I am here to search for..."
+                  placeholder={t('search_text')}
                   className="search-bar bg-gray-200 px-3 py-2 mr-2 w-full rounded-l-md"
                 />
                 <button
@@ -41,13 +47,14 @@ function NavBar() {
                   className="search-btn px-3 py-2 rounded-r-md bg-orange-500 text-salite-500 font-semibold"
                 >
                   {' '}
-                  Search
+                  {t('search')}
                 </button>
               </div>
             </form>
           </div>
         )}
-        <div className="flex items-center mr-4 space-x-12 sm:space-x-8 ">
+
+        <div className="flex items-center mr-4 sm:mr-2 space-x-12 sm:space-x-4 ">
           <div className="relative">
             <button type="button" onClick={handleMessages}>
               {' '}
@@ -65,8 +72,13 @@ function NavBar() {
               2
             </span>
           </div>
-          <div className="flex top-0 space-x-8">
-            <div className="cursor-pointer mr-12 mt-0 text-3xl md:text-2xl mb-2">
+          <div className="flex top-0 space-x-0">
+            <div className="cursor-pointer mr-0 mt-0 text-3xl md:text-sm mb-2">
+              <LocalesButton />
+            </div>
+          </div>
+          <div className="flex top-0">
+            <div className="cursor-pointer mr-8 md:mr-0 mt-0 text-3xl md:text-2xl mb-2">
               <FaUserCircle />
             </div>
           </div>

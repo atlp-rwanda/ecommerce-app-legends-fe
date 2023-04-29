@@ -15,7 +15,7 @@ describe('Products on dashboard', () => {
         </Provider>
       </BrowserRouter>
     );
-    const elements = screen.queryAllByText(/PRODUCT/i);
+    const elements = screen.queryAllByText(/products/i);
     expect(elements).toHaveLength(2);
     expect(elements[0]).toBeInTheDocument();
   });

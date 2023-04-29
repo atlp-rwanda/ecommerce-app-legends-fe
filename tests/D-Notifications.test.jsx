@@ -15,7 +15,7 @@ describe('Notifications on dashboard', () => {
         </Provider>
       </BrowserRouter>
     );
-    const elements = screen.queryAllByText(/NOTIFICATIONS/i);
+    const elements = screen.queryAllByText(/notifications/i);
     expect(elements).toHaveLength(1);
     expect(elements[0]).toBeInTheDocument();
   });
