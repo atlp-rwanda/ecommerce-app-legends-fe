@@ -5,7 +5,6 @@ export const greetingSlice = createSlice({
   initialState: {
     greet: 'I can greet',
   },
-  // defining actions through reducer
   reducers: {
     greet: (state) => {
       return { ...state, greet: 'hello devs' };
@@ -15,6 +14,21 @@ export const greetingSlice = createSlice({
     },
   },
 });
-// Action creators to begenerated for each case reducer function
+
+export const activeButtonSlice = createSlice({
+  name: 'activeButton',
+  initialState: 'dashboard',
+  reducers: {
+    setActiveButton: (state, action) => {
+      return action.payload;
+    },
+  },
+});
+
 export const { greet, sayBye } = greetingSlice.actions;
-export default greetingSlice.reducer;
+export const { setActiveButton } = activeButtonSlice.actions;
+
+export default {
+  greeting: greetingSlice.reducer,
+  activeButton: activeButtonSlice.reducer,
+};
