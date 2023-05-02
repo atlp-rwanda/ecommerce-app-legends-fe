@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { greet, sayBye } from '../reducers/buttons';
+import { greet, sayBye } from '../redux/reducers/buttons';
 import Navbar from '../components/Navbar';
 
 function App() {

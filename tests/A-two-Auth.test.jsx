@@ -4,35 +4,29 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { test, describe, expect } from 'vitest';
 import store from '../src/redux/store';
-import NavBar from '../src/components/dashboards/admin/bars/NavBar';
-import SideBar from '../src/components/dashboards/admin/bars/SideBar';
+import TwoFaForm from '../src/views/auths/2FaForm';
 
-describe('NavBar', () => {
-  test('renders the logo correctly', () => {
+describe('Render two factor view on screen', () => {
+  test('should render welcome vendor', () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
-          <NavBar />
+          <TwoFaForm />
         </Provider>
       </BrowserRouter>
     );
-    const elements = screen.queryAllByText(/Legends/i);
-    expect(elements).toHaveLength(1);
+    const elements = screen.queryAllByText(/welcome back/i);
     expect(elements[0]).toBeInTheDocument();
   });
-});
-
-describe('SideBar', () => {
-  test('renders the logo correctly', () => {
+  test('should render verifyOTP', () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
-          <SideBar />
+          <TwoFaForm />
         </Provider>
       </BrowserRouter>
     );
-    const elements = screen.queryAllByText(/Dashboard/i);
-    expect(elements).toHaveLength(1);
+    const elements = screen.queryAllByText(/verify/i);
     expect(elements[0]).toBeInTheDocument();
   });
 });

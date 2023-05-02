@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import CART from '../assets/CART.png';
-import GOOGLE from '../assets/GOOGLE.png';
+import CART from '../../assets/CART.png';
+import GOOGLE from '../../assets/GOOGLE.png';
 
-export const URL = `https://ecommerce-app-legends-bn-production.up.railway.app`;
+export const URL = `http://localhost:5000`;
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,6 +25,7 @@ function Login() {
 
     await fetch(`${URL}/api/v1/users/login`, {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -32,7 +33,13 @@ function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.status === 'success') {
+        if (
+          data.message === 'Le code de vérification est envoyé par email' ||
+          data.message === 'the verification code is sent to email'
+        ) {
+          toast.success(data.message, { theme: 'colored' });
+          navigate('/verify-otp');
+        } else if (data.status === 'success') {
           toast.success('Login Successfully', { theme: 'colored' });
           localStorage.setItem('token', JSON.stringify(data.token));
           setTimeout(() => {

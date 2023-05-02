@@ -3,10 +3,11 @@ import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import App from '../views/App';
-import Login from '../views/Login';
-import store from '../store';
+import Login from '../views/auths/Login';
+import store from '../redux/store';
 import Products from './dashboards/admin/contents/Products';
 import DashBoardIndex from './dashboards/admin/contents/DashBoardIndex';
+import TwoFaForm from '../views/auths/2FaForm';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: '/Login',
     element: <Login />,
+  },
+  {
+    path: '/verify-otp',
+    element: <TwoFaForm />,
   },
 ]);
 
