@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/reducers/user';
 import CART from '../../assets/CART.png';
 import GOOGLE from '../../assets/GOOGLE.png';
 
-export const URL = `http://localhost:5000`;
+export const URL = `https://ecommerce-app-legends-bn-production.up.railway.app`;
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -13,6 +15,7 @@ function Login() {
     text: `Login`,
   });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // Handle Submit Login credentials
   const handleSubmit = async (e) => {
@@ -42,6 +45,7 @@ function Login() {
         } else if (data.status === 'success') {
           toast.success('Login Successfully', { theme: 'colored' });
           localStorage.setItem('token', JSON.stringify(data.token));
+          dispatch(login(data.user));
           setTimeout(() => {
             navigate('/');
           }, 2000);

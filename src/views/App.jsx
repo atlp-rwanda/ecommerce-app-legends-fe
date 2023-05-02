@@ -4,12 +4,16 @@ import Navbar from '../components/Navbar';
 
 function App() {
   const greetings = useSelector((state) => state.greeting.greet);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   return (
     <div className="App">
       <Navbar />
       <p className="text-6xl font-bold text-center text-secondaryBlueColor sm:text-3xl sm:px-6 sm:py-6">
         Ecommerce Legends
+      </p>
+      <p className="text-center">
+        {user.payload !== undefined ? user.payload.email : 'not logged in'}
       </p>
       <div className="mt-9">
         <h1 className="text-gray-600 mx-4">
