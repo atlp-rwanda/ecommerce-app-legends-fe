@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 import { login } from '../../redux/reducers/user';
 import FormInput from '../../components/formControlscomponents/formInput/FormInput';
 import Button from '../../components/formControlscomponents/Button/Button';
+// eslint-disable-next-line import/named
+import { setUser, setRole, setToken } from '../../redux/reducers/AuthUser';
 import CART from '../../assets/CART.png';
 import GOOGLE from '../../assets/GOOGLE.png';
 
@@ -47,7 +49,9 @@ function Login() {
           navigate('/verify-otp');
         } else if (data.status === 'success') {
           toast.success('Login Successfully', { theme: 'colored' });
-          localStorage.setItem('token', JSON.stringify(data.token));
+          dispatch(setUser(data.user));
+          dispatch(setRole(data.role));
+          dispatch(setToken(data.token));
           dispatch(login(data.user));
           setTimeout(() => {
             navigate('/');

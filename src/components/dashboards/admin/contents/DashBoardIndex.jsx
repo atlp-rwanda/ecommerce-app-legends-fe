@@ -11,6 +11,8 @@ import Users from './Users';
 import Messages from './Messages';
 import Notifications from './Notifications';
 import Settings from './Settings';
+import VendorRoutes from '../../../../middlewares/authMiddlewares/VendorRoutes';
+import AdminRoutes from '../../../../middlewares/authMiddlewares/AdminRoutes';
 
 function DashBoardIndex() {
   return (
@@ -19,14 +21,21 @@ function DashBoardIndex() {
       <SideBar />
       <div className="ml-44 md:ml-0">
         <Routes>
-          <Route path="/dashboard" element={<DashBoard />} />
-          <Route path="/dashboard/products" element={<Products />} />
-          <Route path="/dashboard/customers" element={<Customers />} />
-          <Route path="/dashboard/orders" element={<Orders />} />
-          <Route path="/dashboard/users" element={<Users />} />
-          <Route path="/dashboard/notifications" element={<Notifications />} />
+          <Route element={<VendorRoutes />}>
+            <Route path="/dashboard" element={<DashBoard />} />
+            <Route path="/dashboard/products" element={<Products />} />
+            <Route path="/dashboard/customers" element={<Customers />} />
+            <Route path="/dashboard/orders" element={<Orders />} />
+            <Route
+              path="/dashboard/notifications"
+              element={<Notifications />}
+            />
+            <Route path="/dashboard/settings" element={<Settings />} />
+          </Route>
+          <Route element={<AdminRoutes />}>
+            <Route path="/dashboard/users" element={<Users />} />
+          </Route>
           <Route path="/dashboard/messages" element={<Messages />} />
-          <Route path="/dashboard/settings" element={<Settings />} />
         </Routes>
         <Footer />
       </div>
