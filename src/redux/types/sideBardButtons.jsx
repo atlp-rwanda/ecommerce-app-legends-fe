@@ -6,3 +6,8 @@ export const setActiveButton = (buttonName) => ({
 export const logout = () => ({
   type: 'LOGOUT',
 });
+
+export const setLocale = (locale) => ({
+  type: 'locale/setLocale',
+  payload: locale,
+});

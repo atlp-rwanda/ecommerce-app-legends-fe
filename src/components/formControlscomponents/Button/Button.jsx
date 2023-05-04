@@ -24,7 +24,6 @@ Button.propTypes = {
   // eslint-disable-next-line react/require-default-props
   className: PropTypes.string,
   btnName: PropTypes.string.isRequired,
-  handleSend: PropTypes.func.isRequired,
   // eslint-disable-next-line react/require-default-props
   display: PropTypes.string,
 };

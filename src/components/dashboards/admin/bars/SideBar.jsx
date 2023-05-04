@@ -9,10 +9,16 @@ import {
 } from 'react-icons/ai';
 import { HiUsers } from 'react-icons/hi';
 import { FaUserCircle, FaHome } from 'react-icons/fa';
-import { setActiveButton, logout } from '../../../../types/sideBardButtons';
+import {
+  setActiveButton,
+  logout,
+} from '../../../../redux/types/sideBardButtons';
 import { clearUser } from '../../../../redux/reducers/AuthUser';
+import { useTranslation } from 'react-i18next';
 
 function SideBar({ isOpen }) {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const activeButton = useSelector((state) => state.activeButton);
@@ -61,7 +67,7 @@ function SideBar({ isOpen }) {
 
   return (
     <div
-      className={`fixed max-w-fit h-screen bg-slate-900 shadow-sm shadow-gray-500/50 overflow-y-auto px-2 md:right-0 mt-16 md:backdrop-blur-sm md:bg-slate/30 md:pb-24 ${
+      className={`fixed max-w-fit h-screen bg-slate-900 shadow-sm shadow-gray-500/50 overflow-hidden px-2 md:right-0 mt-16 md:backdrop-blur-sm md:bg-slate/30 md:pb-24 ${
         isOpen ? 'md:block' : 'md:hidden'
       }`}
     >
@@ -80,7 +86,7 @@ function SideBar({ isOpen }) {
             </div>
             <div className="link text-xl">
               <button type="button" onClick={handleDash}>
-                Dashboard
+                {t('dashboard')}
               </button>
             </div>
           </div>
@@ -97,7 +103,7 @@ function SideBar({ isOpen }) {
             </div>
             <div className="link text-xl">
               <button type="button" onClick={handleProduct}>
-                Product
+                {t('products')}
               </button>
             </div>
           </div>
@@ -114,7 +120,7 @@ function SideBar({ isOpen }) {
             </div>
             <div className="link text-xl">
               <button type="button" onClick={handleCustomer}>
-                Customers
+                {t('customers')}
               </button>
             </div>
           </div>
@@ -131,7 +137,7 @@ function SideBar({ isOpen }) {
             </div>
             <div className="link text-xl">
               <button type="button" onClick={handleOrder}>
-                Orders
+                {t('orders')}
               </button>
             </div>
           </div>
@@ -148,7 +154,7 @@ function SideBar({ isOpen }) {
             </div>
             <div className="link text-xl">
               <button type="button" onClick={handleUser}>
-                Users
+                {t('users')}
               </button>
             </div>
           </div>
@@ -165,12 +171,12 @@ function SideBar({ isOpen }) {
             </div>
             <div className="link text-xl">
               <button type="button" onClick={handleHome}>
-                Home
+                {t('home')}
               </button>
             </div>
           </div>
         </div>
-        <div className="absolute bottom-28 w-full md:relative">
+        <div className="absolute bottom-28 w-full md:relative pr-4">
           <div
             className={`flex space-x-4 logo basis-full h-12 mt-0.5 p-3 ${isButtonActive(
               'setting'
@@ -201,7 +207,7 @@ function SideBar({ isOpen }) {
             </div>
             <div className="link text-md">
               <button type="button" onClick={handleLogout}>
-                Log out
+                {t('logout')}
               </button>
             </div>
           </div>

@@ -9,9 +9,11 @@ import Button from '../../components/formControlscomponents/Button/Button';
 import { setUser, setRole, setToken } from '../../redux/reducers/AuthUser';
 import CART from '../../assets/CART.png';
 import GOOGLE from '../../assets/GOOGLE.png';
+import { useDispatch } from 'react-redux';
 
 export const URL = `https://ecommerce-app-legends-bn-production.up.railway.app`;
 function Login() {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isClicked, setIsClicked] = useState(false);
@@ -49,12 +51,12 @@ function Login() {
           navigate('/verify-otp');
         } else if (data.status === 'success') {
           toast.success('Login Successfully', { theme: 'colored' });
-          dispatch(setUser(data.user));
+          dispatch(setUser(data.data));
           dispatch(setRole(data.role));
           dispatch(setToken(data.token));
           dispatch(login(data.user));
           setTimeout(() => {
-            navigate('/');
+            navigate('/*');
           }, 2000);
         } else {
           toast.error(data.message, { theme: 'colored' });
