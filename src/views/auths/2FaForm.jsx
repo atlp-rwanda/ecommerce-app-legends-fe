@@ -1,6 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+// eslint-disable-next-line import/named
+import { setUser, setRole, setToken } from '../../redux/reducers/AuthUser';
 import OTPinput from '../../components/formControlscomponents/2FAinput/OtpInputt';
 // eslint-disable-next-line import/no-unresolved
 import Button from '../../components/formControlscomponents/Button/Button';
@@ -13,6 +16,7 @@ const TwoFaForm = () => {
     display: 'hidden',
     text: `verify OTP`,
   });
+  const dispatch = useDispatch();
   const inputRef = useRef(null);
   const navigate = useNavigate();
   //  handle change input field changing events
@@ -36,6 +40,7 @@ const TwoFaForm = () => {
       display: 'inline-block',
       text: `Loading...`,
     });
+
     const inputCodes = otpFields.join('');
     await fetch(`${URL}/api/vendor/verify`, {
       method: 'POST',
@@ -49,7 +54,9 @@ const TwoFaForm = () => {
       .then((data) => {
         if (data.token) {
           toast.success('here you are vendor!', { theme: 'colored' });
-          localStorage.setItem('token', JSON.stringify(data.token));
+          dispatch(setUser(data.user));
+          dispatch(setRole(data.role));
+          dispatch(setToken(data.token));
           navigate('/vendor-dashboard');
         } else if (inputCodes.length !== 6) {
           toast.error('All digits must be completed ', { theme: 'colored' });

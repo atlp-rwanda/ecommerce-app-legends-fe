@@ -10,12 +10,15 @@ import {
 import { HiUsers } from 'react-icons/hi';
 import { FaUserCircle, FaHome } from 'react-icons/fa';
 import { setActiveButton, logout } from '../../../../types/sideBardButtons';
+import { clearUser } from '../../../../redux/reducers/AuthUser';
 
 function SideBar({ isOpen }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const activeButton = useSelector((state) => state.activeButton);
-
+  const currentUser = useSelector((state) => state.currentUser);
+  const { role, user } = currentUser;
+  const userName = user?.lastname;
   const handleProduct = () => {
     navigate('/dashboard/products');
     dispatch(setActiveButton('product'));
@@ -47,6 +50,7 @@ function SideBar({ isOpen }) {
   const handleLogout = () => {
     navigate('/login');
     dispatch(logout());
+    dispatch(clearUser());
   };
 
   const isButtonActive = (buttonName) => {
@@ -117,7 +121,7 @@ function SideBar({ isOpen }) {
           <div
             className={`flex space-x-4 logo basis-full  h-12 mt-0.5 p-3 ${isButtonActive(
               'order'
-            )}`}
+            )} ${role !== 'vendor' ? 'hidden' : ''}`}
           >
             <div className="icon">
               {' '}
@@ -134,7 +138,7 @@ function SideBar({ isOpen }) {
           <div
             className={`flex space-x-4 logo basis-full  h-12 mt-0.5 p-3 ${isButtonActive(
               'user'
-            )}`}
+            )} ${role !== 'admin' ? 'hidden' : ''}`}
           >
             <div className="icon">
               {' '}
@@ -180,7 +184,7 @@ function SideBar({ isOpen }) {
             </div>
             <div className="link text-md">
               <button type="button" onClick={handleSettings}>
-                Admin joe
+                {userName}
               </button>
             </div>
           </div>
