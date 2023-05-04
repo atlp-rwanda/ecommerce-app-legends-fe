@@ -1,6 +1,6 @@
 /* eslint-disable react/function-component-definition */
 /* eslint-disable prettier/prettier */
-import TwoFaForm from './2FA_form';
+import TwoFaForm from './2FaForm';
 
 // eslint-disable-next-line storybook/story-exports
 export default {
