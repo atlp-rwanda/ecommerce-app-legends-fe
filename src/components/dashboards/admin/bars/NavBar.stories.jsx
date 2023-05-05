@@ -7,10 +7,10 @@ export default {
   component: NavBar,
 };
 
-export function Default() {
+export const Default = () => {
   return (
     <Router>
       <NavBar />
     </Router>
   );
-}
+};

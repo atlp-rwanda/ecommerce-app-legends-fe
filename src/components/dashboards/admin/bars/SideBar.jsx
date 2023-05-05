@@ -9,14 +9,14 @@ import {
 } from 'react-icons/ai';
 import { HiUsers } from 'react-icons/hi';
 import { FaUserCircle, FaHome } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 import {
   setActiveButton,
   logout,
 } from '../../../../redux/types/sideBardButtons';
 import { clearUser } from '../../../../redux/reducers/AuthUser';
-import { useTranslation } from 'react-i18next';
 
-function SideBar({ isOpen }) {
+const SideBar = ({ isOpen }) => {
   const { t } = useTranslation();
 
   const navigate = useNavigate();
@@ -213,6 +213,6 @@ function SideBar({ isOpen }) {
       </div>
     </div>
   );
-}
+};
 
 export default SideBar;

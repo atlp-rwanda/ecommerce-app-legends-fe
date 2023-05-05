@@ -14,4 +14,7 @@ export default defineConfig({
       reporter: ['text', 'json', 'html'],
     },
   },
+  build: {
+    target: 'es2017',
+  },
 });

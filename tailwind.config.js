@@ -5,7 +5,7 @@ export default {
     screens: {
       sm: { max: '480px' },
       md: { max: '768px' },
-      lg: { max: '976px' },
+      lg: { max: '976px', min: '769px' },
       xl: { max: '1440px' },
     },
     extend: {
@@ -16,6 +16,12 @@ export default {
         lightGrey: '#F9FAFB',
         imageBgColor: '#DFDFE1',
         lightYellow: '#CBA008',
+        denimBlue: '#011b32',
+        footerText: '#E7E7E7',
+        footerTextDim: '#979797',
+        footerLine: '#3E3838',
+        cardContainer: '#EBEBF1',
+        vendorCard: '#ECECEC',
       },
     },
   },
