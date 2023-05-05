@@ -16,12 +16,12 @@ const userSlice = createSlice({
     },
     setToken: (state, action) => {
       // eslint-disable-next-line no-param-reassign
-      state.currentUser = action.payload;
+      state.token = action.payload;
       localStorage.setItem('token', JSON.stringify(action.payload));
     },
     setRole: (state, action) => {
       // eslint-disable-next-line no-param-reassign
-      state.currentUser = action.payload;
+      state.role = action.payload;
       localStorage.setItem('role', JSON.stringify(action.payload));
     },
     clearUser: (state) => {

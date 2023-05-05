@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-// import { useDispatch } from 'react-redux';
-import { login } from '../../redux/reducers/user';
+import { useDispatch } from 'react-redux';
 import FormInput from '../../components/formControlscomponents/formInput/FormInput';
 import Button from '../../components/formControlscomponents/Button/Button';
-// eslint-disable-next-line import/named
 import { setUser, setRole, setToken } from '../../redux/reducers/AuthUser';
 import CART from '../../assets/CART.png';
 import GOOGLE from '../../assets/GOOGLE.png';
-import { useDispatch } from 'react-redux';
 
 export const URL = `https://ecommerce-app-legends-bn-production.up.railway.app`;
 function Login() {
-  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isClicked, setIsClicked] = useState(false);
@@ -22,7 +18,7 @@ function Login() {
     text: `Login`,
   });
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   // store token in state
   const [userToken, setUserToken] = useState('');
   const [userRole, setUserRole] = useState('');
@@ -35,10 +31,10 @@ function Login() {
       display: 'inline-block',
       text: `Loading...`,
     });
-
     await fetch(`${URL}/api/v1/users/login`, {
       method: 'POST',
       credentials: 'include',
+      mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -54,7 +50,6 @@ function Login() {
           dispatch(setUser(data.data));
           dispatch(setRole(data.role));
           dispatch(setToken(data.token));
-          dispatch(login(data.user));
           setTimeout(() => {
             navigate('/*');
           }, 2000);

@@ -4,8 +4,9 @@ import Navbar from '../components/Navbar';
 
 function App() {
   const greetings = useSelector((state) => state.greeting.greet);
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.currentUser);
   const dispatch = useDispatch();
+  console.log(user);
   return (
     <div className="App">
       <Navbar />
@@ -13,7 +14,9 @@ function App() {
         Ecommerce Legends
       </p>
       <p className="text-center">
-        {user.payload !== undefined ? user.payload.email : 'not logged in'}
+        {user.user !== undefined && user.user !== null
+          ? user.user.email
+          : 'not logged in'}
       </p>
       <div className="mt-9">
         <h1 className="text-gray-600 mx-4">
