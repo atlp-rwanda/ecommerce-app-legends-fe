@@ -13,6 +13,9 @@ import Notifications from './Notifications';
 import Settings from './Settings';
 import VendorRoutes from '../../../../middlewares/authMiddlewares/VendorRoutes';
 import AdminRoutes from '../../../../middlewares/authMiddlewares/AdminRoutes';
+import AddProducts from './addProducts';
+import ProductCategoryPick from './productCategoryview';
+import ProductVariationAdd from './ProductVariationAdd';
 
 function DashBoardIndex() {
   return (
@@ -26,6 +29,15 @@ function DashBoardIndex() {
             <Route path="/dashboard/products" element={<Products />} />
             <Route path="/dashboard/customers" element={<Customers />} />
             <Route path="/dashboard/orders" element={<Orders />} />
+            <Route path="/dashboard/add/products" element={<AddProducts />} />
+            <Route
+              path="/dashboard/products/categories"
+              element={<ProductCategoryPick />}
+            />
+            <Route
+              path="/dashboard/add/products/variation"
+              element={<ProductVariationAdd />}
+            />
             <Route
               path="/dashboard/notifications"
               element={<Notifications />}
