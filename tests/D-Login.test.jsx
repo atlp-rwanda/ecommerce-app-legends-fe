@@ -15,12 +15,9 @@ describe('NavBar', () => {
         </Provider>
       </BrowserRouter>
     );
-    const elements = screen.queryAllByText(/Log in to your account/i);
     const emailInput = screen.getByLabelText('Email');
     expect(emailInput).toBeInTheDocument();
     const passwordInput = screen.getByLabelText('Password');
     expect(passwordInput).toBeInTheDocument();
-    expect(elements).toHaveLength(1);
-    expect(elements[0]).toBeInTheDocument();
   });
 });

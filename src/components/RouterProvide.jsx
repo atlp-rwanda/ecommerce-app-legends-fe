@@ -16,9 +16,10 @@ import TwoFaForm from '../views/auths/2FaForm';
 import VendorRoutes from '../middlewares/authMiddlewares/VendorRoutes';
 import DummyProductVariatonsPage from './cart/DummyProductVariatonsPage';
 import CartPage from './cart/CartPage';
+import UserProfile from '../views/userProfile/UserProfile';
 
 // dotenv.config();
-function RouterProv() {
+const RouterProv = () => {
   return (
     <React.StrictMode>
       <Provider store={store}>
@@ -37,6 +38,7 @@ function RouterProv() {
               <Route path="/*" element={<DashBoardIndex />} />
             </Route>
             <Route path="/Login" element={<Login />} />
+            <Route path="/profile" element={<UserProfile />} />
             <Route path="/verify-otp" element={<TwoFaForm />} />
             <Route path="/sign-up-buyer" element={<SignUpBuyer />} />
           </Routes>
@@ -44,6 +46,6 @@ function RouterProv() {
       </Provider>
     </React.StrictMode>
   );
-}
+};
 export default RouterProv;
 // eslint-disable-next-line prettier/prettier

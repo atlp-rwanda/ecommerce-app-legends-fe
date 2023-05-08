@@ -4,6 +4,7 @@ import React from 'react';
 const FormInput = ({
   id,
   className,
+  name,
   placeholder,
   type,
   value,
@@ -14,6 +15,7 @@ const FormInput = ({
     <input
       id={id}
       type={type}
+      name={name}
       className={className}
       placeholder={placeholder}
       required={required}
