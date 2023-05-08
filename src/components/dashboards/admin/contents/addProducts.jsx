@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
+import { Icon } from '@iconify/react';
+import { NavLink } from 'react-router-dom';
 import imgInputController from '../../../formControlscomponents/formInput/imgInputController';
 import { URL } from '../../../../views/auths/Login';
 
@@ -11,8 +13,7 @@ class ProductField {
     this.type = type;
   }
 }
-
-function AddProducts() {
+const AddProducts = () => {
   const navigate = useNavigate();
   const [productImg, setproductImg] = useState();
   const [addProductbtn, setaddProductbtn] = useState({
@@ -85,16 +86,26 @@ function AddProducts() {
   };
 
   return (
-    <div className="pt-16 min-h-[95vh] ml-0">
-      <h1 className="text-center text-3xl font-regular text-[#112045]">
-        products
-      </h1>
+    <div className="pt-16 min-h-[95vh0 ml-0">
+      <div className="flex justify-end container mt-10 items-center p-2">
+        {' '}
+        <NavLink
+          to="/dashboard/products"
+          className="add p-2 rounded text-whiteColor bg-darkBlueColor"
+        >
+          {' '}
+          <button className="w-fit" type="button">
+            <Icon className="inline" icon="material-symbols:list-rounded" /> All
+            Products
+          </button>
+        </NavLink>{' '}
+      </div>
 
       <form
         className=" flex justify-evenly flex-wrap flex-row-reverse"
         onSubmit={handleAddproducts}
       >
-        {imgInputController(imgDisplay, productImg)}
+        {imgInputController(imgDisplay, productImg, true)}
         <div className="w-[50%] min-w-[20em]">
           {allFields.map(({ label, placeholder, type }) => {
             if (label === 'description') {
@@ -134,6 +145,6 @@ function AddProducts() {
       </form>
     </div>
   );
-}
+};
 
 export default AddProducts;

@@ -106,7 +106,7 @@ const LandingPage = () => {
             className="absolute top-0 right-10 md:hidden lg:hidden"
             data-carousel="slide"
           >
-            <div className="relative h-56 overflow-hidden w-72 h-96 rounded-lg md:h-96">
+            <div className="relative overflow-hidden w-72 h-96 rounded-lg md:h-96">
               <div className=" duration-700 ease-in-out" data-carousel-item>
                 <img
                   src="/showe4.jpg"
