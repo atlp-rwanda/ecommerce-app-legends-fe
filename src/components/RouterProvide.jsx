@@ -10,11 +10,14 @@ import Login from '../views/auths/Login';
 import store from '../redux/store';
 import SignUpBuyer from '../views/signUpBuyer';
 import DashBoardIndex from './dashboards/admin/contents/DashBoardIndex';
+import ResetPassword from '../passwordreset/ResetPassword';
+import NewPassword from '../passwordreset/newPassword';
 import TwoFaForm from '../views/auths/2FaForm';
 import VendorRoutes from '../middlewares/authMiddlewares/VendorRoutes';
 import DummyProductVariatonsPage from './cart/DummyProductVariatonsPage';
 import CartPage from './cart/CartPage';
 
+// dotenv.config();
 function RouterProv() {
   return (
     <React.StrictMode>
@@ -23,6 +26,8 @@ function RouterProv() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<App />} />
+            <Route path="/resetPassword" element={<ResetPassword />} />
+            <Route path="/reset" element={<NewPassword />} />
             <Route path="/cart" element={<CartPage />} />
             <Route
               path="/product-variation"

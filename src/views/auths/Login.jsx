@@ -186,6 +186,15 @@ function Login() {
               {` Sign up`}
             </NavLink>
           </p>
+          <p className="mt-3 text-center">
+            Forgotten Password?
+            <NavLink
+              to="/resetPassword"
+              className="text-darkBlueColor font-bold "
+            >
+              {` Reset it`}
+            </NavLink>
+          </p>
         </div>
       </div>
     </div>
