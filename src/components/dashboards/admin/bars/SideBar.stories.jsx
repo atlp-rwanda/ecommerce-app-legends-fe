@@ -9,7 +9,7 @@ export default {
   component: SideBar,
 };
 
-export function Default() {
+export const Default = () => {
   return (
     <Router>
       <Provider store={store}>
@@ -17,4 +17,4 @@ export function Default() {
       </Provider>
     </Router>
   );
-}
+};

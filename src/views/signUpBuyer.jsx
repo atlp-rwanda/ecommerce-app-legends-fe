@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux';
 import CART from '../assets/CART.png';
 import { URL } from './auths/Login';
 import { setUser, setRole, setToken } from '../redux/reducers/AuthUser';
+import Navbar from '../components/Navbar';
+import Footer from '../components/FrontFooter';
 
 class FormField {
   constructor(placeholder, label, type) {
@@ -13,7 +15,7 @@ class FormField {
     this.type = type;
   }
 }
-function SignUpBuyer() {
+const SignUpBuyer = () => {
   const navigate = useNavigate();
   const [signupButtonState, setsignupButtonState] = useState({
     display: 'hidden',
@@ -89,60 +91,72 @@ function SignUpBuyer() {
   };
 
   return (
-    <div className="bg-[#D9D9D9]  min-h-[100vh] pt-[12vh] ">
-      <div className="w-[60vw] h-[150vh]  bg-[#011B32] fixed right-0   -top-[25vh] rounded-[50%] overflow-hidden rounded-r" />
-      <div className=" flex flex-row-reverse justify-center mx-auto ">
-        <img
-          src={CART}
-          alt="cart"
-          className="lg:hidden grid backdrop-blur-3xl bg-[#D9D9D9] max-w-[30em] px-6 py-14 rounded-sm rounded-l-none shadow-2xl"
-        />
-        <div className=" lg:w-[95vw] min-w-[270px] max-w-[30em] w-[40vw] lg:px-4 px-6 h-fit py-10 pt-[5vh] bg-[white] backdrop-blur-md rounded-md lg:rounded-r rounded-r-none shadow-2xl flex flex-col min-h-[50vh]">
-          <h1 className="h-fit text-2xl  font-medium text-[#011B32]">
-            Excellent shoppify experience
-          </h1>
-          <form onSubmit={SignUp}>
-            {allFields.map(({ placeholder, label, type }) => {
-              return (
-                <div
-                  key={placeholder}
-                  className="relative  w-full min-w-[200px] mt-1 mb-6 h-[2em]"
+    <>
+      <header>
+        <Navbar />
+      </header>
+      <main>
+        <div className="bg-[#D9D9D9]  min-h-[100vh] pt-[12vh] ">
+          <div className="w-[60vw] h-[150vh]  bg-[#011B32] fixed right-0   -top-[25vh] rounded-[50%] overflow-hidden rounded-r" />
+          <div className=" flex flex-row-reverse justify-center mx-auto ">
+            <img
+              src={CART}
+              alt="cart"
+              className="lg:hidden grid backdrop-blur-3xl bg-[#D9D9D9] max-w-[30em] px-6 py-14 rounded-sm rounded-l-none shadow-2xl"
+            />
+            <div className=" lg:w-[95vw] min-w-[270px] max-w-[30em] w-[40vw] lg:px-4 px-6 h-fit py-10 pt-[5vh] bg-[white] backdrop-blur-md rounded-md lg:rounded-r rounded-r-none shadow-2xl flex flex-col min-h-[50vh]">
+              <h1 className="h-fit text-2xl  font-medium text-[#011B32]">
+                Excellent shoppify experience
+              </h1>
+              <form onSubmit={SignUp}>
+                {allFields.map(({ placeholder, label, type }) => {
+                  return (
+                    <div
+                      key={placeholder}
+                      className="relative  w-full min-w-[200px] mt-1 mb-6 h-[2em]"
+                    >
+                      <label className=" text-[#2b2b2b] text-sm ">
+                        {label}
+                      </label>
+                      <input
+                        className="invalid:focus:border-red-400 valid:focus:border-green-400 h-full w-full rounded-[5px] border border-blue-gray-200 px-3 py-4 font-sans text-md font-extralight text-blue-gray-400 outline-none outline-[.2px] transition-all  placeholder-shown:border-t-blue-gray-200 focus:border-1 focus:border-blue-500 focus:outline-0  "
+                        placeholder={placeholder}
+                        type={type}
+                        required
+                      />
+                    </div>
+                  );
+                })}
+
+                <button
+                  type="submit"
+                  className=" w-full mt-3 text-xl bg-[#011B32] py-1.5 text-white rounded-md active:bg-white active:text-[#011B32] active:border-[#011B32] active:border-2 "
+                  disabled={signupButtonState.disabled}
                 >
-                  <label className=" text-[#2b2b2b] text-sm ">{label}</label>
-                  <input
-                    className="invalid:focus:border-red-400 valid:focus:border-green-400 h-full w-full rounded-[5px] border border-blue-gray-200 px-3 py-4 font-sans text-md font-extralight text-blue-gray-400 outline-none outline-[.2px] transition-all  placeholder-shown:border-t-blue-gray-200 focus:border-1 focus:border-blue-500 focus:outline-0  "
-                    placeholder={placeholder}
-                    type={type}
-                    required
+                  <span
+                    id="spin"
+                    className={`${signupButtonState.display} h-5 w-5 animate-spin rounded-full border-white border-2 border-solid border-current border-r-transparent motion-reduce:animate-[spin_1.5s_linear_infinite] mr-3`}
+                    role="status"
                   />
-                </div>
-              );
-            })}
+                  {signupButtonState.text}
+                </button>
 
-            <button
-              type="submit"
-              className=" w-full mt-3 text-xl bg-[#011B32] py-1.5 text-white rounded-md active:bg-white active:text-[#011B32] active:border-[#011B32] active:border-2 "
-              disabled={signupButtonState.disabled}
-            >
-              <span
-                id="spin"
-                className={`${signupButtonState.display} h-5 w-5 animate-spin rounded-full border-white border-2 border-solid border-current border-r-transparent motion-reduce:animate-[spin_1.5s_linear_infinite] mr-3`}
-                role="status"
-              />
-              {signupButtonState.text}
-            </button>
-
-            <p className="mt-3 text-center">
-              have an account
-              <NavLink to="/login" className="text-blue-500 ml-2">
-                Login
-              </NavLink>
-            </p>
-          </form>
+                <p className="mt-3 text-center">
+                  have an account
+                  <NavLink to="/login" className="text-blue-500 ml-2">
+                    Login
+                  </NavLink>
+                </p>
+              </form>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </main>
+      <footer>
+        <Footer />
+      </footer>
+    </>
   );
-}
+};
 
 export default SignUpBuyer;

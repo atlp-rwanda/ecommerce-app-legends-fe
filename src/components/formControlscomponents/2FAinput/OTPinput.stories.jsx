@@ -1,6 +1,6 @@
 /* eslint-disable react/function-component-definition */
 /* eslint-disable prettier/prettier */
-import OTPinput from './OTPinput';
+import OTPinput from './OtpInputt';
 import '../../../index.css';
 
 // eslint-disable-next-line storybook/story-exports

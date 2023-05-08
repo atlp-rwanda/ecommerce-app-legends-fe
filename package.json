@@ -14,6 +14,9 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@iconify/react": "^4.1.0",
     "@react-oauth/google": "^0.11.0",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
@@ -31,6 +34,7 @@
     "react-toastify": "^9.1.2"
   },
   "devDependencies": {
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@storybook/addon-essentials": "^7.0.6",
     "@storybook/addon-interactions": "^7.0.6",
     "@storybook/addon-links": "^7.0.6",

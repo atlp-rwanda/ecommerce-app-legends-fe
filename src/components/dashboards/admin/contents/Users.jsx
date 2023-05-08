@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-function Users() {
+const Users = () => {
   const { t } = useTranslation();
   return (
     <div className="pt-16 bg-blue-400 h-screen md:w-full">
@@ -10,6 +10,6 @@ function Users() {
       </div>
     </div>
   );
-}
+};
 
 export default Users;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-function Customers() {
+const Customers = () => {
   const { t } = useTranslation();
   return (
     <div className="pt-16 h-fit md:w-full bg-gray-500">
@@ -14,6 +14,6 @@ function Customers() {
       </div>
     </div>
   );
-}
+};
 
 export default Customers;

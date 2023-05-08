@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-function DashBoard() {
+const DashBoard = () => {
   const { t } = useTranslation();
   return (
     <div className="bg-blue-400 pt-16 h-screen md:w-full">
@@ -10,6 +10,6 @@ function DashBoard() {
       </div>
     </div>
   );
-}
+};
 
 export default DashBoard;

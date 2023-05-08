@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-function Products() {
+const Products = () => {
   const { t } = useTranslation();
   return (
     <>
@@ -14,6 +14,6 @@ function Products() {
       <div className="footer w-full" />
     </>
   );
-}
+};
 
 export default Products;

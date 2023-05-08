@@ -77,7 +77,7 @@ const TwoFaForm = () => {
       {/* <ToastContainer theme="colored" /> */}
       <div className="md:w-full md:rounded-none sm:w-3/3 w-2/3 h-[110vh] bg-darkBlueColor absolute right-[-20%] md:right-0 rounded-full rounded-r overflow-hidden" />
       <div className="px-8 pt-[10vh] -mt-10 bg-whiteColor w-2/4 h-[50vh] md:h-3/4 backdrop-blur-md flex flex-col items-center rounded-md shadow-2xl md:w-[90%] md:rounded-r sm:px-2 sm:w-[98%] md:px-10">
-        <h1 className="h-fit text-2xl font-semibold mb-2 text-center capitalize font-light">
+        <h1 className="h-fit text-2xl mb-2 text-center capitalize font-light">
           welcome back, vendor!
         </h1>
         <span className="text-md text-center capitalize font-thin">

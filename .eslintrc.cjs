@@ -21,7 +21,10 @@ module.exports = {
     'linebreak-style': ['off', 'unix'],
     quotes: ['error', 'single', { allowTemplateLiterals: true }],
     semi: ['error', 'always'],
-    'no-unused-vars': 'error',
+    'no-unused-vars': [
+      'warn',
+      { vars: 'all', args: 'after-used', ignoreRestSiblings: false },
+    ],
     'react/jsx-uses-react': 'error',
     'react/jsx-uses-vars': 'error',
     'react/no-unescaped-entities': 'error',
@@ -54,5 +57,15 @@ module.exports = {
         depth: 3,
       },
     ],
+    'react/function-component-definition': [
+      'error',
+      {
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function',
+      },
+    ],
+    'consistent-return': ['warn', { treatUndefinedAsUnspecified: true }],
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
 };
