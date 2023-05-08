@@ -116,8 +116,11 @@ const Products = () => {
     const formDataObject = Object.fromEntries(fromData.entries());
     setProductFormValue(formDataObject);
 
-    dispatch(updateSellerProducts({ id: formDataObject.id, body: fromData }));
-    dispatch(fetchSellerProducts());
+    dispatch(
+      updateSellerProducts({ id: formDataObject.id, body: fromData })
+    ).the(() => {
+      dispatch(fetchSellerProducts());
+    });
   };
 
   // Handle product attribute update
@@ -128,8 +131,11 @@ const Products = () => {
       formData.append('attrImage', event.target[0].files[0]);
     }
     const formDataObject = Object.fromEntries(formData.entries());
-    dispatch(updateProductAttribute({ id: formDataObject.id, body: formData }));
-    dispatch(fetchSellerProducts());
+    dispatch(
+      updateProductAttribute({ id: formDataObject.id, body: formData })
+    ).then(() => {
+      dispatch(fetchSellerProducts());
+    });
   };
 
   // On product image  change
@@ -228,11 +234,15 @@ const Products = () => {
               {' '}
               <NavLink
                 to="/dashboard/products/categories"
-                className="add p-2 rounded bg-darkBlueColor"
+                className="add p-2 rounded bg-darkBlueColor text-whiteColor"
               >
                 {' '}
                 <button className="w-fit" type="button">
-                  <Icon className="inline" icon="material-symbols:add" /> Add
+                  <Icon
+                    className="inline"
+                    icon="material-symbols:add text-whiteColor"
+                  />{' '}
+                  {t('add')}
                 </button>
               </NavLink>{' '}
             </div>
@@ -531,10 +541,10 @@ const Products = () => {
                     (productAttibute, index, array) => (
                       <form
                         key={productAttibute.id}
-                        className=" flex justify-evenly flex-row sm:flex-col items-center sm:items-center py-3 mb-3 border rounded px-2 "
+                        className=" flex justify-evenly flex-row md:flex-col sm:flex-col md:h-fit items-center sm:items-center py-3 mb-3 border rounded px-2 "
                         onSubmit={handleUpdateProductAttribute}
                       >
-                        <div className="w-[33%] md:w-[80%] md:max-h-[150px] max-h-full  relative">
+                        <div className="w-[33%] md:w-[80%] md:max-h-fit  md:mb-[2%] md md:h-fit relative">
                           {imgInputController(
                             imgAttributeDisplay,
                             productAttibute.attrImage,
@@ -542,9 +552,9 @@ const Products = () => {
                             t('product_image')
                           )}
                         </div>
-                        <div className="w-[100%] min-w-[20em] flex flex-col items-end ">
-                          <div className=" flex md:flex-col flex-wrap">
-                            <div className="p-2 w-1/2 md:w-full">
+                        <div className="relative w-[100%] min-w-[20em flex md:flex-col  items-end md:items-center ">
+                          <div className=" flex md:flex-col flex-wrap ">
+                            <div className="p-2 w-1/2 sm:w-full relative">
                               <label
                                 htmlFor="name"
                                 className=" text-[#2b2b2b] text-sm block "

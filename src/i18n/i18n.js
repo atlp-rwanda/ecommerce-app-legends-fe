@@ -90,6 +90,7 @@ const translationEn = {
   yes_clear_it: 'YES CLEAR IT',
   cart_cleared: 'Cart cleared successfully',
   are_you_sure_you_clear_cart: 'Are you sure you want to clear this cart ?',
+  my_wishlists: 'MY WISHLIST',
   are_you_sure: 'Are you sure ?',
   you_will_not_be_able_to_revert: "You won't be able to revert this!",
   yes_delete_it: 'Yes, delete it !',
@@ -110,6 +111,8 @@ const translationEn = {
   description: 'Description',
   active: 'active',
   inactive: 'inactive',
+  all_products: 'All products',
+  add: 'Add',
 };
 
 const translationFr = {
@@ -224,6 +227,8 @@ const translationFr = {
   description: 'Description',
   active: 'actif',
   inactive: 'inactif',
+  all_products: 'Tous les produits',
+  add: 'Ajouter',
 };
 
 i18n.use(initReactI18next).init({

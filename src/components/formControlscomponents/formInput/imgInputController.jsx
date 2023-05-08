@@ -3,9 +3,11 @@ import React from 'react';
 const imgInputController = (onChange, Img, required, imageText) => {
   return (
     <div className="border-gray-600 border-2 border-dashed h-full overflow-hidden w-full justify-center">
-      <img src={Img} alt="" className="h-[70%] w-full" />
-      <label className="">
-        <div className="flex flex-col items-center h-[30%] justify-center pt-2 ">
+      <div className="h-[70%]">
+        <img src={Img} alt="" className="h-[70%] w-full" />
+      </div>
+      <label className="flex-col items-center h-[30%] relative flex">
+        <div className="flex flex-col items-center justify-center pt-2 ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-8 h-8 text-gray-400 group-hover:text-gray-600"
