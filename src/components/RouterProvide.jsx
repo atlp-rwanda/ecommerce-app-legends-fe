@@ -12,6 +12,8 @@ import SignUpBuyer from '../views/signUpBuyer';
 import DashBoardIndex from './dashboards/admin/contents/DashBoardIndex';
 import TwoFaForm from '../views/auths/2FaForm';
 import VendorRoutes from '../middlewares/authMiddlewares/VendorRoutes';
+import DummyProductVariatonsPage from './cart/DummyProductVariatonsPage';
+import CartPage from './cart/CartPage';
 
 function RouterProv() {
   return (
@@ -21,6 +23,11 @@ function RouterProv() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<App />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route
+              path="/product-variation"
+              element={<DummyProductVariatonsPage />}
+            />
             <Route element={<VendorRoutes />}>
               <Route path="/*" element={<DashBoardIndex />} />
             </Route>
