@@ -16,6 +16,7 @@ export default {
         lightGrey: '#F9FAFB',
         imageBgColor: '#DFDFE1',
         lightYellow: '#CBA008',
+        orangeSecondary: '#f97316',
         denimBlue: '#011b32',
         footerText: '#E7E7E7',
         footerTextDim: '#979797',
