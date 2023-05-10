@@ -6,6 +6,7 @@ import { productApi } from './reducers/productApi';
 import languageSlice from './reducers/languageSlice';
 import productsReducer from './reducers/fronUser/productsReducer';
 import toogleSearchFormSlice from './reducers/searchFormToogle';
+import wishListSlice from './reducers/WishListSlice';
 
 const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ const store = configureStore({
     language: languageSlice,
     searchFocused: toogleSearchFormSlice,
     landingProducts: productsReducer,
+    wishlist: wishListSlice,
     [productApi.reducerPath]: productApi.reducer,
   },
 

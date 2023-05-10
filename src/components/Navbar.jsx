@@ -1,20 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import logo from '../assets/logo.svg';
 import SearchBar from './SearchBar';
 import LocalizationSwicher from './LocalizationSwicher';
 import TopSearchProducts from './TopSearchProducts';
 import FrontCategoryDrawer from './FrontCategoryDrawer';
 import UserAvatar from './UserAvatar';
+import { viewCart } from '../redux/reducers/CartSlice';
+import { viewWishList } from '../redux/reducers/WishListSlice';
 
 const Navbar = () => {
   const [isCategoryOpen, setCategoryOpen] = useState(false);
   const [isMenuOpen, setisMenuOpen] = useState(false);
   const hasFocus = useSelector((state) => state.searchFocused.isSearchOpen);
   const user = useSelector((state) => state.currentUser.currentUser);
+  const { items } = useSelector((state) => state.cart);
+  const wishlistItems = useSelector((state) => state.wishlist.items);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(viewWishList());
+    dispatch(viewCart());
+  }, [dispatch]);
 
   const { t } = useTranslation();
   const pages = [
@@ -85,22 +96,39 @@ const Navbar = () => {
             </div>
             <LocalizationSwicher />
             <NavLink
-              to="/cart"
+              to="/wishlist"
               className="text-md px-1 mx-2 text-center text-neutral-600 hover:text-neutral-900 md:mx-0"
             >
-              <Icon
-                className="text-center h-10 flex items-center p-0  w-6  md:w-4"
-                icon="mdi:cards-heart"
-              />
+              <div className="flex">
+                <Icon
+                  className="text-center h-10 flex items-center p-0  w-6  md:w-4"
+                  icon="mdi:cards-heart"
+                />
+
+                {wishlistItems && wishlistItems.data && (
+                  <p className="bg-orange-500 rounded-full h-6 w-6 md:w-4 md:h-4 md:mt-1 md:text-sm md:pt-0 text-white">
+                    {wishlistItems.data.length > 9
+                      ? '9+'
+                      : wishlistItems.data.length}
+                  </p>
+                )}
+              </div>
             </NavLink>
             <NavLink
               to="/cart"
               className="text-md px-1 mx-2 text-center text-neutral-600 hover:text-neutral-900 md:mx-0"
             >
-              <Icon
-                className="text-center h-10 flex items-center p-0 w-6 md:w-4"
-                icon="ic:baseline-shopping-cart"
-              />
+              <div className="flex">
+                <Icon
+                  className="text-center h-10 flex items-center p-0 w-6 md:w-4"
+                  icon="ic:baseline-shopping-cart"
+                />
+                {items.data && items.data.cart && (
+                  <p className="bg-orange-500 rounded-full h-6 w-6 md:w-4 md:h-4 md:mt-1 md:text-sm md:pt-0 text-white">
+                    {items.data.cart.length > 9 ? '9+' : items.data.cart.length}
+                  </p>
+                )}
+              </div>
             </NavLink>
 
             {user ? (
