@@ -36,7 +36,7 @@ const UserAvatar = ({ user }) => {
           </div>
           <div>
             <NavLink
-              href="logout"
+              to="/logout"
               className="block mt-1 lg:inline-block lg:mt-0 text-darkBlueColor hover:bg-darkBlueColor w-full px-3 py-1 hover:text-white"
             >
               {t('logout')}
