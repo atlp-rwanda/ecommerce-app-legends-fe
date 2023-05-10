@@ -2,21 +2,20 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
 const token = JSON.parse(localStorage.getItem('token'));
+const URL =
+  'https://ecommerce-app-legends-bn-production.up.railway.app/api/v1/';
 
 export const addToCart = createAsyncThunk(
   'cart/addToCart',
   async (id, { rejectWithValue }) => {
-    const response = await fetch(
-      'https://ecommerce-app-legends-bn-production.up.railway.app/api/v1/shoppingCart/add',
-      {
-        method: 'POST',
-        body: JSON.stringify({ productId: id }),
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await fetch(`${URL}shoppingCart/add`, {
+      method: 'POST',
+      body: JSON.stringify({ productId: id }),
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const data = await response.json();
     if (response.status !== 201) {
       toast.error(data.message, {
@@ -32,14 +31,11 @@ export const addToCart = createAsyncThunk(
 );
 
 export const viewCart = createAsyncThunk('cart/viewCart', async () => {
-  const response = await fetch(
-    'https://ecommerce-app-legends-bn-production.up.railway.app/api/v1/shoppingCart/view',
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  const response = await fetch(`${URL}shoppingCart/view`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   const data = await response.json();
   return data;
 });

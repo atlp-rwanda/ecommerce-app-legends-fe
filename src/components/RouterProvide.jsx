@@ -2,9 +2,6 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-// eslint-disable-next-line import/no-extraneous-dependencies
-// eslint-disable-next-line import/no-extraneous-dependencies
-// import dotenv from 'dotenv';
 import App from '../views/App';
 import Login from '../views/auths/Login';
 import store from '../redux/store';
@@ -17,6 +14,7 @@ import VendorRoutes from '../middlewares/authMiddlewares/VendorRoutes';
 import DummyProductVariatonsPage from './cart/DummyProductVariatonsPage';
 import CartPage from './cart/CartPage';
 import UserProfile from '../views/userProfile/UserProfile';
+import WishListPage from './wishlist/WishListPage';
 
 // dotenv.config();
 const RouterProv = () => {
@@ -30,6 +28,7 @@ const RouterProv = () => {
             <Route path="/resetPassword" element={<ResetPassword />} />
             <Route path="/reset" element={<NewPassword />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/wishlist" element={<WishListPage />} />
             <Route
               path="/product-variation"
               element={<DummyProductVariatonsPage />}

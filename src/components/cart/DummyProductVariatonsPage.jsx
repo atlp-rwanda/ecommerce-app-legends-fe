@@ -4,14 +4,19 @@ import { useDispatch } from 'react-redux';
 import DummyCartNavBar from './DummyCartNavBar';
 import { useGetAllProductQuery } from '../../redux/reducers/productApi';
 import { addToCart } from '../../redux/reducers/CartSlice';
+import { addToWishList } from '../../redux/reducers/WishListSlice';
 
-function DummyProductVariatonsPage() {
+const DummyProductVariatonsPage = () => {
   const { data, isLoading } = useGetAllProductQuery();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleAddToCart = (id) => {
     dispatch(addToCart(id));
     navigate('/cart');
+  };
+  const handleAddToWishList = (id) => {
+    dispatch(addToWishList(id));
+    navigate('/wishlist');
   };
   return (
     <>
@@ -35,6 +40,13 @@ function DummyProductVariatonsPage() {
                   </p>
                   <p className="mt-12">Product Status: {data.data.status}</p>
                   <p className="mt-12">Product model : {data.data.model}</p>
+                  <button
+                    type="button"
+                    className="bg-gray-600 w-full h-1/6"
+                    onClick={() => handleAddToWishList(data.data.id)}
+                  >
+                    Add to wishList
+                  </button>
                 </div>
                 <div className="w-1/2 h-full">
                   <img src={data.data.image} alt="" className="h-full" />
@@ -73,6 +85,6 @@ function DummyProductVariatonsPage() {
       </div>
     </>
   );
-}
+};
 
 export default DummyProductVariatonsPage;

@@ -58,6 +58,24 @@ const translationEn = {
   save: 'Save',
   profileTitle: 'User Information',
   profileSubTitle: 'You can change your profile here',
+
+  my_cart: 'MY CART',
+  name: 'Name',
+  quantity: 'Quantity',
+  total_price: 'Total Price',
+  option: 'Option',
+  remove: 'Remove',
+  total_amount: 'Total Amount',
+  checkout: 'Checkout',
+  continue_shopping: 'continue shopping',
+  clear_cart: 'clear cart',
+  start_shopping: 'start shopping',
+  your_cart_is_empty: 'YOUR CART IS EMPTY',
+  status: 'Sataus',
+  add_to_cart: 'add to cart',
+  view_variatios: 'View Variations',
+  your_wishlist_is_empty: 'YOUR WISHLIST IS EMPTY!',
+  my_wishlists: 'MY WISHLIST',
 };
 
 const translationFr = {
@@ -117,6 +135,26 @@ const translationFr = {
   save: 'sauvegarder',
   profileTitle: 'Informations sur l utilisateur',
   profileSubTitle: 'Vous pouvez changer votre profil ici',
+
+  my_cart: 'MON PANIER',
+  name: 'Nom',
+  quantity: 'Quantité',
+  total_price: 'Prix ​​total',
+  option: 'Choix',
+  remove: 'Retirer',
+  total_amount: 'Montant total',
+  checkout: 'Vérifier',
+  continue_shopping: 'continuer achats',
+  clear_cart: 'vider le panier',
+  start_shopping: 'commencer à magasiner',
+  your_cart_is_empty: 'VOTRE PANIER EST VIDE!',
+  available: 'Disponible',
+
+  status: 'Statut',
+  add_to_cart: 'Ajouter au panier',
+  view_variatios: 'Voir les variations',
+  your_wishlist_is_empty: 'VOTRE LISTE DE SOUHAITS EST VIDE!',
+  my_wishlist: 'MA LISTE DE SOUHAITS',
 };
 
 i18n.use(initReactI18next).init({
