@@ -5,14 +5,18 @@ import { FaUserCircle } from 'react-icons/fa';
 import { useNavigate } from 'react-router';
 import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import BurgerButton from './BurgerButton';
 import SideBar from './SideBar';
 import ECOMLOG from '../../../../assets/ECOMLOG.png';
-import LocalesButton from '../../../buttons/LocalesButton';
+import LocalizationSwicher from '../../../LocalizationSwicher';
+import { setActiveButton } from '../../../../redux/types/sideBardButtons';
 
-function NavBar() {
+const NavBar = () => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+  const activeButton = useSelector((state) => state.activeButton);
 
   const isMediumScreen = useMediaQuery({ maxWidth: 768 });
   const isSmallScreen = useMediaQuery({ maxWidth: 767 });
@@ -20,17 +24,26 @@ function NavBar() {
   const navigation = useNavigate();
   const handleNotifications = () => navigation('/dashboard/notifications');
   const handleMessages = () => navigation('/dashboard/messages');
+  const handleHome = () => {
+    navigation('/');
+    dispatch(setActiveButton('home'));
+  };
   return (
     <>
       <div className="fixed top-0 left-0 w-full h-16 bg-white shadow-sm shadow-gray-900  flex items-center justify-between pl-0 md:justify-end pr-4">
         {!isSmallScreen && (
           <div className="relative logo w-full ml-2 h-1/12 pl-2 text-3xl left-0 float-left">
-            <img src={ECOMLOG} alt="logo" className="w-28 h-16" />
+            <button type="button" onClick={handleHome}>
+              {' '}
+              <img src={ECOMLOG} alt="logo" className="w-28 h-16" />
+            </button>
           </div>
         )}
         {isSmallScreen && (
           <div className="logo w-full h-1/12 pr-2 mb-4 text-3xl text-black">
-            <img src={ECOMLOG} alt="logo" className="w-20 h-12" />
+            <button type="button" onClick={handleHome}>
+              <img src={ECOMLOG} alt="logo" className="w-20 h-12" />
+            </button>
           </div>
         )}
         {!isMediumScreen && (
@@ -73,8 +86,8 @@ function NavBar() {
             </span>
           </div>
           <div className="flex top-0 space-x-0">
-            <div className="cursor-pointer mr-0 mt-0 text-3xl md:text-sm mb-2">
-              <LocalesButton />
+            <div className="cursor-pointer mr-0 mt-0  md:text-sm mb-2">
+              <LocalizationSwicher />
             </div>
           </div>
           <div className="flex top-0">
@@ -93,6 +106,6 @@ function NavBar() {
       {isMediumScreen && <SideBar isOpen={isOpen} />}
     </>
   );
-}
+};
 
 export default NavBar;
