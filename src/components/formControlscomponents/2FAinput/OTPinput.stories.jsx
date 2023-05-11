@@ -10,6 +10,6 @@ export default {
 };
 export const OTPInput = () => {
   return (
-    <OTPinput styling="m-2 border border-darkBlueColor h-10 w-10 text-center form-control rounded placeholder-gray-400 focus:placeholder-gray-200 number-ring" />
+    <OTPinput className="m-2 border border-darkBlueColor h-10 w-10 text-center form-control rounded placeholder-gray-400 focus:placeholder-gray-200 number-ring" />
   );
 };
