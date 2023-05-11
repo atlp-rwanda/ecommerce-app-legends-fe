@@ -45,10 +45,6 @@ const SideBar = ({ isOpen }) => {
     navigate('/dashboard');
     dispatch(setActiveButton('dashboard'));
   };
-  const handleHome = () => {
-    navigate('/');
-    dispatch(setActiveButton('home'));
-  };
   const handleSettings = () => {
     navigate('/dashboard/settings');
     dispatch(setActiveButton('setting'));
@@ -70,7 +66,7 @@ const SideBar = ({ isOpen }) => {
         isOpen ? 'md:block' : 'md:hidden'
       }`}
     >
-      <div className="container flex flex-col basis-full h-screen pt-5 space-y-48 ">
+      <div className=" flex flex-col basis-full h-screen pt-5 space-y-48 ">
         <div className="top">
           <div
             className={`flex space-x-4 logo basis-full  h-12 mt-1 p-3 md:mt-0 ${isButtonActive(
@@ -153,23 +149,6 @@ const SideBar = ({ isOpen }) => {
             <div className="link text-xl">
               <button type="button" onClick={handleUser}>
                 {t('users')}
-              </button>
-            </div>
-          </div>
-          <div
-            className={`flex space-x-4 logo basis-full h-12 mt-0.5 p-3 ${isButtonActive(
-              'home'
-            )}`}
-          >
-            <div className="icon">
-              {' '}
-              <button type="button">
-                <FaHome className="text-3xl" />{' '}
-              </button>
-            </div>
-            <div className="link text-xl">
-              <button type="button" onClick={handleHome}>
-                {t('home')}
               </button>
             </div>
           </div>
