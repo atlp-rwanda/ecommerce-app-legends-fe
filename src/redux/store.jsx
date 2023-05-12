@@ -5,6 +5,7 @@ import cartReducer from './reducers/CartSlice';
 import sellersProductsSlice from './reducers/seller/SellerProductSlice';
 import { productApi } from './reducers/productApi';
 import languageSlice from './reducers/languageSlice';
+import categoryReducer, { getCategories } from './reducers/fronUser/Categories';
 import productsReducer from './reducers/fronUser/productsReducer';
 import toogleSearchFormSlice from './reducers/searchFormToogle';
 import wishListSlice from './reducers/WishListSlice';
@@ -25,11 +26,12 @@ const store = configureStore({
     users: usersSlice,
     roles: RoleSlice,
     selectedUsers: usersSlice,
+    categories: categoryReducer,
   },
 
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware().concat(productApi.middleware);
   },
 });
-
+store.dispatch(getCategories());
 export default store;

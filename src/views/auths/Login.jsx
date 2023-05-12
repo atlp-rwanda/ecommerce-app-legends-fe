@@ -108,7 +108,7 @@ const Login = () => {
     } else if (userRole === 'admin') {
       navigate('/admin/dashboard');
     } else {
-      navigate('/products');
+      navigate('/');
     }
   }
 
@@ -118,9 +118,9 @@ const Login = () => {
         <Navbar />
       </header>
       <main>
-        <div className="bg-darkGrey h-[100vh] m-0 p-0 flex items-center w-full overflow-hidden relative">
-          <div className="md:w-full md:rounded-none w-2/3 h-[120vh] bg-darkBlueColor absolute right-0 rounded-[280px] rounded-r overflow-hidden" />
-          <div className="flex flex-row-reverse justify-center mx-auto w-[65%] md:w-[95%] sm:w-[100%] bg-imageBgColor">
+        <div className="bg-darkGrey h-[100vh] m-0 p-0 flex items-center justify-center w-full overflow-hidden relative">
+          <div className="w-[60vw] h-[150vh]  bg-[#011B32] absolute right-0   -top-[25vh] rounded-[50%] overflow-hidden rounded-r" />
+          <div className="flex flex-row-reverse justify-center mx-auto w-[65%] md:w-[95%] sm:w-[100%] bg-imageBgColor mt-8">
             <div className=" flex items-center justify-center py-6 md:hidden backdrop-blur-3xl bg-imageBgColor w-1/2">
               <img
                 src={CART}
@@ -128,7 +128,7 @@ const Login = () => {
                 className=" rounded-sm rounded-l-none h-[80%]"
               />
             </div>
-            <div className="px-8 pt-[3.5%] bg-whiteColor w-1/2 backdrop-blur-md rounded-md rounded-r-none shadow-2xl py-6 flex flex-col md:w-[90%] md:rounded-r sm:px-2 sm:w-[98%] md:px-10">
+            <div className="px-8  bg-whiteColor w-1/2 backdrop-blur-md rounded-md rounded-r-none shadow-2xl py-6 flex flex-col md:w-[90%] md:rounded-r sm:px-2 sm:w-[98%] md:px-10 ">
               <h1 className="h-fit text-xl mb-1 text-center font-medium">
                 {t('loginText')}
               </h1>

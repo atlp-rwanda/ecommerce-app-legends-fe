@@ -20,7 +20,7 @@ const translationEn = {
     'Quality is never an accident; it is always the result of high intention, sincere effort, intelligent direction and skillful execution; it represents the wise choice of many alternatives.',
   top_products: 'Top products',
   latest_products: 'Latest products',
-  recommended: 'Recommanded',
+  recommended: 'recommended',
   see_all: 'See all',
   our_top_vendors: 'Our top vendors',
   footer_long_message:

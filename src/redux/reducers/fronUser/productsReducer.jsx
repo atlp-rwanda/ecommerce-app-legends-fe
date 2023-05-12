@@ -21,6 +21,7 @@ export const searchProducts = createAsyncThunk(
   async (arg, { rejectWithValue }) => {
     try {
       const { data } = await client.get('/api/v1/product', { arg });
+
       return data;
     } catch (error) {
       rejectWithValue(error.response.data);

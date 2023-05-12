@@ -2,23 +2,22 @@ import React from 'react';
 
 const Card = (props) => {
   return (
-    <div className="md:w-32 md:h-60 lg:h-64 cursor-pointer relative lg:w-40  w-52 mx-4 my-8 bg-white border border-gray-250 rounded-lg shadow hover:shadow-lg dark:bg-gray-800 dark:border-gray-700">
-      {/* <a href="#"> */}
+    <div className="cursor-pointer sm:w-[95%] w-[30vw] max-w-[12em] relative sm:mx-auto sm:my-2 mx-4 my-4 bg-white border border-gray-250 rounded-lg shadow hover:shadow-lg h-fit pb-2">
       <img
-        className="rounded-t-lg w-48 mx-auto h-48 md:w-32 lg:w-40 lg:h-40 md:h-36"
+        className="rounded-t-lg w-full sm:h-[9em] object-contain h-[12em]"
         src={props.image}
         alt=""
       />
-      {/* </a> */}
-      <div className="pl-2 pb-2">
-        <h5 className="mb-2 text-lg font-medium tracking-tight text-black dark:text-white">
-          {props.name.substring(0, 20)}...
-        </h5>
 
-        <h4 className="text-xl font-bold text-denimBlue md:absolute lg:absolute md:bottom-2 lg:bottom-2">
-          $ {props.price}
-        </h4>
+      <div className="pl-2 pb-2 mt-1 min-h-[5em] line-clamp-2">
+        <h5 className=" text-md leading-5 line-clamp-1 font-medium tracking-tight text-black  mx-2">
+          {props.name}
+        </h5>
+        <p className="line-clamp-2 ml-2 font-light">{props.description}</p>
       </div>
+      <h6 className="text-lg font-bold text-denimBlue  ml-4 ">
+        {props.price}$
+      </h6>
     </div>
   );
 };

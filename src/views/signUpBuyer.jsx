@@ -73,7 +73,7 @@ const SignUpBuyer = () => {
           dispatch(setToken(res.token));
           toast.success(res.message, { theme: 'colored' });
           setTimeout(() => {
-            navigate('/login');
+            navigate('/');
           }, 2000);
         } else {
           toast.error(res.message, { theme: 'colored' });
@@ -96,15 +96,15 @@ const SignUpBuyer = () => {
         <Navbar />
       </header>
       <main>
-        <div className="bg-[#D9D9D9]  min-h-[100vh] pt-[12vh] ">
-          <div className="w-[60vw] h-[150vh]  bg-[#011B32] fixed right-0   -top-[25vh] rounded-[50%] overflow-hidden rounded-r" />
-          <div className=" flex flex-row-reverse justify-center mx-auto ">
+        <div className="bg-[#D9D9D9]  min-h-[100vh] py-[15vh] ">
+          <div className="w-[60vw] h-[150vh]  bg-[#011B32] absolute right-0   -top-[25vh] rounded-[50%] overflow-hidden rounded-r" />
+          <div className=" scale-[0.9] flex flex-row-reverse justify-center mx-auto ">
             <img
               src={CART}
               alt="cart"
-              className="lg:hidden grid backdrop-blur-3xl bg-[#D9D9D9] max-w-[30em] px-6 py-14 rounded-sm rounded-l-none shadow-2xl"
+              className="md:hidden grid backdrop-blur-3xl bg-[#D9D9D9] max-w-[28em] px-6 py-14 rounded-sm rounded-l-none shadow-2xl"
             />
-            <div className=" lg:w-[95vw] min-w-[270px] max-w-[30em] w-[40vw] lg:px-4 px-6 h-fit py-10 pt-[5vh] bg-[white] backdrop-blur-md rounded-md lg:rounded-r rounded-r-none shadow-2xl flex flex-col min-h-[50vh]">
+            <div className=" md:w-[95vw] min-w-[370px] max-w-[30em] w-[40vw] lg:px-4 px-6 h-fit py-10 pt-[5vh] bg-[white] backdrop-blur-md rounded-md md:rounded-r rounded-r-none shadow-2xl flex flex-col min-h-[50vh]">
               <h1 className="h-fit text-2xl  font-medium text-[#011B32]">
                 Excellent shoppify experience
               </h1>

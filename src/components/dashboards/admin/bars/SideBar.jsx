@@ -10,10 +10,7 @@ import {
 import { HiUsers } from 'react-icons/hi';
 import { FaUserCircle, FaHome } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-import {
-  setActiveButton,
-  logout,
-} from '../../../../redux/types/sideBardButtons';
+import { setActiveButton } from '../../../../redux/types/sideBardButtons';
 import { clearUser } from '../../../../redux/reducers/AuthUser';
 
 const SideBar = ({ isOpen }) => {
