@@ -19,7 +19,6 @@ const Navbar = () => {
   const user = useSelector((state) => state.currentUser.currentUser);
   const { items } = useSelector((state) => state.cart);
   const wishlistItems = useSelector((state) => state.wishlist.items);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -105,11 +104,11 @@ const Navbar = () => {
                   icon="mdi:cards-heart"
                 />
 
-                {wishlistItems && wishlistItems.data && (
-                  <p className="bg-orange-500 rounded-full h-6 w-6 md:w-4 md:h-4 md:mt-1 md:text-sm md:pt-0 text-white">
-                    {wishlistItems.data.length > 9
+                {wishlistItems && wishlistItems?.data && (
+                  <p className="bg-orange-500 rounded-full h-6 w-6  md:h-5  md:w-4 md:text-sm md:pt-0 text-white">
+                    {wishlistItems?.data?.length > 9
                       ? '9+'
-                      : wishlistItems.data.length}
+                      : wishlistItems?.data?.length}
                   </p>
                 )}
               </div>
@@ -123,8 +122,8 @@ const Navbar = () => {
                   className="text-center h-10 flex items-center p-0 w-6 md:w-4"
                   icon="ic:baseline-shopping-cart"
                 />
-                {items.data && items.data.cart && (
-                  <p className="bg-orange-500 rounded-full h-6 w-6 md:w-4 md:h-4 md:mt-1 md:text-sm md:pt-0 text-white">
+                {items?.data && items?.data?.cart && (
+                  <p className="bg-orange-500 rounded-full h-6 w-6  md:h-5  md:w-4 md:text-sm md:pt-0 text-white">
                     {items.data.cart.length > 9 ? '9+' : items.data.cart.length}
                   </p>
                 )}

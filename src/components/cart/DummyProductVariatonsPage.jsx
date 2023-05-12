@@ -54,28 +54,27 @@ const DummyProductVariatonsPage = () => {
               </div>
               {data &&
                 data.data.ProductAttributes.map((product) => (
-                  <div
-                    key={product.id}
-                    className="flex w-full justify-between text-center mt-2"
-                  >
-                    <div className="block w-1/6 h-1/6 bg-lime-600">
-                      <img
-                        src={product.attrImage}
-                        className="h-2/6"
-                        alt="Product"
-                      />
-                      <div className="v-names flex space-x-8 px-1 w-full">
-                        <h3 className="name"> {product.varitationName}</h3>
-                        <h3 className="color">{product.color}</h3>
-                        <h3 className="color">{product.size}</h3>
+                  <div key={product.id} className=" ">
+                    <div className="flex justify-between">
+                      <div className=" w-1/6 h-1/6 bg-lime-600">
+                        <img
+                          src={product.attrImage}
+                          className="h-2/6"
+                          alt="Product"
+                        />
+                        <div className="v-names flex space-x-8 px-1 w-full">
+                          <h3 className="name"> {product.varitationName}</h3>
+                          <h3 className="color">{product.color}</h3>
+                          <h3 className="color">{product.size}</h3>
+                        </div>
+                        <button
+                          type="button"
+                          className=" bg-gray-600 w-full h-1/6"
+                          onClick={() => handleAddToCart(product.id)}
+                        >
+                          Add to cart
+                        </button>
                       </div>
-                      <button
-                        type="button"
-                        className=" bg-gray-600 w-full h-1/6"
-                        onClick={() => handleAddToCart(product.id)}
-                      >
-                        Add to cart
-                      </button>
                     </div>
                   </div>
                 ))}

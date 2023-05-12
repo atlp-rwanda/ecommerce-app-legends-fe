@@ -73,9 +73,9 @@ const translationEn = {
   your_cart_is_empty: 'YOUR CART IS EMPTY',
   status: 'Sataus',
   add_to_cart: 'add to cart',
-  view_variatios: 'View Variations',
+  view_variatios: 'Variations',
   your_wishlist_is_empty: 'YOUR WISHLIST IS EMPTY!',
-  my_wishlists: 'MY WISHLIST',
+  my_wishlist: 'MY WISHLIST',
   Firstname: 'First name',
   Lastname: 'Last name',
   emailaddress: 'email address',
@@ -88,6 +88,12 @@ const translationEn = {
   Buyer: 'Buyer',
   All: 'All',
   filterUser: 'Filter users by role',
+  yes_clear_it: 'YES CLEAR IT',
+  cart_cleared: 'Cart cleared successfully',
+  are_you_sure_you_clear_cart: 'Are you sure you want to clear this cart ?',
+  you_will_not_be_able_to_revert:
+    'You will not be able to revert if you clear this cart',
+  cancel: 'cancel',
 };
 
 const translationFr = {
@@ -164,7 +170,7 @@ const translationFr = {
 
   status: 'Statut',
   add_to_cart: 'Ajouter au panier',
-  view_variatios: 'Voir les variations',
+  view_variatios: 'Variations',
   your_wishlist_is_empty: 'VOTRE LISTE DE SOUHAITS EST VIDE!',
   my_wishlist: 'MA LISTE DE SOUHAITS',
 
@@ -180,6 +186,12 @@ const translationFr = {
   Buyer: 'acheteur',
   All: 'Tout',
   filterUser: 'Filtrer les utilisateurs par rôle',
+  yes_clear_it: 'OUI EFFACER',
+  you_will_not_be_able_to_revert:
+    'une fois que vous l effacez, vous ne serez pas rétabli',
+  cart_cleared: 'Panier vidé avec succès',
+  are_you_sure_you_clear_cart: 'Êtes-vous sûr de vouloir vider ce panier ?',
+  cancel: 'annuler',
 };
 
 i18n.use(initReactI18next).init({

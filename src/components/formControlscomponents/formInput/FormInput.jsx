@@ -7,7 +7,7 @@ const FormInput = ({
   name,
   placeholder,
   type,
-  value,
+  value = '', // provide a default value
   onChange,
   required,
 }) => {
