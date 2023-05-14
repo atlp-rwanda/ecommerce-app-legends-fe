@@ -22,7 +22,6 @@ client.interceptors.request.use(
       // config.headers['Content-Type'] = `application/json`;
       config.headers['Content-Type'] = `multipart/form-data`;
     }
-    console.log({ request: config });
     return config;
   },
   (error) => {
@@ -45,7 +44,6 @@ function getTokenPromise() {
 
 client.interceptors.response.use(
   (response) => {
-    console.log(response);
     return response;
   },
   (error) => {

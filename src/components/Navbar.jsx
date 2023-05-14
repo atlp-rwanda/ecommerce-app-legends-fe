@@ -24,9 +24,11 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(viewWishList());
     dispatch(viewCart());
-  }, [dispatch]);
+  }, []);
+  useEffect(() => {
+    dispatch(viewWishList());
+  }, []);
 
   const { t } = useTranslation();
   const pages = [

@@ -11,7 +11,7 @@ import ResetPassword from '../passwordreset/ResetPassword';
 import NewPassword from '../passwordreset/newPassword';
 import TwoFaForm from '../views/auths/2FaForm';
 import VendorRoutes from '../middlewares/authMiddlewares/VendorRoutes';
-import DummyProductVariatonsPage from './cart/DummyProductVariatonsPage';
+import SingleProduct from '../views/Single Product/singleproduct';
 import CartPage from './cart/CartPage';
 import UserProfile from '../views/userProfile/UserProfile';
 import WishListPage from './wishlist/WishListPage';
@@ -29,10 +29,8 @@ const RouterProv = () => {
             <Route path="/resetPassword" element={<ResetPassword />} />
             <Route path="/reset" element={<NewPassword />} />
 
-            <Route
-              path="/product-variation"
-              element={<DummyProductVariatonsPage />}
-            />
+            <Route path="/product/:id" element={<SingleProduct />} />
+
             <Route element={<VendorRoutes />}>
               <Route path="/*" element={<DashBoardIndex />} />
             </Route>

@@ -11,6 +11,7 @@ import toogleSearchFormSlice from './reducers/searchFormToogle';
 import wishListSlice from './reducers/WishListSlice';
 import usersSlice from './reducers/appUsersManager/manageUsersReducer';
 import RoleSlice from './reducers/appUsersManager/getUsersRole';
+import RatingReducers from './reducers/rateProduct';
 
 const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
     landingProducts: productsReducer,
     wishlist: wishListSlice,
     sellerProducts: sellersProductsSlice,
+    rating: RatingReducers,
     [productApi.reducerPath]: productApi.reducer,
     users: usersSlice,
     roles: RoleSlice,

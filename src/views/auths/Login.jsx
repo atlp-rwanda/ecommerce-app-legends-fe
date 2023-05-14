@@ -55,7 +55,7 @@ const Login = () => {
           dispatch(setRole(data.role));
           dispatch(setToken(data.token));
           setTimeout(() => {
-            navigate('/*');
+            navigate('/');
           }, 2000);
         } else {
           toast.error(data.message, { theme: 'colored' });

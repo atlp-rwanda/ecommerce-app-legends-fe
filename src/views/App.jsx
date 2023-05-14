@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { MdWifiOff } from 'react-icons/md';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
-import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Loading from '../components/Loading';
 import Navbar from '../components/Navbar';
@@ -14,18 +13,26 @@ import '../i18n/i18n';
 import { fetchProducts } from '../redux/reducers/fronUser/productsReducer';
 import logo from '../assets/logo.svg';
 
-const LandingPage = () => {
-  // const parmas = { page: 1, limit: 10 };
-  const [params, setParams] = useState({ page: 1, limit: 10 });
+const App = () => {
+  const [params, setParams] = useState({ page: 1, limit: 20 });
   const dispatch = useDispatch();
   const { status, products, error } = useSelector(
     (state) => state.landingProducts.allProducts
   );
-
+  const allProducts = [];
+  const availableProducts = () => {
+    products?.data?.products.forEach((item) => {
+      if (item.ProductAttributes[0]) {
+        allProducts.push(item);
+      }
+    });
+  };
+  availableProducts();
   const limit1 = 4;
-  const limit2 = 5;
-  const subset1 = products?.data?.products?.slice(0, limit1);
-  const subset2 = products?.data?.products?.slice(0, limit2).reverse();
+  const limit2 = 9;
+  const subset1 = allProducts.slice(0, limit1);
+  const subset2 = allProducts.slice(4, limit2).reverse();
+
   useEffect(() => {
     dispatch(fetchProducts(params));
   }, [params]);
@@ -59,7 +66,7 @@ const LandingPage = () => {
       <header className="mb-14">
         <Navbar />
       </header>
-      <main className="relative overflow-x-hidden">
+      <main className="relative ">
         <div className=" w-11/12 mx-auto md:mx-auto relative  mb-20 md:mb-5 z-30 lg:mb-14">
           <div className="md:flex-col flex flex-wrap justify-between md:justify-center">
             <img
@@ -90,27 +97,21 @@ const LandingPage = () => {
         <div className="bg-cardContainer relative">
           <div className="w-11/12 mx-auto sm:w-full">
             {/* <Language/> */}
-            <h1 className="pt-6 font-bold text-2xl sm:text-center sm:mb-4">
-              {t('top_products')}
-            </h1>
-            <div className="flex">
-              <div className="w-full flex flex-wrap sm:grid sm:grid-cols-2 sm:justify-center  bg-cardContainer">
-                {subset1 &&
-                  subset1.map((product) => {
-                    const price = mappingPrices(product.ProductAttributes);
-                    return (
-                      <NavLink key={product.id} to={`product/${product.slug}`}>
-                        <Card
-                          image={product.image}
-                          name={product.name}
-                          description={product.description}
-                          price={price}
-                        />
-                      </NavLink>
-                    );
-                  })}
-              </div>
-              <div className="w-[257px] md:hidden lg:hidden" />
+            <h1 className="pt-6 font-bold text-2xl">{t('top_products')}</h1>
+            <div className="flex flex-wrap md: justify-between md:px-4 bg-cardContainer">
+              {subset1 &&
+                subset1.map((product) => {
+                  return (
+                    <Card
+                      key={product.id}
+                      prodId={product.id}
+                      image={product.image}
+                      description={product.description}
+                      name={product.name}
+                      price={product.ProductAttributes[0].price}
+                    />
+                  );
+                })}
             </div>
           </div>
           <div
@@ -171,14 +172,14 @@ const LandingPage = () => {
                 const price = mappingPrices(product.ProductAttributes);
 
                 return (
-                  <NavLink key={product.id} to={`product/${product.slug}`}>
-                    <Card
-                      image={product.image}
-                      name={product.name}
-                      description={product.description}
-                      price={price}
-                    />
-                  </NavLink>
+                  <Card
+                    key={product.id}
+                    prodId={product.id}
+                    image={product.image}
+                    description={product.description}
+                    name={product.name}
+                    price={product.ProductAttributes[0].price}
+                  />
                 );
               })}
           </div>
@@ -187,19 +188,18 @@ const LandingPage = () => {
           </h1>
           <hr />
           <div className=" rounded-lg relative pb-20">
-            <div className="sm:grid sm:grid-cols-2 flex flex-wrap justify-center">
-              {products?.data?.products &&
-                products.data.products.map((product) => {
-                  const price = mappingPrices(product.ProductAttributes);
+            <div className="flex flex-wrap justify-center">
+              {allProducts &&
+                allProducts.slice(9, 20).map((product) => {
                   return (
-                    <NavLink key={product.id} to={`product/${product.slug}`}>
-                      <Card
-                        image={product.image}
-                        name={product.name}
-                        description={product.description}
-                        price={price}
-                      />
-                    </NavLink>
+                    <Card
+                      key={product.id}
+                      prodId={product.id}
+                      image={product.image}
+                      description={product.description}
+                      name={product.name}
+                      price={product.ProductAttributes[0].price}
+                    />
                   );
                 })}
             </div>
@@ -226,4 +226,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default App;
