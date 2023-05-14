@@ -4,7 +4,6 @@
 .number-ring::-webkit-inner-spin-button {
   display: none;
 }
-
 @layer components {
   /* Define your repeating class */
   .container {

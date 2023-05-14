@@ -76,6 +76,18 @@ const translationEn = {
   view_variatios: 'View Variations',
   your_wishlist_is_empty: 'YOUR WISHLIST IS EMPTY!',
   my_wishlists: 'MY WISHLIST',
+  Firstname: 'First name',
+  Lastname: 'Last name',
+  emailaddress: 'email address',
+  dateofbirth: 'date of birth',
+  gender: 'gender',
+  Acc_status: 'status',
+  role: 'role',
+  vendor: 'vendor',
+  admin: 'admin',
+  Buyer: 'Buyer',
+  All: 'All',
+  filterUser: 'Filter users by role',
 };
 
 const translationFr = {
@@ -155,6 +167,19 @@ const translationFr = {
   view_variatios: 'Voir les variations',
   your_wishlist_is_empty: 'VOTRE LISTE DE SOUHAITS EST VIDE!',
   my_wishlist: 'MA LISTE DE SOUHAITS',
+
+  Firstname: 'Prénom',
+  Lastname: 'nom de famille',
+  emailaddress: 'Adresse e-mail',
+  dateofbirth: 'Date de naissance',
+  gender: 'genre',
+  Acc_status: 'statut',
+  role: 'rôle',
+  Vendor: 'vendeur',
+  admin: 'administrateur',
+  Buyer: 'acheteur',
+  All: 'Tout',
+  filterUser: 'Filtrer les utilisateurs par rôle',
 };
 
 i18n.use(initReactI18next).init({

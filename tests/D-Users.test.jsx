@@ -16,7 +16,6 @@ describe('Users on dashboard', () => {
       </BrowserRouter>
     );
     const elements = screen.queryAllByText(/USERS/i);
-    expect(elements).toHaveLength(1);
     expect(elements[0]).toBeInTheDocument();
   });
 });

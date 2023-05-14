@@ -7,6 +7,8 @@ import languageSlice from './reducers/languageSlice';
 import productsReducer from './reducers/fronUser/productsReducer';
 import toogleSearchFormSlice from './reducers/searchFormToogle';
 import wishListSlice from './reducers/WishListSlice';
+import usersSlice from './reducers/appUsersManager/manageUsersReducer';
+import RoleSlice from './reducers/appUsersManager/getUsersRole';
 
 const store = configureStore({
   reducer: {
@@ -18,6 +20,9 @@ const store = configureStore({
     landingProducts: productsReducer,
     wishlist: wishListSlice,
     [productApi.reducerPath]: productApi.reducer,
+    users: usersSlice,
+    roles: RoleSlice,
+    selectedUsers: usersSlice,
   },
 
   middleware: (getDefaultMiddleware) => {

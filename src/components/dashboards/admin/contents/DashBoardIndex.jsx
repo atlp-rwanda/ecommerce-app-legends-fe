@@ -17,7 +17,7 @@ import AddProducts from './addProducts';
 import ProductCategoryPick from './productCategoryview';
 import ProductVariationAdd from './ProductVariationAdd';
 
-function DashBoardIndex() {
+const DashBoardIndex = () => {
   return (
     <div>
       <NavBar />
@@ -53,6 +53,6 @@ function DashBoardIndex() {
       </div>
     </div>
   );
-}
+};
 
 export default DashBoardIndex;
