@@ -52,7 +52,7 @@ const LocalizationSwicher = () => {
         </svg>
       </button>
       {isDropdownOpen && (
-        <ul className="absolute text-base w-full top-full left-0 right-0 bg-white border border-gray-200 rounded-b-md shadow-md z-[9999] ">
+        <ul className="absolute text-base w-max top-full left-0 right-0 bg-white border border-gray-200 rounded-b-md shadow-md z-[9999] ">
           {languages.map((lan) => (
             <button
               type="button"
@@ -60,7 +60,7 @@ const LocalizationSwicher = () => {
               className="flex items-center w-full px-3 py-2 text-base cursor-pointer hover:bg-gray-200"
               onClick={() => handleLanguageSelect(lan)}
             >
-              <Image className="h-5 w-4 mr-2 sm:hidden" src={lan.flag} />
+              <Image className="h-5 w-4 mr-2" src={lan.flag} />
               <span className="md:text-[12px] text-[14px]">{lan.name}</span>
             </button>
           ))}

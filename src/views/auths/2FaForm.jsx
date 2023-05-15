@@ -75,8 +75,9 @@ const TwoFaForm = () => {
   return (
     <div className="bg-darkGrey h-[100vh] m-0 p-0 flex items-center justify-center w-full overflow-hidden relative">
       {/* <ToastContainer theme="colored" /> */}
-      <div className="md:w-full md:rounded-none sm:w-3/3 w-2/3 h-[110vh] bg-darkBlueColor absolute right-[-20%] md:right-0 rounded-full rounded-r overflow-hidden" />
-      <div className="px-8 pt-[10vh] -mt-10 bg-whiteColor w-2/4 h-[50vh] md:h-3/4 backdrop-blur-md flex flex-col items-center rounded-md shadow-2xl md:w-[90%] md:rounded-r sm:px-2 sm:w-[98%] md:px-10">
+      <div className="w-[55vw] h-[150vh]  bg-[#011B32] absolute right-0   -top-[25vh] rounded-[50%] overflow-hidden rounded-r" />
+
+      <div className="px-8 pt-[10vh] -mt-10 bg-whiteColor w-2/4 h-fit md:h-3/4 backdrop-blur-md flex flex-col items-center rounded-md shadow-2xl md:w-[90%] md:rounded-r sm:px-2 sm:w-[98%] md:px-10">
         <h1 className="h-fit text-2xl mb-2 text-center capitalize font-light">
           welcome back, vendor!
         </h1>
@@ -101,7 +102,7 @@ const TwoFaForm = () => {
           })}
         </div>
         <Button
-          className="w-3/4 text-md bg-darkBlueColor py-2 text-white font-sans rounded-sm mt-14 uppercase text-sm hover:opacity-50"
+          className="mb-5 w-3/4 text-md bg-darkBlueColor py-2 text-white font-sans rounded-sm mt-14 uppercase text-sm hover:opacity-80"
           btnName={verifyButton.text}
           display={verifyButton.display}
           handleSend={handleVerify}
