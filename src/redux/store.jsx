@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import buttonReducer from './reducers/buttons';
 import CurrentUserReducer from './reducers/AuthUser';
 import cartReducer from './reducers/CartSlice';
+import sellersProductsSlice from './reducers/seller/SellerProductSlice';
 import { productApi } from './reducers/productApi';
 import languageSlice from './reducers/languageSlice';
 import productsReducer from './reducers/fronUser/productsReducer';
@@ -19,6 +20,7 @@ const store = configureStore({
     searchFocused: toogleSearchFormSlice,
     landingProducts: productsReducer,
     wishlist: wishListSlice,
+    sellerProducts: sellersProductsSlice,
     [productApi.reducerPath]: productApi.reducer,
     users: usersSlice,
     roles: RoleSlice,
