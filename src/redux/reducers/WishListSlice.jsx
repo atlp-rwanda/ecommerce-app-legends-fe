@@ -31,21 +31,51 @@ export const addToWishList = createAsyncThunk(
   }
 );
 
+// export const viewWishList = createAsyncThunk(
+//   'wishlist/viewWishList',
+//   async () => {
+//     const response = await fetch(
+//       'https://ecommerce-app-legends-bn-production.up.railway.app/api/v1/product/wishlist',
+//       {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       }
+//     );
+//     const data = await response.json();
+//     return data;
+//   }
+// );
+
 export const viewWishList = createAsyncThunk(
-  'wishlist/viewWishList',
+  'wishList/viewWishlist',
   async () => {
-    const response = await fetch(
-      'https://ecommerce-app-legends-bn-production.up.railway.app/api/v1/product/wishlist',
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    if (!token) throw new Error(`Invalid token ${token}`);
+
+    try {
+      const response = await fetch(
+        'https://ecommerce-app-legends-bn-production.up.railway.app/api/v1/product/wishlist',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error(response.message);
+        }
+        throw new Error(response.message);
       }
-    );
-    const data = await response.json();
-    return data;
+      const data = await response.json();
+      return data;
+    } catch (e) {
+      throw new Error(e.message);
+    }
   }
 );
+
 export const removeToWishList = createAsyncThunk(
   'wishlist/removeToWishList',
   async (id) => {

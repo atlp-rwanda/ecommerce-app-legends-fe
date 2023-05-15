@@ -31,7 +31,8 @@
     "react-responsive": "^9.0.2",
     "react-router": "^6.10.0",
     "react-router-dom": "^6.10.0",
-    "react-toastify": "^9.1.2"
+    "react-toastify": "^9.1.2",
+    "sweetalert2": "^11.7.5"
   },
   "devDependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.4.0",

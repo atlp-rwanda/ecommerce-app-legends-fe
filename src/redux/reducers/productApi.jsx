@@ -14,7 +14,7 @@ export const productApi = createApi({
   }),
   endpoints: (builder) => ({
     getAllProduct: builder.query({
-      query: () => `products/359fe4a2-8ea0-411d-8971-a39e5350dc0e`,
+      query: () => `products/13b80432-9f63-4d49-ab01-6c903efeea3f`,
     }),
   }),
 });

@@ -18,7 +18,7 @@ const WishListPage = () => {
   const { t } = useTranslation();
 
   const handleRemoveToWishList = (id) => {
-    dispatch(removeToWishList(id));
+    dispatch(removeToWishList(id)).then(() => dispatch(viewWishList()));
   };
   useEffect(() => {
     dispatch(viewWishList());
@@ -49,11 +49,13 @@ const WishListPage = () => {
                       <th className="px-4 py-2 text-center">{t('option')}</th>
                     </tr>
                   </thead>
+                  {console.log(items)}
                   <tbody>
-                    {items.data &&
+                    {items?.data &&
+                      Array.isArray(items.data) &&
                       items.data.map((item) => (
                         <tr key={item.id} className="bg-gray-100">
-                          <td className="border-y px-4 py-2 text-center">
+                          <td className="border-y px-4 md:px-2 md:text-sm py-2 text-center">
                             <button
                               type="button"
                               className=" hover:text-red-500"
@@ -62,24 +64,24 @@ const WishListPage = () => {
                               <FaTimes />
                             </button>
                           </td>
-                          <td className="border-y px-4 py-2 text-center">
+                          <td className="border-y px-4 md:px-2 md:text-sm py-2 text-center">
                             <img
                               className="h-20 w-20 object-contain"
                               src={item.image}
                               alt="Product"
                             />
                           </td>
-                          <td className="border-y px-4 py-0 text-center">
+                          <td className="border-y px-4 md:px-2 md:text-sm py-0 text-center">
                             {item.name}
                           </td>
-                          <td className="border-y px-4 py-2 text-center">
+                          <td className="border-y px-4 md:px-2 md:text-sm py-2 text-center">
                             {t(item.status)}
                           </td>
-                          <td className="border-y px-4 py-2 text-center">
+                          <td className="border-y px-4 md:px-2 md:text-sm py-2 text-center">
                             <button
                               onClick={handleToStartShopping}
                               type="button"
-                              className="bg-slate-700 hover:bg-slate-500 text-white font-bold py-1 px-2 rounded"
+                              className="bg-slate-700 hover:bg-slate-500 text-white font-bold py-1 px-2 md:text-sm md:px-1 rounded"
                             >
                               {t('view_variatios')}
                             </button>
@@ -112,7 +114,7 @@ const WishListPage = () => {
               <div className="flex justify-center mt-7">
                 <button
                   type="button"
-                  className=" hover:bg-slate-700 hover:rounded hover:text-white text-slate-700 font-bold py-2 px-4  flex space-x-4 justify-center text-center self-center mx-auto"
+                  className=" hover:bg-slate-700 hover:rounded hover:text-white text-slate-700 font-bold py-2 px-4 md:text-sm md:px-2 md:py-1 flex space-x-4 md:space-x-2 justify-center text-center self-center mx-auto"
                   onClick={handleToStartShopping}
                 >
                   <AiOutlineArrowLeft className="mt-1" />
