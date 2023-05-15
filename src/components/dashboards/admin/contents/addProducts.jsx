@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 import { Icon } from '@iconify/react';
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import imgInputController from '../../../formControlscomponents/formInput/imgInputController';
 import { URL } from '../../../../views/auths/Login';
 
@@ -14,6 +15,7 @@ class ProductField {
   }
 }
 const AddProducts = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [productImg, setproductImg] = useState();
   const [addProductbtn, setaddProductbtn] = useState({
@@ -95,8 +97,8 @@ const AddProducts = () => {
         >
           {' '}
           <button className="w-fit" type="button">
-            <Icon className="inline" icon="material-symbols:list-rounded" /> All
-            Products
+            <Icon className="inline" icon="material-symbols:list-rounded" />{' '}
+            {t('all_products')}
           </button>
         </NavLink>{' '}
       </div>
@@ -105,7 +107,15 @@ const AddProducts = () => {
         className=" flex justify-evenly flex-wrap flex-row-reverse"
         onSubmit={handleAddproducts}
       >
-        {imgInputController(imgDisplay, productImg, true)}
+        {/* {imgInputController(imgDisplay, productImg, true)} */}
+        <div className="w-[33%] md:w-[50%] sm:w-[80%] md:max-h-[150px] max-h-full  relative">
+          {imgInputController(
+            imgDisplay,
+            productImg,
+            false,
+            t('product_image')
+          )}
+        </div>
         <div className="w-[50%] min-w-[20em]">
           {allFields.map(({ label, placeholder, type }) => {
             if (label === 'description') {
