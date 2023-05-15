@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { client } from '../../API/client';
 
 import { URL } from '../../../views/auths/Login';
 
@@ -47,6 +48,34 @@ export const updateUserById = createAsyncThunk(
     }
   }
 );
+
+// update Users
+export const adminEnableUserStatus = createAsyncThunk(
+  'adminUsers/adminEnableUserStatus',
+
+  async (id, { rejectWithValue }) => {
+    try {
+      const { data } = await client.put(`/api/v1/users/${id}/enable`, id);
+      return data;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const adminDisableUserStatus = createAsyncThunk(
+  'adminUsers/adminDisableUserStatus',
+
+  async (id, { rejectWithValue }) => {
+    try {
+      const { data } = await client.put(`/api/v1/users/${id}/disable`, id);
+      return data;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const usersSlice = createSlice({
   name: 'users',
   initialState,
@@ -81,7 +110,6 @@ const usersSlice = createSlice({
       })
       .addCase(updateUserById.fulfilled, (state, action) => {
         const updatedUser = action.payload.data;
-        console.log(updatedUser);
         return {
           ...state,
           status: 'succeeded',
@@ -92,6 +120,52 @@ const usersSlice = createSlice({
               : user
           ),
         };
+      })
+      // Enable Users status
+
+      .addCase(adminEnableUserStatus.rejected, (state, action) => {
+        return {
+          ...state,
+          status: 'failed',
+          error: action.error.message,
+        };
+      })
+      .addCase(adminEnableUserStatus.pending, (state) => {
+        return {
+          ...state,
+          status: 'loading',
+        };
+      })
+      .addCase(adminEnableUserStatus.fulfilled, (state, action) => {
+        const updatedUser = action.payload;
+        return {
+          ...state,
+          status: updatedUser.status,
+          message: updatedUser.message,
+        };
+      })
+      // Disable Users status
+
+      .addCase(adminDisableUserStatus.rejected, (state, action) => {
+        return {
+          ...state,
+          status: 'failed',
+          error: action.error.message,
+        };
+      })
+      .addCase(adminDisableUserStatus.pending, (state) => {
+        return {
+          ...state,
+          status: 'loading',
+        };
+      })
+      .addCase(adminDisableUserStatus.fulfilled, (state, action) => {
+        const updatedUser = action.payload;
+        return {
+          ...state,
+          status: updatedUser.status,
+          message: updatedUser.message,
+        };
       });
   },
 });
@@ -100,4 +174,5 @@ export const selectUsers = (state) => state.users.users;
 export const fetchUsersStatus = (state) => state.users.status;
 export const fetchUsersError = (state) => state.users.error;
 export const selectUpdateMsg = (state) => state.users.message;
+export const selectedUpdatedStatus = (state) => state.users.status;
 export default usersSlice.reducer;

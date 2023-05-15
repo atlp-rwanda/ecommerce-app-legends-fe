@@ -22,6 +22,8 @@ const FilterUsers = ({ FilterUsers }) => {
         <option value="vendor">{t('Vendor')}</option>
         <option value="buyer">{t('Buyer')}</option>
         <option value="admin">{t('admin')}</option>
+        <option value="active">{t('active')}</option>
+        <option value="inactive">{t('inactive')}</option>
       </select>
     </div>
   );
