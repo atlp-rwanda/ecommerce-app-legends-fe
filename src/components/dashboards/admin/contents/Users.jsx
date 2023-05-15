@@ -74,11 +74,20 @@ const Users = () => {
     if (filteredUsers === 'buyer') {
       return user.role?.name === 'buyer';
     }
+    if (filteredUsers === 'active') {
+      return user.status === 'active';
+    }
+    if (filteredUsers === 'inactive') {
+      return user.status === 'inactive';
+    }
     return user;
   });
   const handleFilteredValues = (filterValue) => {
     setFilteredUsers(filterValue);
   };
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [dispatch, selctedUser]);
   return (
     <div className="bg-gray-200 pt-20 ml-2 md:w-full md:overflow-scroll">
       <div>
@@ -95,7 +104,7 @@ const Users = () => {
         <div className="w-20 h-20 border-blue-700 border-t-2 animate-spin rounded-full absolute left-0 top-0" />
       </div>
       {selctedUser && (
-        <div className="sticky top-1/4 ml-[22%] w-full md:left-0 mb-[15%]">
+        <div className="fixed top-1/4 ml-[22%] w-full md:left-0 mb-[15%]">
           <SingleUserView
             token={token}
             id={selctedUser.id}

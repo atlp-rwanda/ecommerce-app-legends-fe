@@ -20,13 +20,13 @@
 }
 
 /* Apply the class to multiple variants */
-@variants hover, focus {
+@layer utilities {
   .container {
     /* Styles for hover and focus variants */
   }
 }
 
-@variants responsive {
+@layer responsive {
   .container {
     /* Styles for responsive variants */
     @apply mx-auto px-20 sm:px-2;

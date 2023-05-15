@@ -108,6 +108,8 @@ const translationEn = {
   size: 'Size',
   availability: 'Availability',
   description: 'Description',
+  active: 'active',
+  inactive: 'inactive',
 };
 
 const translationFr = {
@@ -220,6 +222,8 @@ const translationFr = {
   size: 'taille',
   availablity: 'disponibilité',
   description: 'Description',
+  active: 'actif',
+  inactive: 'inactif',
 };
 
 i18n.use(initReactI18next).init({
