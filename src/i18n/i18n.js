@@ -119,6 +119,10 @@ const translationEn = {
   search_product: 'Search product',
   color: 'Color',
   top_reviewrs: 'Top reviews',
+  shopby: 'Shop by category',
+  shobySeller: 'shop by sellers of your choice',
+  sortBy: 'Sort by',
+  many: 'many in stock',
 };
 
 const translationFr = {
@@ -235,6 +239,10 @@ const translationFr = {
   inactive: 'inactif',
   all_products: 'Tous les produits',
   add: 'Ajouter',
+  shopby: 'Magasinez par catégorie',
+  shobySeller: 'Magasinez auprès des vendeurs de votre choix',
+  sortBy: 'Tri par',
+  many: 'Beaucoup en stock',
 
   all_ratings: 'Tous les évaluations',
   all_customers: 'Tous les clients',

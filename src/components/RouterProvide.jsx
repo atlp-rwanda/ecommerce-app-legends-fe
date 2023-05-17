@@ -16,6 +16,7 @@ import CartPage from './cart/CartPage';
 import UserProfile from '../views/userProfile/UserProfile';
 import WishListPage from './wishlist/WishListPage';
 import ValidatedBuyer from '../middlewares/authMiddlewares/ValidatedBuyer';
+import ShopPage from '../views/shoppingPage/shop';
 
 // dotenv.config();
 const RouterProv = () => {
@@ -28,6 +29,7 @@ const RouterProv = () => {
             <Route path="/" element={<App />} />
             <Route path="/resetPassword" element={<ResetPassword />} />
             <Route path="/reset" element={<NewPassword />} />
+            <Route path="/shop" element={<ShopPage />} />
 
             <Route path="/product/:id" element={<SingleProduct />} />
 

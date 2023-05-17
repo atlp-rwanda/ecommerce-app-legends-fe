@@ -11,6 +11,9 @@ import toogleSearchFormSlice from './reducers/searchFormToogle';
 import wishListSlice from './reducers/WishListSlice';
 import usersSlice from './reducers/appUsersManager/manageUsersReducer';
 import RoleSlice from './reducers/appUsersManager/getUsersRole';
+import ShoppableProductSlice from './reducers/products/AvailbleProducts';
+import VendorSlice from './reducers/seller/listOfVendors';
+import selectCatSlice from './reducers/products/DrowCategories';
 import RatingReducers from './reducers/rateProduct';
 import sellersProductReducer from './reducers/seller/viewAllSellersProduct';
 
@@ -31,6 +34,9 @@ const store = configureStore({
     selectedUsers: usersSlice,
     categories: categoryReducer,
     seller: sellersProductReducer,
+    ShoppableProducts: ShoppableProductSlice,
+    Vendors: VendorSlice,
+    selector: selectCatSlice,
   },
 
   middleware: (getDefaultMiddleware) => {

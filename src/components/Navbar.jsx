@@ -38,7 +38,7 @@ const Navbar = () => {
     },
     {
       name: 'shop',
-      link: '/',
+      link: '/shop',
     },
     {
       name: 'about_us',
