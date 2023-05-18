@@ -29,9 +29,7 @@ const Products = () => {
   );
 
   const [productFormValue, setProductFormValue] = useState({});
-  const [productAttributeFormValue, setProductAttributeFormValue] = useState(
-    []
-  );
+
   const [productImg, setproductImg] = useState('');
   const [newProductImg, setNewProductImg] = useState(null);
   const [productAttributeImgs, setproductAttributeImgs] = useState('');
@@ -76,11 +74,6 @@ const Products = () => {
     setModalProduct(product);
     setproductImg(product.image);
     setProductFormValue(product);
-    setproductAttributeImgs(
-      product.ProductAttributes.map((productAttribute) => {
-        return { id: productAttribute.id, image: productAttribute.attrImage };
-      })
-    );
   };
 
   const handleTyping = (event) => {

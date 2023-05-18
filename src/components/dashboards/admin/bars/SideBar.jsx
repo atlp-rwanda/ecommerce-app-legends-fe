@@ -118,7 +118,7 @@ const SideBar = ({ isOpen }) => {
           <div
             className={`flex space-x-4 logo basis-full  h-12 mt-0.5 p-3 ${isButtonActive(
               'order'
-            )} ${role !== 'vendor' ? 'hidden' : ''}`}
+            )} ${role !== 'admin' ? 'hidden' : ''}`}
           >
             <div className="icon">
               {' '}

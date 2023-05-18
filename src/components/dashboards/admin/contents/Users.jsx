@@ -136,7 +136,7 @@ const Users = () => {
                   numbering={index + 1}
                   key={user.id}
                   id={user.id}
-                  className=" mx-auto bg-white shadow-sm border-2 border-gray-100 hover:cursor-pointer hover:bg-slate-100"
+                  className=" mx-auto bg-white shadow-sm border-2 border-gray-100 y"
                   fistName={user.firstname}
                   lastName={user.lastname}
                   email={user.email}

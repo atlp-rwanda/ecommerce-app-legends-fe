@@ -108,7 +108,7 @@ const AddProducts = () => {
         onSubmit={handleAddproducts}
       >
         {/* {imgInputController(imgDisplay, productImg, true)} */}
-        <div className="w-[33%] md:w-[50%] sm:w-[80%] md:max-h-[150px] max-h-full  relative">
+        <div className="w-[33%] md:w-[50%]  md:max-h-fit max-h-[500px] max-w-fit  relative">
           {imgInputController(
             imgDisplay,
             productImg,

@@ -34,7 +34,7 @@ const DashBoardIndex = () => {
               />
               <Route path="/dashboard/products" element={<Products />} />
               <Route path="/dashboard/customers" element={<Customers />} />
-              <Route path="/dashboard/orders" element={<Orders />} />
+              {/* <Route path="/dashboard/orders" element={<Orders />} /> */}
               <Route path="/dashboard/add/products" element={<AddProducts />} />
               <Route
                 path="/dashboard/products/categories"
@@ -52,6 +52,7 @@ const DashBoardIndex = () => {
             </Route>
             <Route element={<AdminRoutes />}>
               <Route path="/dashboard/users" element={<Users />} />
+              <Route path="/dashboard/orders" element={<Orders />} />
             </Route>
             <Route path="/dashboard/messages" element={<Messages />} />
           </Routes>

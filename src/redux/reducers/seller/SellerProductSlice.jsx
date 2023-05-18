@@ -2,7 +2,7 @@
 // productsSlice.jsx
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { client, getTokenPromise } from '../../API/client';
+import { client } from '../../API/client';
 
 // get all products
 export const fetchSellerProducts = createAsyncThunk(
