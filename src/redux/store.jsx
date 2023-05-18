@@ -12,6 +12,7 @@ import wishListSlice from './reducers/WishListSlice';
 import usersSlice from './reducers/appUsersManager/manageUsersReducer';
 import RoleSlice from './reducers/appUsersManager/getUsersRole';
 import RatingReducers from './reducers/rateProduct';
+import sellersProductReducer from './reducers/seller/viewAllSellersProduct';
 
 const store = configureStore({
   reducer: {
@@ -29,6 +30,7 @@ const store = configureStore({
     roles: RoleSlice,
     selectedUsers: usersSlice,
     categories: categoryReducer,
+    seller: sellersProductReducer,
   },
 
   middleware: (getDefaultMiddleware) => {
