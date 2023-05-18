@@ -1,7 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { select } from '../redux/reducers/products/DrowCategories';
 
-const frontCategoryDrawer = ({ categories, isCategoryOpen }) => {
+const FrontCategoryDrawer = ({ categories, isCategoryOpen }) => {
+  const dispatch = useDispatch();
   if (categories !== undefined) {
     return (
       <div
@@ -12,11 +15,13 @@ const frontCategoryDrawer = ({ categories, isCategoryOpen }) => {
         <ul>
           {categories.data.map(({ id, name }) => {
             return (
+              // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events
               <li
                 className="w-full hover:bg-[#ffb77c1c] py-3 hover:text-orange-500 hover:bg-darkGrey p-2"
+                onClick={() => dispatch(select(id))}
                 key={id}
               >
-                <NavLink to="/" className="text-xl font-light font-sans">
+                <NavLink to="/shop" className="text-xl font-light font-sans">
                   {name}
                 </NavLink>
               </li>
@@ -28,4 +33,4 @@ const frontCategoryDrawer = ({ categories, isCategoryOpen }) => {
   }
 };
 
-export default frontCategoryDrawer;
+export default FrontCategoryDrawer;
