@@ -111,8 +111,14 @@ const translationEn = {
   description: 'Description',
   active: 'active',
   inactive: 'inactive',
-  all_products: 'All products',
   add: 'Add',
+  all_products: 'all products',
+  all_ratings: 'all ratings',
+  all_customers: 'all customers',
+  no_related_search_product_found: 'No related product found',
+  search_product: 'Search product',
+  color: 'Color',
+  top_reviewrs: 'Top reviews',
 };
 
 const translationFr = {
@@ -229,6 +235,13 @@ const translationFr = {
   inactive: 'inactif',
   all_products: 'Tous les produits',
   add: 'Ajouter',
+
+  all_ratings: 'Tous les évaluations',
+  all_customers: 'Tous les clients',
+  no_related_search_product_found: 'Aucun produit associé trouvé',
+  search_product: 'produit de recherche',
+  color: 'Couleur',
+  top_reviewrs: 'meilleurs commentateurs',
 };
 
 i18n.use(initReactI18next).init({
