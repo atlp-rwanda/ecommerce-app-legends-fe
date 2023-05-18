@@ -8,6 +8,7 @@ const URL =
 export const addToCart = createAsyncThunk(
   'cart/addToCart',
   async (id, { rejectWithValue }) => {
+    console.log(id);
     const response = await fetch(`${URL}shoppingCart/add`, {
       method: 'POST',
       body: JSON.stringify({ productId: id }),
@@ -19,9 +20,16 @@ export const addToCart = createAsyncThunk(
     console.log(response);
     const data = await response.json();
     if (response.status !== 201) {
-      // toast.error(data.message, {
-      //   theme: 'colored',
-      // });
+      if (response.status === 401) {
+        toast.error(`${data.message} Login first!`, {
+          theme: 'colored',
+        });
+      } else {
+        toast.error(data.message, {
+          theme: 'colored',
+        });
+      }
+
       return rejectWithValue(data.message);
     }
     toast.success(data.message, {
@@ -116,6 +124,7 @@ const cartSlice = createSlice({
   initialState: {
     items: [],
     status: 'idle',
+    cartStatus: 'idle',
     error: null,
   },
   reducers: {},
@@ -125,12 +134,14 @@ const cartSlice = createSlice({
         return {
           ...state,
           status: 'loading',
+          cartStatus: 'loading',
         };
       })
       .addCase(addToCart.fulfilled, (state, action) => {
         return {
           ...state,
           status: 'succeeded',
+          cartStatus: 'succeeded',
           items: action.payload,
         };
       })
@@ -138,6 +149,7 @@ const cartSlice = createSlice({
         return {
           ...state,
           status: 'failed',
+          cartStatus: 'failed',
           error: action.error.message,
         };
       })

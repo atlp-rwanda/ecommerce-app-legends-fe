@@ -8,7 +8,9 @@ export const fetchProducts = createAsyncThunk(
   'langingProducts/fetchProducts',
   async (arg, { rejectWithValue }) => {
     try {
-      const { data } = await client.get('/api/v1/buyer/products', { arg });
+      const { data } = await client.get('/api/v1/buyer/products', {
+        params: arg,
+      });
       return data;
     } catch (error) {
       rejectWithValue(error.response.data);

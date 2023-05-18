@@ -16,6 +16,7 @@ import Navbar from '../Navbar';
 import FrontFooter from '../FrontFooter';
 import Button from '../formControlscomponents/Button/Button';
 import FormInput from '../formControlscomponents/formInput/FormInput';
+import Loading from '../Loading';
 
 const CartPage = () => {
   const { items, status, error } = useSelector((state) => state.cart);
@@ -94,14 +95,15 @@ const CartPage = () => {
   };
 
   const handleToStartShopping = () => {
-    navigate('/product-variation');
+    navigate('/');
   };
 
   return (
     <div className="test">
       <Navbar />
       <div className="pt-8 mb-52">
-        {status === 'loading' && <div>{t('loading')}</div>}
+        {console.log(status)}
+        {status === 'loading' && <Loading />}
         {status === 'failed' && <div>{error}</div>}
         {status === 'succeeded' &&
           (items && items.data && items.data.totalAmount !== 0 ? (

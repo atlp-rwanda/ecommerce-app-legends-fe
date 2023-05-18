@@ -19,9 +19,16 @@ export const addToWishList = createAsyncThunk(
     );
     const data = await response.json();
     if (response.status !== 201) {
-      toast.error(data.message, {
-        theme: 'colored',
-      });
+      if (response.status === 401) {
+        toast.error(`${data.message} Login first!`, {
+          theme: 'colored',
+        });
+      } else {
+        toast.error(data.message, {
+          theme: 'colored',
+        });
+      }
+
       return rejectWithValue(data.message);
     }
     toast.success(data.message, {
@@ -30,22 +37,6 @@ export const addToWishList = createAsyncThunk(
     return data;
   }
 );
-
-// export const viewWishList = createAsyncThunk(
-//   'wishlist/viewWishList',
-//   async () => {
-//     const response = await fetch(
-//       'https://ecommerce-app-legends-bn-production.up.railway.app/api/v1/product/wishlist',
-//       {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//       }
-//     );
-//     const data = await response.json();
-//     return data;
-//   }
-// );
 
 export const viewWishList = createAsyncThunk(
   'wishList/viewWishlist',
@@ -98,6 +89,7 @@ const wishListSlice = createSlice({
   initialState: {
     items: [],
     status: 'idle',
+    listStatus: 'idle',
     error: null,
   },
   reducers: {},
@@ -107,12 +99,14 @@ const wishListSlice = createSlice({
         return {
           ...state,
           status: 'loading',
+          listStatus: 'loading',
         };
       })
       .addCase(addToWishList.fulfilled, (state, action) => {
         return {
           ...state,
           status: 'succeeded',
+          listStatus: 'succeeded',
           items: action.payload,
         };
       })
@@ -120,6 +114,7 @@ const wishListSlice = createSlice({
         return {
           ...state,
           status: 'failed',
+          listStatus: 'failed',
           error: action.error.message,
         };
       })

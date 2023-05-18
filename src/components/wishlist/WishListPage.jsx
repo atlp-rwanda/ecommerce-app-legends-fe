@@ -10,6 +10,7 @@ import {
 } from '../../redux/reducers/WishListSlice';
 import Navbar from '../Navbar';
 import FrontFooter from '../FrontFooter';
+import Loading from '../Loading';
 
 const WishListPage = () => {
   const { items, status, error } = useSelector((state) => state.wishlist);
@@ -32,7 +33,7 @@ const WishListPage = () => {
     <div className="">
       <Navbar />
       <div className="pt-8 mb-52">
-        {status === 'loading' && <div>{t('loading')}</div>}
+        {status === 'loading' && <Loading />}
         {status === 'failed' && <div>{error}</div>}
         {status === 'succeeded' &&
           (items.data && items.data.length !== 0 ? (
