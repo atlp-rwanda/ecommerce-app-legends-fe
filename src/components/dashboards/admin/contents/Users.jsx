@@ -20,6 +20,7 @@ import TableRow from '../../../table/TableRow';
 import SingleUserView from '../../../table/singleUserView';
 import { URL } from '../../../../views/auths/Login';
 import FilterUsers from '../../../table/FilterUsers';
+import Loading from '../../../Loading';
 
 const Users = () => {
   const users = useSelector(selectUsers);
@@ -35,10 +36,10 @@ const Users = () => {
   const { token } = useSelector((state) => state.currentUser);
   const handleRoleChange = (e, id) => {
     const roleId = e.target.value;
-    document.body.style.overflow = 'hidden';
     dispatch(updateUserById({ id, roleId }));
     if (message !== '') {
       toast.success(message, { theme: 'colored' });
+      document.body.style.overflow = 'scroll';
     }
   };
   const handleUserOnclick = (id) => {
@@ -93,15 +94,8 @@ const Users = () => {
       <div>
         <FilterUsers FilterUsers={handleFilteredValues} />
       </div>
-      <div
-        className={
-          fetchStatus === 'loading' || loader
-            ? 'sticky ml-[40%] top-[50%] mb-[35%]'
-            : ' hidden'
-        }
-      >
-        <div className="w-20 h-20 border-slate-400 border-2 rounded-full" />
-        <div className="w-20 h-20 border-blue-700 border-t-2 animate-spin rounded-full absolute left-0 top-0" />
+      <div className={fetchStatus !== 'loading' || loader ? 'hidden' : ''}>
+        <Loading />
       </div>
       {selctedUser && (
         <div className="fixed top-1/4 ml-[22%] w-full md:left-0 mb-[15%]">

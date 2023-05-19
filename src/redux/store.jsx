@@ -16,6 +16,7 @@ import VendorSlice from './reducers/seller/listOfVendors';
 import selectCatSlice from './reducers/products/DrowCategories';
 import RatingReducers from './reducers/rateProduct';
 import sellersProductReducer from './reducers/seller/viewAllSellersProduct';
+import selectSearchKeySlice from './reducers/products/DrowSearchkey';
 
 const store = configureStore({
   reducer: {
@@ -37,6 +38,7 @@ const store = configureStore({
     ShoppableProducts: ShoppableProductSlice,
     Vendors: VendorSlice,
     selector: selectCatSlice,
+    searchKey: selectSearchKeySlice,
   },
 
   middleware: (getDefaultMiddleware) => {

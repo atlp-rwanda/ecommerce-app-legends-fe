@@ -29,7 +29,6 @@ export const updateUserById = createAsyncThunk(
   async (payload) => {
     const { id, roleId } = payload;
     try {
-      document.body.style.overflow = 'hidden';
       const response = await axios.patch(
         `${URL}/api/v1/roles/update`,
         {

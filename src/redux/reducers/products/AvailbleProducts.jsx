@@ -1,10 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+// eslint-disable-next-line import/no-cycle
 import { URL } from '../../../views/auths/Login';
 
 const initialState = {
   shoppableProducts: [],
+  isSearch: false,
   status: 'iddle',
   error: null,
 };
@@ -14,6 +16,17 @@ export const fetchShoppableProducts = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get(`${URL}/api/v1/buyer/products`);
+      return response.data.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+export const fetchSearchProducts = createAsyncThunk(
+  'shop/product',
+  async (query) => {
+    try {
+      const response = await axios.get(`${URL}/api/v1/product?q=${query}`);
       return response.data.data;
     } catch (error) {
       return error.message;
@@ -37,6 +50,21 @@ const ShoppableProductSlice = createSlice({
           ...state,
           status: 'succeeded',
           shoppableProducts: action.payload.products,
+          isSearch: false,
+        };
+      })
+      .addCase(fetchSearchProducts.pending, (state) => {
+        return {
+          ...state,
+          status: 'loading',
+        };
+      })
+      .addCase(fetchSearchProducts.fulfilled, (state, action) => {
+        return {
+          ...state,
+          status: 'succeeded',
+          shoppableProducts: action.payload,
+          isSearch: true,
         };
       })
       .addCase(fetchShoppableProducts.rejected, (state, action) => {
@@ -50,6 +78,7 @@ const ShoppableProductSlice = createSlice({
 });
 export const fetchShoppableProductsStatus = (state) =>
   state.ShoppableProducts.status;
+export const IsfetchFromSearch = (state) => state.ShoppableProducts.isSearch;
 export const selectProducts = (state) =>
   state.ShoppableProducts.shoppableProducts;
 export default ShoppableProductSlice.reducer;

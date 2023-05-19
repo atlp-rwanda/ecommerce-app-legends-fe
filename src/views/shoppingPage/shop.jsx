@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ShowCategories from '../../components/table/categories';
 import ProductListings from '../../components/products/ProductListings';
-import StatusTracker from '../../components/products/statusTracker';
+import Loading from '../../components/Loading';
 import ShowVendors from '../../components/table/vendors';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/FrontFooter';
@@ -14,18 +14,24 @@ import {
   fetchShoppableProducts,
   fetchShoppableProductsStatus,
   selectProducts,
+  IsfetchFromSearch,
 } from '../../redux/reducers/products/AvailbleProducts';
+import {
+  setSortBy,
+  setsearchParam,
+} from '../../redux/reducers/products/DrowSearchkey';
 import { select, diselect } from '../../redux/reducers/products/DrowCategories';
 
 const ShopPage = () => {
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.categories);
   const { selector } = useSelector((state) => state.selector);
+  const { sortBy } = useSelector((state) => state.searchKey);
+  const { searchParam } = useSelector((state) => state.searchKey);
   const fetchStatus = useSelector(fetchShoppableProductsStatus);
   const products = useSelector(selectProducts);
   const vendors = useSelector(selectVendors);
-  const [searchParam, setsearchParam] = useState(null);
-  const [sortBy, setSortBy] = useState(null);
+  const IsSearched = useSelector(IsfetchFromSearch);
   let detailedProducts = [];
   products?.forEach((product) => {
     product.ProductAttributes.forEach((attribute) => {
@@ -37,16 +43,18 @@ const ShopPage = () => {
     });
   });
   useEffect(() => {
-    dispatch(fetchShoppableProducts()).unwrap();
     dispatch(fetchVendors()).unwrap();
+    if (IsSearched) {
+      dispatch(fetchShoppableProducts()).unwrap();
+    }
   }, []);
   const handleFilterByseller = (id) => {
     dispatch(select(id));
-    setsearchParam(null);
+    dispatch(setsearchParam(null));
   };
   const handleFilterByCategory = (id) => {
     dispatch(select(id));
-    setsearchParam(null);
+    dispatch(setsearchParam(null));
   };
   const handleSearch = (e) => {
     dispatch(diselect(null));
@@ -55,8 +63,8 @@ const ShopPage = () => {
   };
   const handleSort = (e) => {
     dispatch(diselect(null));
-    setsearchParam(null);
-    setSortBy(e.target.value);
+    dispatch(setsearchParam(null));
+    dispatch(setSortBy(e.target.value));
   };
   if (selector !== null) {
     detailedProducts = detailedProducts.filter(
@@ -86,7 +94,9 @@ const ShopPage = () => {
   return (
     <div className="flex flex-col h-[100vh] overflow-scroll">
       <Navbar />
-      <StatusTracker fetchStatus={fetchStatus} />
+      <div className={fetchStatus !== 'loading' ? 'hidden' : ''}>
+        <Loading />
+      </div>
       <div className="flex flex-row gap-[2vw]">
         <div
           className={
