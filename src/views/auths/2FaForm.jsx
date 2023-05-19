@@ -57,7 +57,7 @@ const TwoFaForm = () => {
           dispatch(setUser(data.user));
           dispatch(setRole(data.role));
           dispatch(setToken(data.token));
-          navigate('/vendor-dashboard');
+          window.location.reload(navigate('/dashboard'));
         } else if (inputCodes.length !== 6) {
           toast.error('All digits must be completed ', { theme: 'colored' });
         } else {

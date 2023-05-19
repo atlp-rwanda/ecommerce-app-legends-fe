@@ -56,7 +56,7 @@ const Login = () => {
           dispatch(setRole(data.role));
           dispatch(setToken(data.token));
           setTimeout(() => {
-            navigate('/');
+            window.location.reload(navigate('/'));
           }, 2000);
         } else {
           toast.error(data.message, { theme: 'colored' });
@@ -107,9 +107,9 @@ const Login = () => {
     if (userRole === 'vendor') {
       navigate('/vendor-dashboard');
     } else if (userRole === 'admin') {
-      navigate('/admin/dashboard');
+      window.location.reload(navigate('/admin/dashboard'));
     } else {
-      navigate('/');
+      window.location.reload(navigate('/'));
     }
   }
 
@@ -194,6 +194,15 @@ const Login = () => {
                   className="text-darkBlueColor font-semibold "
                 >
                   {` ${t('signup')}`}
+                </NavLink>
+              </p>
+              <p className="mt-3 text-center">
+                Forgotten Password?
+                <NavLink
+                  to="/resetPassword"
+                  className="text-darkBlueColor font-bold "
+                >
+                  {` Reset it`}
                 </NavLink>
               </p>
             </div>
