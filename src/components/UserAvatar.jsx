@@ -36,6 +36,12 @@ const UserAvatar = ({ user }) => {
             >
               <div> {t('profile')}</div>
             </NavLink>
+            <NavLink
+              to="/track/order"
+              className="flex flex-col mt-1 lg:inline-block lg:mt-0 text-darkBlueColor hover:bg-darkBlueColor w-full px-3 py-2 hover:text-white"
+            >
+              <div> {t('orders')}</div>
+            </NavLink>
           </div>
           <div>
             <button

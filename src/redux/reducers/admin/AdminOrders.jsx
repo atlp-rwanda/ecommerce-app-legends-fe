@@ -10,6 +10,7 @@ export const fetchAdminOrders = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await client.get('/api/v1/admin/orders');
+
       return data;
     } catch (error) {
       rejectWithValue(error.response.data);

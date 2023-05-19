@@ -23,6 +23,7 @@ import AboutPage from '../views/about/AboutPage';
 import CheckoutPage from '../views/checkoutPage/checkoutpage';
 import NotificatonContainer from './NotificatonContainer';
 import ChatBody from '../views/chat/ChatBody';
+import TrackingOrder from '../views/orderTracking/TrackingOrder';
 
 import PasswordUpdate from '../views/passwordUpdatePage/passwordUpdate';
 
@@ -51,6 +52,7 @@ const RouterProv = () => {
             <Route element={<ValidatedBuyer />}>
               <Route path="/cart" element={<CartPage />} />
               <Route path="/wishlist" element={<WishListPage />} />
+              <Route path="/track/order" element={<TrackingOrder />} />
             </Route>
             <Route path="/notifications" element={<NotificatonContainer />} />
             <Route path="/Login" element={<Login />} />
