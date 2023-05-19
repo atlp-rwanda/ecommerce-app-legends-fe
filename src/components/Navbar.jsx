@@ -42,11 +42,11 @@ const Navbar = () => {
     },
     {
       name: 'about_us',
-      link: '/',
+      link: '/about',
     },
     {
       name: 'contact_us',
-      link: '/login',
+      link: '/contact_us',
     },
   ];
   return (
