@@ -44,7 +44,7 @@ const ShopPage = () => {
   });
   useEffect(() => {
     dispatch(fetchVendors()).unwrap();
-    if (IsSearched) {
+    if (!IsSearched) {
       dispatch(fetchShoppableProducts()).unwrap();
     }
   }, []);
@@ -58,7 +58,7 @@ const ShopPage = () => {
   };
   const handleSearch = (e) => {
     dispatch(diselect(null));
-    setsearchParam(e.target.value);
+    dispatch(setsearchParam(e.target.value));
     setSortBy(null);
   };
   const handleSort = (e) => {
