@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { viewAllSellersProduct } from '../../../../redux/reducers/seller/viewAllSellersProduct';
 import Loading from '../../../Loading';
+import ChatButton from '../../../ChatButton';
 
 const ITEMS_PER_PAGE = 8;
 
@@ -49,6 +50,7 @@ const DashBoard = () => {
 
   return (
     <div className="dashdash pt-16 h-fit bg-white md:w-full px-6">
+      <ChatButton />
       <div className="flex justify-between mt-4">
         <div className="block w-1/5  md:w-fit md:px-2 md:h10 h-16 bg-slate-900 text-center">
           <p className="text-white  md:text-sm font-bold">
@@ -141,7 +143,7 @@ const DashBoard = () => {
                 </span>
               </div>
             )}
-            <div className="flex justify-center mt-12">
+            <div className="flex justify-center mt-12 ">
               {Array.from({ length: totalPages }, (_, index) => (
                 <button
                   type="button"

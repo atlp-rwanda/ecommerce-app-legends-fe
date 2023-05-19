@@ -7,6 +7,7 @@ import { URL } from './auths/Login';
 import { setUser, setRole, setToken } from '../redux/reducers/AuthUser';
 import Navbar from '../components/Navbar';
 import Footer from '../components/FrontFooter';
+import ChatButton from '../components/ChatButton';
 
 class FormField {
   constructor(placeholder, label, type) {
@@ -97,6 +98,7 @@ const SignUpBuyer = () => {
       </header>
       <main>
         <div className="bg-[#D9D9D9]  min-h-[100vh] py-[15vh] ">
+          <ChatButton />
           <div className="w-[60vw] h-[150vh]  bg-[#011B32] absolute right-0   -top-[25vh] rounded-[50%] overflow-hidden rounded-r" />
           <div className=" scale-[0.9] flex flex-row-reverse justify-center mx-auto ">
             <img

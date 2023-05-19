@@ -21,6 +21,7 @@ import {
   setsearchParam,
 } from '../../redux/reducers/products/DrowSearchkey';
 import { select, diselect } from '../../redux/reducers/products/DrowCategories';
+import ChatButton from '../../components/ChatButton';
 
 const ShopPage = () => {
   const dispatch = useDispatch();
@@ -94,6 +95,7 @@ const ShopPage = () => {
   return (
     <div className="flex flex-col h-[100vh] overflow-scroll">
       <Navbar />
+      <ChatButton />
       <div className={fetchStatus !== 'loading' ? 'hidden' : ''}>
         <Loading />
       </div>

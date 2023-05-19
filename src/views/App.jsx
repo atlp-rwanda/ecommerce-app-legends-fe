@@ -11,6 +11,8 @@ import Footer from '../components/FrontFooter';
 import Card from '../components/Card';
 import '../i18n/i18n';
 import { fetchProducts } from '../redux/reducers/fronUser/productsReducer';
+import ChatButton from '../components/ChatButton';
+
 
 const App = () => {
   const [params, setParams] = useState({ page: 1, limit: 20 });
@@ -66,6 +68,7 @@ const App = () => {
         <Navbar />
       </header>
       <main className="relative ">
+        <ChatButton />
         <div className=" w-11/12 mx-auto md:mx-auto relative  mb-20 md:mb-5 z-30 lg:mb-14">
           <div className="md:flex-col flex flex-wrap justify-between md:justify-center">
             <img

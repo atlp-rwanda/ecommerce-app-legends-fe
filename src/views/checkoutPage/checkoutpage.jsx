@@ -9,6 +9,7 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../components/FrontFooter';
 import { Checkout, ApplyCoupon } from '../../redux/reducers/checkout';
 import Loading from '../../components/Loading';
+import ChatButton from '../../components/ChatButton';
 
 const CheckoutPage = () => {
   const dispatch = useDispatch();
@@ -85,6 +86,7 @@ const CheckoutPage = () => {
       <div className="relative">
         <header className="mb-14">
           <Navbar />
+          <ChatButton />
         </header>
 
         <div className="bg-bgCheckout">

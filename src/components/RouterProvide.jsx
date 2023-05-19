@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { io } from 'socket.io-client';
 import App from '../views/App';
 import Login from '../views/auths/Login';
 import store from '../redux/store';
@@ -21,6 +22,9 @@ import ContactPage from '../views/about/ContactPage';
 import AboutPage from '../views/about/AboutPage';
 import CheckoutPage from '../views/checkoutPage/checkoutpage';
 import NotificatonContainer from './NotificatonContainer';
+import ChatBody from '../views/ChatBody';
+
+const socket = io('https://ecommerce-app-legends-bn-production.up.railway.app'); // Replace with your server URL
 
 // dotenv.config();
 const RouterProv = () => {
@@ -31,6 +35,7 @@ const RouterProv = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<App />} />
+            <Route path="/chat" element={<ChatBody socket={socket} />} />
             <Route path="/resetPassword" element={<ResetPassword />} />
             <Route path="/reset" element={<NewPassword />} />
             <Route path="/shop" element={<ShopPage />} />

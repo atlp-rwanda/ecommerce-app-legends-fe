@@ -17,4 +17,9 @@ export default defineConfig({
   build: {
     target: 'es2017',
   },
+  resolve: {
+    alias: {
+      'socket.io-client': 'socket.io-client/dist/socket.io.js',
+    },
+  },
 });
