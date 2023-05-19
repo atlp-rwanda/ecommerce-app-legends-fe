@@ -47,8 +47,8 @@ const SideBar = ({ isOpen }) => {
     dispatch(setActiveButton('setting'));
   };
   const handleLogout = () => {
-    navigate('/');
     dispatch(clearUser());
+    window.location.reload(navigate('/'));
   };
 
   const isButtonActive = (buttonName) => {

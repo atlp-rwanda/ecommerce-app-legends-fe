@@ -11,6 +11,13 @@ const SellerProductPage = () => {
   const dispatch = useDispatch();
   const { sellersProduct, status } = useSelector((state) => state.seller);
   const [selectedAttribute, setSelectedAttribute] = useState(null);
+  const [showAllReviews, setShowAllReviews] = useState(false);
+  const reviews = sellersProduct?.reviews || [];
+  const reversedReviews = [...reviews].reverse(); // Reverse the order of the reviews
+  const visibleReviews = showAllReviews
+    ? reversedReviews
+    : reversedReviews.slice(0, 5);
+
   useEffect(() => {
     dispatch(viewSingleSellersProduct(id));
   }, [dispatch]);
@@ -19,6 +26,9 @@ const SellerProductPage = () => {
     setSelectedAttribute(attribute);
   };
 
+  const handleToggleReviews = () => {
+    setShowAllReviews(!showAllReviews);
+  };
   return (
     <div className="pt-20 h-fit bg-white md:w-full px-6 flex flex-col">
       {status === 'loading' && (
@@ -151,14 +161,15 @@ const SellerProductPage = () => {
           )}
         </div>
       </div>
-      <div className="w-10/12 mx-auto md:mx-auto relative mb-20 md:mb-5 lg:mb-14 border-2 rounded-md border-gray-300 mt-44">
+
+      <div className="w-10/12 mx-auto md:mx-auto mb-20 md:mb-5 lg:mb-14 border-2 rounded-md border-gray-300 mt-44">
         <h1 className="font-black text-2xl lg:text-3xl text-center my-4 md:text-xl">
           {t('top_reviewrs')}
         </h1>
         <div className="">
-          {sellersProduct?.reviews?.map((rating) => (
+          {visibleReviews.map((rating) => (
             <div
-              className="overflow-hidden hover:overflow-y-auto shadow-lg pl-16 h-20 max-h-72 py-1 md:pl-5"
+              className="overflow-hidden hover:overflow-y-auto shadow-sm pl-16 h-fit py-3 md:pl-5"
               key={rating.id}
             >
               <h2 className="text-sm font-bold">{t('name')}</h2>
@@ -206,6 +217,15 @@ const SellerProductPage = () => {
               </div>
             </div>
           ))}
+          {reversedReviews.length > 5 && (
+            <button
+              type="button"
+              className="flex m-auto py-4 text-2xl font-bold text-center items-center"
+              onClick={handleToggleReviews}
+            >
+              {showAllReviews ? 'Read Less' : 'Read More'}
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -50,7 +50,6 @@ const WishListPage = () => {
                       <th className="px-4 py-2 text-center">{t('option')}</th>
                     </tr>
                   </thead>
-                  {console.log(items)}
                   <tbody>
                     {items?.data &&
                       Array.isArray(items.data) &&
