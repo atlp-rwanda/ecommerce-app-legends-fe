@@ -19,6 +19,7 @@ import ValidatedBuyer from '../middlewares/authMiddlewares/ValidatedBuyer';
 import ShopPage from '../views/shoppingPage/shop';
 import ContactPage from '../views/about/ContactPage';
 import AboutPage from '../views/about/AboutPage';
+import ChatPage from '../views/ChatPage';
 
 // dotenv.config();
 const RouterProv = () => {
@@ -29,6 +30,7 @@ const RouterProv = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<App />} />
+            <Route path="/chat" element={<ChatPage />} />
             <Route path="/resetPassword" element={<ResetPassword />} />
             <Route path="/reset" element={<NewPassword />} />
             <Route path="/shop" element={<ShopPage />} />
