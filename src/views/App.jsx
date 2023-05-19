@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { MdWifiOff } from 'react-icons/md';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
+import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Loading from '../components/Loading';
 import Navbar from '../components/Navbar';
 import Footer from '../components/FrontFooter';
 import Card from '../components/Card';
-import Vendor from '../components/vendorCard';
 import '../i18n/i18n';
 import { fetchProducts } from '../redux/reducers/fronUser/productsReducer';
 import logo from '../assets/logo.svg';
@@ -207,17 +207,10 @@ const App = () => {
               type="button"
               className="m-6 bg-transparent  hover:bg-denimBlue text-denimBlue font-semibold hover:text-white py-2 px-10 border border-denimBlue absolute hover:border-transparent rounded-full right-5"
             >
-              {t('see_all')} <FontAwesomeIcon icon={faArrowRight} />
+              <NavLink to="/shop">
+                {t('see_all')} <FontAwesomeIcon icon={faArrowRight} />
+              </NavLink>
             </button>
-          </div>
-
-          <h1 className="py-6 font-bold text-2xl">{t('our_top_vendors')}</h1>
-          <div className="flex flex-wrap bg-white justify-center">
-            <Vendor name="Vendor V1" />
-            <Vendor name="Vendor V1" />
-            <Vendor name="Vendor V1" />
-            <Vendor name="Vendor V1" />
-            <Vendor name="Vendor V1" />
           </div>
         </div>
       </main>

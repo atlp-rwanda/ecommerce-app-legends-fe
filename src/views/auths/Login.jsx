@@ -8,6 +8,7 @@ import Button from '../../components/formControlscomponents/Button/Button';
 import { setUser, setRole, setToken } from '../../redux/reducers/AuthUser';
 import CART from '../../assets/CART.png';
 import GOOGLE from '../../assets/GOOGLE.png';
+// eslint-disable-next-line import/no-cycle
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/FrontFooter';
 
