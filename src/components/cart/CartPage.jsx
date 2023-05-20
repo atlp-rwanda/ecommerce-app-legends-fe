@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AiOutlineShoppingCart, AiOutlineArrowLeft } from 'react-icons/ai';
 import { IoIosRemoveCircleOutline } from 'react-icons/io';
-import { useNavigate } from 'react-router';
+import { Navigate, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
+import { NavLink } from 'react-router-dom';
 import {
   viewCart,
   clearCart,
@@ -213,18 +214,13 @@ const CartPage = () => {
                         {items.data.totalAmount}$
                       </td>
                       <td colSpan="2" className="border px-4 py-2 text-center">
-                        <Button
+                        <NavLink
+                          to="/checkout"
                           className="bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 pr-2 pl-0 rounded flex space-x-4 justify-center text-center self-center mx-auto md:text-sm md:py-1"
-                          handleSend={() =>
-                            console.log('Checkout button clicked')
-                          }
-                          btnName={
-                            <>
-                              <AiOutlineShoppingCart className="mt-1" />
-                              <span>{t('checkout')}</span>
-                            </>
-                          }
-                        />
+                        >
+                          <AiOutlineShoppingCart className="mt-1" />
+                          <span>{t('checkout')}</span>
+                        </NavLink>
                       </td>
                     </tr>
                   </tfoot>

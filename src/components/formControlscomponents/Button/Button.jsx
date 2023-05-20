@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Navigate } from 'react-router';
 
 // eslint-disable-next-line react/function-component-definition
 const Button = ({ className, btnName, handleSend, isClicked }) => {

@@ -22,6 +22,8 @@ export default {
         footerLine: '#3E3838',
         cardContainer: '#EBEBF1',
         vendorCard: '#ECECEC',
+        bgCheckout: '#FOFOFO',
+        checkoutMoner: '#3D3D3D',
       },
     },
   },

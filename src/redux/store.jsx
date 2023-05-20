@@ -18,6 +18,7 @@ import RatingReducers from './reducers/rateProduct';
 import sellersProductReducer from './reducers/seller/viewAllSellersProduct';
 import selectSearchKeySlice from './reducers/products/DrowSearchkey';
 import adminOrderSlice from './reducers/admin/AdminOrders';
+import checkout from './reducers/checkout';
 
 const store = configureStore({
   reducer: {
@@ -41,6 +42,7 @@ const store = configureStore({
     selector: selectCatSlice,
     searchKey: selectSearchKeySlice,
     adminOrders: adminOrderSlice,
+    checkout,
   },
 
   middleware: (getDefaultMiddleware) => {

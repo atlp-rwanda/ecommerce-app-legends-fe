@@ -11,7 +11,7 @@ import ResetPassword from '../passwordreset/ResetPassword';
 import NewPassword from '../passwordreset/newPassword';
 import TwoFaForm from '../views/auths/2FaForm';
 import VendorRoutes from '../middlewares/authMiddlewares/VendorRoutes';
-import SingleProduct from '../views/Single Product/singleproduct';
+import SingleProduct from '../views/SingleProduct/singleproduct';
 import CartPage from './cart/CartPage';
 import UserProfile from '../views/userProfile/UserProfile';
 import WishListPage from './wishlist/WishListPage';
@@ -19,6 +19,7 @@ import ValidatedBuyer from '../middlewares/authMiddlewares/ValidatedBuyer';
 import ShopPage from '../views/shoppingPage/shop';
 import ContactPage from '../views/about/ContactPage';
 import AboutPage from '../views/about/AboutPage';
+import CheckoutPage from '../views/checkoutPage/checkoutpage';
 
 // dotenv.config();
 const RouterProv = () => {
@@ -34,9 +35,8 @@ const RouterProv = () => {
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/contact_us" element={<ContactPage />} />
             <Route path="/about" element={<AboutPage />} />
-
+            <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/product/:id" element={<SingleProduct />} />
-
             <Route element={<VendorRoutes />}>
               <Route path="/*" element={<DashBoardIndex />} />
             </Route>
