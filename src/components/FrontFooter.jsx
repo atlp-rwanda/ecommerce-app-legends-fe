@@ -24,7 +24,7 @@ const FrontFooter = () => {
       <div className="flex md:flex-col flex-wrap w-3/4 justify-between mx-auto">
         <div className="flex-initial w-1/3 md:w-full">
           <h5 className="mb-2 text-xl font-bold pb-5 text-primaryWhiteColor">
-            Legends E-commerce
+            {t('footer_message')}
           </h5>
           <div className="flex ">
             <FontAwesomeIcon
@@ -38,7 +38,7 @@ const FrontFooter = () => {
         </div>
         <div className="flex-initial w-1/6 text-center md:w-full">
           <h5 className="mb-2 text-xl font-bold  pb-5 text-primaryWhiteColor">
-            Useful Links
+            {t('quick_links')}
           </h5>
           <div className="flex justify-between lg:flex-col">
             <ul>
@@ -57,7 +57,7 @@ const FrontFooter = () => {
         </div>
         <div className="flex-initial">
           <h5 className="mb-2 text-xl font-bold pb-5 text-primaryWhiteColor">
-            {t('contacts')}
+            {t('contactUs')}
           </h5>
           <div>
             <ul>
