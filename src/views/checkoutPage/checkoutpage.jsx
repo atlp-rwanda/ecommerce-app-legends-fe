@@ -170,7 +170,7 @@ const CheckoutPage = () => {
                   type="text"
                   className="text-xl bg-gray-50 border border-gray-300 text-gray-900  pl-4 rounded-lg  block w-full p-1 "
                   placeholder="Coupon Code"
-                  // onChange={(event) => setCouponCode(event.target.value)}
+                  onChange={(event) => setCouponCode(event.target.value)}
                 />
                 <button
                   type="submit"

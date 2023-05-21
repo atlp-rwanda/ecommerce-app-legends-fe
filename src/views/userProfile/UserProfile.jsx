@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import Button from '../../components/formControlscomponents/Button/Button';
 import FormInput from '../../components/formControlscomponents/formInput/FormInput';
@@ -147,23 +148,12 @@ const UserProfile = () => {
                 />
               </div>
               <div className="relative  w-[46%] min-w-[200px] mb-10 h-10 sm:w-full sm:h-8">
-                <div className="mb-0.5">
-                  <label
-                    htmlFor="password"
-                    className="before:content[' '] after:content[' '] pointer-events-none sm:text-sm font-thin"
-                  >
-                    {t('passwordLabel')}
-                  </label>
-                </div>
-                <FormInput
-                  id="password"
-                  name="password"
-                  className="peer bg-lightGrey invalid:focus:border-red-400 valid:focus:border-green-400 h-full w-full rounded-[7px] border mt-2 px-3 py-3.5 sm:py-1.5 font-sans text-md font-normal text-blue-gray-700 outline outline-0 transition-all placeholder:font-thin placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-1 focus:outline-0 disabled:border-0 disabled:shadow-sm"
-                  placeholder={t('passwordPlaceholder')}
-                  type="password"
-                  value={formValue.password}
-                  onChange={(e) => hundleOnChanges(e)}
-                />
+                <NavLink
+                  to="/passwordUpdate"
+                  className="my-6  md:my-6 md:ml-2 md:mr-0 md:text-center bg-transparent text-denimBlue font-semibold py-2 px-4 border border-denimBlue  rounded "
+                >
+                  Update Password
+                </NavLink>
               </div>
             </div>
             {/* third div */}

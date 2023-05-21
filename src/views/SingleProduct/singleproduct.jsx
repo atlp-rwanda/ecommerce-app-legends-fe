@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/FrontFooter';
 import Card from '../../components/Card';
@@ -13,6 +14,7 @@ import Rate from '../../components/Rating/Rate';
 import Rating from '../../components/Rating/Rating';
 import Review from '../../components/Rating/review';
 import HandleRequests from './fectchSingleProduct';
+import '../../i18n/i18n';
 import { addToCart, viewCart } from '../../redux/reducers/CartSlice';
 import {
   addToWishList,
@@ -63,6 +65,10 @@ const SingleProduct = () => {
       toast.warning('Rate between 1-5');
     }
   };
+  const { t } = useTranslation();
+  if (status === 'loading') {
+    return <Loading />;
+  }
   const enableRating = () => {
     if (localStorage.getItem('token') === null && review === false) {
       toast.warning('Login first');
@@ -134,7 +140,7 @@ const SingleProduct = () => {
               <ul className="list-disc ml-5 mt-2">
                 {item?.varitationName ? (
                   <li>
-                    Description:{' '}
+                    {t('singlePageDescription')} :{' '}
                     <span className="font-bold text-xl">
                       {item?.varitationName}
                     </span>
@@ -143,19 +149,19 @@ const SingleProduct = () => {
                   ''
                 )}
                 <li>
-                  Model:{' '}
+                  {t('singlePageModel')}:{' '}
                   <span className="font-bold">
                     {allData?.wholeProduct.model}
                   </span>
                 </li>
                 <li>
-                  Color:{' '}
+                  {t('singlePageColor')}:{' '}
                   <span className="font-bold">
                     {item?.color?.split(' ')[0]}
                   </span>
                 </li>
                 <li>
-                  In stock:
+                  {t('singlePageInstock')}:
                   <span className="font-bold"> {item?.quantity} </span>
                   <span className="font-normal text-lightYellow">
                     {allData?.wholeProduct?.status}
@@ -163,13 +169,14 @@ const SingleProduct = () => {
                 </li>
                 {item?.size ? (
                   <li>
-                    Size: <span className="font-bold">{item?.size}</span>
+                    {t('singlePageSize')}:{' '}
+                    <span className="font-bold">{item?.size}</span>
                   </li>
                 ) : (
                   ''
                 )}
                 <li>
-                  Seller: <span className="font-bold" />
+                  {t('singlePageSeller')}: <span className="font-bold" />
                 </li>
               </ul>
               <div className="flex flex-wrap">
@@ -227,7 +234,7 @@ const SingleProduct = () => {
                   <span>
                     <FontAwesomeIcon icon={faCartShopping} />
                   </span>{' '}
-                  Add to Cart
+                  {t('singlePageAddToCart')}
                 </button>
                 <button
                   type="button"
@@ -259,7 +266,7 @@ const SingleProduct = () => {
                   ) : (
                     ''
                   )}
-                  <span>Add to WishList </span>
+                  <span>{t('singlePageAddToWish')}</span>
                 </button>
               </div>
             </div>
@@ -267,7 +274,7 @@ const SingleProduct = () => {
         </div>
         <div className=" w-10/12 mx-auto md:mx-auto relative  mb-20 md:mb-5 lg:mb-14 border-2  rounded-md border-gray-300">
           <h1 className="font-black text-2xl lg:text-3xl text-center my-4 md:text-xl">
-            Top Reviews
+            {t('singlePageTopReviews')}
           </h1>
           <div className="">
             <div className="overflow-hidden  hover:overflow-y-auto shadow-lg pl-16 max-h-72 md:pl-5">
@@ -287,15 +294,15 @@ const SingleProduct = () => {
               onClick={() => enableRating()}
               className="my-6 mx-4  md:text-md  md:text-center bg-denimBlue hover:bg-transparent text-white font-semibold hover:text-denimBlue py-2 px-4 border border-denimBlue  rounded-full"
             >
-              Add a review
+              {t('singlePageAddReview')}
             </button>
             {review ? (
               <div className="my-2 text-center ">
                 <h2 className="font-medium">
-                  Rate product (Rating - {rating})
+                  {t('singlePageRateProduct')} (Rating - {rating})
                 </h2>
                 <Rate rating={rating} onRating={(rate) => setRating(rate)} />
-                <h2 className="font-medium">Comment</h2>
+                <h2 className="font-medium">{t('singlePageRateProduct')}</h2>
                 <textarea
                   className=" w-6/12 block mx-auto md:mx-auto relative md:w-full md:mb-5 lg:mb-14 border rounded-md bg-gray-100"
                   name=""
@@ -330,7 +337,7 @@ const SingleProduct = () => {
                   ) : (
                     ''
                   )}
-                  Post Review
+                  {t('singlePagePostReview')}
                 </button>
               </div>
             ) : (
@@ -339,7 +346,7 @@ const SingleProduct = () => {
           </div>
         </div>
         <div className="w-11/12 mx-auto mb-8 ">
-          <h1 className="py-6 font-bold text-2xl">Related Products</h1>
+          <h1 className="py-6 font-bold text-2xl">{t('singlePageRelated')}</h1>
           <hr />
 
           <div className="flex flex-wrap  md:justify-between rounded-lg">
