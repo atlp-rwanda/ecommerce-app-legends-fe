@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import imgInputController from '../../../formControlscomponents/formInput/imgInputController';
 import { URL } from '../../../../views/auths/Login';
 
@@ -11,7 +12,8 @@ class VariationField {
   }
 }
 
-function ProductVariationAdd() {
+const ProductVariationAdd = () => {
+  const { t } = useTranslation();
   const [productImg, setproductImg] = useState();
   const [addProductbtn, setaddProductbtn] = useState({
     text: 'add variation',
@@ -86,7 +88,15 @@ function ProductVariationAdd() {
         className=" flex justify-evenly flex-wrap flex-row-reverse"
         onSubmit={handleAddVariation}
       >
-        {imgInputController(imgDisplay, productImg)}
+        <div className="w-[33%] md:w-[50%]  md:max-h-fit max-h-[500px] max-w-fit  relative">
+          {imgInputController(
+            imgDisplay,
+            productImg,
+            false,
+            t('product_image')
+          )}
+        </div>
+
         <div className="w-[50%] min-w-[20em]">
           {allFields.map(({ label, placeholder, type }) => {
             if (label === 'description') {
@@ -126,6 +136,6 @@ function ProductVariationAdd() {
       </form>
     </div>
   );
-}
+};
 
 export default ProductVariationAdd;

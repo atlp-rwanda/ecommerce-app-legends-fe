@@ -123,6 +123,16 @@ const translationEn = {
   shobySeller: 'shop by sellers of your choice',
   sortBy: 'Sort by',
   many: 'many in stock',
+  yes_update_it: 'Yes update it',
+  update_this_order_to: 'Update this order to ',
+  paid: 'Paid',
+  pending: 'Pending',
+  shipping: 'Shipping',
+  completed: 'Completed',
+  processing: 'Proccessing',
+  amount: 'Amount',
+  location: 'Location',
+  items: 'Items',
 };
 
 const translationFr = {
@@ -250,6 +260,16 @@ const translationFr = {
   search_product: 'produit de recherche',
   color: 'Couleur',
   top_reviewrs: 'meilleurs commentateurs',
+  yes_update_it: 'oui le mettre à jour',
+  update_this_order_to: 'Mettre à jour cette commande pour ',
+  paid: 'Payé',
+  pending: 'En attente',
+  shipping: 'Expédition',
+  completed: 'Complété',
+  processing: 'Traitement',
+  amount: 'Montant',
+  location: 'Emplacement',
+  items: 'éléments',
 };
 
 i18n.use(initReactI18next).init({

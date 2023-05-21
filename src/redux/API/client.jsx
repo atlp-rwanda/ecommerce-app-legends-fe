@@ -20,8 +20,9 @@ client.interceptors.request.use(
     if (token) {
       config.headers.authorization = `Bearer ${JSON.parse(token)}`;
       // config.headers['Content-Type'] = `application/json`;
-      config.headers['Content-Type'] = `multipart/form-data`;
+      // config.headers['Content-Type'] = `multipart/form-data`;
     }
+    console.log(config);
     return config;
   },
   (error) => {
@@ -44,10 +45,11 @@ function getTokenPromise() {
 
 client.interceptors.response.use(
   (response) => {
+    console.log(response);
     return response;
   },
   (error) => {
-    // console.log();
+    console.log(error);
     if (
       (error && error.response && error.response.status === 403) ||
       error.response.status === 401

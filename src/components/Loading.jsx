@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import ECOMLOG from '../assets/ECOMLOG.png';
 
 const Loading = () => {
+  const { t } = useTranslation();
   return (
     <div className="h-[100vh] w-full flex justify-center items-center">
       {/* <div className="min-w-[12em] min-h-[12em] animate-spin w-[20vw] h-[20vw] border-blue-400 border-2 shadow-[3px_1px_10px_#f0d4c659]  absolute" />
@@ -14,7 +16,7 @@ const Loading = () => {
           className="animate-pulse md:w-[6em] w-[10em]"
         />
         <h1 className="animate-bounce text-blue-500 text-3xl md:text-2xl text-center">
-          loading...
+          {`${t('loading')}...`}
         </h1>
       </div>
     </div>
