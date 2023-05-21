@@ -11,7 +11,6 @@ import Footer from '../components/FrontFooter';
 import Card from '../components/Card';
 import '../i18n/i18n';
 import { fetchProducts } from '../redux/reducers/fronUser/productsReducer';
-import logo from '../assets/logo.svg';
 
 const App = () => {
   const [params, setParams] = useState({ page: 1, limit: 20 });

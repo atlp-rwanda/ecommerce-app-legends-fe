@@ -39,8 +39,6 @@ const HandleRequests = async () => {
         return data3;
       }
     })
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch((error) => {});
 };
 export default HandleRequests;

@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/FrontFooter';
 import Card from '../../components/Card';
@@ -340,25 +339,30 @@ const SingleProduct = () => {
         <div className="w-11/12 mx-auto mb-8 ">
           <h1 className="py-6 font-bold text-2xl">Related Products</h1>
           <hr />
-          <button type="button" onClick={() => handleRefreshPage()}>
-            <div className="flex flex-wrap  md:justify-between rounded-lg">
-              {allData.products.slice(0, 10).map((product) => {
-                if (product.id === allData.id) {
-                  return;
-                }
-                return (
+
+          <div className="flex flex-wrap  md:justify-between rounded-lg">
+            {allData.products.slice(0, 10).map((product) => {
+              if (product.id === allData.id) {
+                return;
+              }
+              return (
+                <button
+                  type="button"
+                  key={product.id}
+                  onClick={() => handleRefreshPage()}
+                >
                   <Card
-                    key={product.id}
                     prodId={product.id}
                     image={product.image}
                     description={product.description}
                     name={product.name}
                     price={product.price}
                   />
-                );
-              })}
-            </div>
-          </button>
+                </button>
+              );
+            })}
+          </div>
+          {/* </button> */}
         </div>
 
         <Footer />
