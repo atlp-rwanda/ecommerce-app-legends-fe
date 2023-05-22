@@ -96,7 +96,15 @@ export const updateProductAttribute = createAsyncThunk(
 const sellersProductsSlice = createSlice({
   name: 'sellerProducts',
   initialState: {
-    sellerProducts: { products: [], status: 'idle', error: null },
+    sellerProducts: {
+      products: [],
+      status: 'idle',
+      error: null,
+      updateProductStatus: '',
+      updateProductAttributeStatus: '',
+      fetchProductStatus: '',
+      deleteStatus: '',
+    },
     searchedProducts: {
       products: [],
       status: 'idle',
@@ -112,7 +120,12 @@ const sellersProductsSlice = createSlice({
         state.sellerProducts.status = 'loading';
       })
       .addCase(fetchSellerProducts.fulfilled, (state, { payload }) => {
-        state.sellerProducts = { products: payload, status: 'succeeded' };
+        state.sellerProducts = {
+          ...state.sellerProducts,
+          products: payload,
+          status: 'succeeded',
+          fetchProductStatus: payload.status,
+        };
       })
       .addCase(fetchSellerProducts.rejected, (state, { payload, error }) => {
         state.sellerProducts = {
@@ -129,6 +142,7 @@ const sellersProductsSlice = createSlice({
         state.sellerProducts = {
           status: 'succeeded',
           message: payload.message,
+          deleteStatus: payload.message,
         };
       })
       .addCase(deleteSellerProducts.rejected, (state, { error }) => {
@@ -144,7 +158,9 @@ const sellersProductsSlice = createSlice({
       })
       .addCase(updateSellerProducts.fulfilled, (state, { payload }) => {
         state.sellerProducts = {
+          ...state.sellerProducts,
           status: 'succeeded',
+          updateProductStatus: payload.message,
           message: payload.message,
         };
       })
@@ -163,29 +179,13 @@ const sellersProductsSlice = createSlice({
         state.sellerProducts = {
           ...state.sellerProducts,
           status: 'succeeded',
+          updateProductAttributeStatus: payload.message,
           message: payload.message,
         };
       })
       .addCase(updateProductAttribute.rejected, (state, { error }) => {
         state.sellerProducts = {
           ...state.sellerProducts,
-          status: 'failed',
-          error: error.message,
-        };
-      })
-      // search product
-      .addCase(searchSellerProducts.pending, (state) => {
-        state.searchedProducts.status = 'loading';
-      })
-      .addCase(searchSellerProducts.fulfilled, (state, { payload }) => {
-        state.searchedProducts = {
-          products: payload,
-          status: 'succeeded',
-        };
-      })
-      .addCase(searchSellerProducts.rejected, (state, { payload, error }) => {
-        state.searchedProducts = {
-          products: payload,
           status: 'failed',
           error: error.message,
         };

@@ -34,6 +34,10 @@ const SideBar = ({ isOpen }) => {
     navigate('/dashboard/orders');
     dispatch(setActiveButton('order'));
   };
+  const handleCoupon = () => {
+    navigate('/dashboard/coupons');
+    dispatch(setActiveButton('coupon'));
+  };
   const handleUser = () => {
     navigate('/dashboard/users');
     dispatch(setActiveButton('user'));
@@ -149,6 +153,23 @@ const SideBar = ({ isOpen }) => {
             <div className="link text-xl">
               <button type="button" onClick={handleOrder}>
                 {t('orders')}
+              </button>
+            </div>
+          </div>
+          <div
+            className={`flex space-x-4 logo basis-full  h-12 mt-0.5 p-3 ${isButtonActive(
+              'order'
+            )} ${role !== 'vendor' ? 'hidden' : ''}`}
+          >
+            <div className="icon">
+              {' '}
+              <button type="button">
+                <AiOutlineBorderBottom className="text-3xl" />{' '}
+              </button>
+            </div>
+            <div className="link text-xl">
+              <button type="button" onClick={handleCoupon}>
+                Coupon
               </button>
             </div>
           </div>
