@@ -22,6 +22,7 @@ import checkout from './reducers/checkout';
 import NotificationSlice from './reducers/seller/NotificationSlice';
 import socketSlice from './reducers/socketSlice';
 import chatSlice from './reducers/chatSlice';
+import passwdUpdate from './reducers/updatePassword';
 
 const store = configureStore({
   reducer: {
@@ -45,6 +46,7 @@ const store = configureStore({
     selector: selectCatSlice,
     searchKey: selectSearchKeySlice,
     adminOrders: adminOrderSlice,
+    UpdatePassword: passwdUpdate,
     checkout,
     notifications: NotificationSlice,
     chat: chatSlice,

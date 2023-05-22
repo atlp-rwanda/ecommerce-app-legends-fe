@@ -88,7 +88,7 @@ const App = () => {
                 type="button"
                 className="my-6 md:text-center bg-transparent  hover:bg-denimBlue text-denimBlue font-semibold hover:text-white py-2 px-4 border border-denimBlue hover:border-transparent"
               >
-                {t('browse')}
+                <NavLink to="/shop">{t('browse')}</NavLink>
               </button>
             </div>
           </div>

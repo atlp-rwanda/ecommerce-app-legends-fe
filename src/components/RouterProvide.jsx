@@ -26,6 +26,7 @@ import ChatBody from '../views/ChatBody';
 
 const socket = io('https://ecommerce-app-legends-bn-production.up.railway.app'); // Replace with your server URL
 
+import PasswordUpdate from '../views/passwordUpdatePage/passwordUpdate';
 // dotenv.config();
 const RouterProv = () => {
   return (
@@ -43,6 +44,7 @@ const RouterProv = () => {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/product/:id" element={<SingleProduct />} />
+            <Route path="/passwordUpdate" element={<PasswordUpdate />} />
             <Route element={<VendorRoutes />}>
               <Route path="/*" element={<DashBoardIndex />} />
             </Route>

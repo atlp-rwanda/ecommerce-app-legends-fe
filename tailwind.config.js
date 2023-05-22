@@ -22,7 +22,7 @@ export default {
         footerLine: '#3E3838',
         cardContainer: '#EBEBF1',
         vendorCard: '#ECECEC',
-        bgCheckout: '#FOFOFO',
+        bgCheckout: '#F0F0F0',
         checkoutMoner: '#3D3D3D',
       },
     },

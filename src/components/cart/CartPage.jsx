@@ -103,7 +103,6 @@ const CartPage = () => {
     <div className="test">
       <Navbar />
       <div className="pt-8 mb-52">
-        {console.log(status)}
         {status === 'loading' && <Loading />}
         {status === 'failed' && <div>{error}</div>}
         {status === 'succeeded' &&
