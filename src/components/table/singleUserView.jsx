@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import Button from '../formControlscomponents/Button/Button';
 import { URL } from '../../views/auths/Login';
 import {
@@ -14,6 +15,7 @@ import {
 } from '../../redux/reducers/appUsersManager/manageUsersReducer';
 
 const SingleUserView = ({ token, id, user, closeIcon, removeUserBox }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const status = useSelector(selectedUpdatedStatus);
   const [deleteButton, setdeleteButton] = useState({
@@ -60,7 +62,6 @@ const SingleUserView = ({ token, id, user, closeIcon, removeUserBox }) => {
       text: `Loading...`,
     });
     dispatch(adminEnableUserStatus(user.id));
-    console.log(status);
     if (status === 'succeeded') {
       toast.success('user activated!', { theme: 'colored' });
     } else {
@@ -114,7 +115,7 @@ const SingleUserView = ({ token, id, user, closeIcon, removeUserBox }) => {
                 scope="row"
                 className="px-6 py-2 text-gray-600 font-normal whitespace-nowrap dark:text-gray-900 w-2/4 text-center"
               >
-                Last name
+                {`${t('LastName')}:`}
               </th>
               <td className="px-6 py-2 text-gray-600">
                 {selectedUSer.lastname}
@@ -125,7 +126,7 @@ const SingleUserView = ({ token, id, user, closeIcon, removeUserBox }) => {
                 scope="row"
                 className="px-6 py-2 text-gray-600 font-normal whitespace-nowrap dark:text-gray-900 w-2/4 text-center"
               >
-                First name:
+                {`${t('FirstName')}:`}
               </th>
               <td className="px-6 py-2 text-gray-600">
                 {selectedUSer.firstname}
@@ -136,7 +137,7 @@ const SingleUserView = ({ token, id, user, closeIcon, removeUserBox }) => {
                 scope="row"
                 className="px-6 py-2 text-gray-600 font-normal whitespace-nowrap dark:text-gray-900 w-2/4 text-center"
               >
-                Phone
+                {`${t('phoneLabel')}:`}
               </th>
               <td className="px-6 py-2 text-gray-600">{selectedUSer.phone}</td>
             </tr>
@@ -145,7 +146,7 @@ const SingleUserView = ({ token, id, user, closeIcon, removeUserBox }) => {
                 scope="row"
                 className="px-6 py-2 text-gray-600 font-normal whitespace-nowrap dark:text-gray-900 w-2/4 text-center"
               >
-                Email
+                {`${t('emailLabel')}:`}
               </th>
               <td className="px-6 py-2 text-gray-600">{selectedUSer.email}</td>
             </tr>
@@ -154,7 +155,7 @@ const SingleUserView = ({ token, id, user, closeIcon, removeUserBox }) => {
                 scope="row"
                 className="px-6 py-2 text-gray-600 font-normal whitespace-nowrap dark:text-gray-900 w-2/4 text-center"
               >
-                Role
+                {`${t('role')}:`}
               </th>
               <td className="px-6 py-2 text-gray-600">
                 {selectedUSer.role.name}
@@ -165,7 +166,7 @@ const SingleUserView = ({ token, id, user, closeIcon, removeUserBox }) => {
                 scope="row"
                 className="px-6 py-2 text-gray-600 font-normal whitespace-nowrap dark:text-gray-900 w-2/4 text-center"
               >
-                status
+                {`${t('status')}:`}
               </th>
               <td className="px-6 py-2 text-gray-600">{selectedUSer.status}</td>
             </tr>
@@ -184,14 +185,14 @@ const SingleUserView = ({ token, id, user, closeIcon, removeUserBox }) => {
                 {user.status !== 'active' ? (
                   <Button
                     className="text-xs bg-[#27ae60] py-1 text-white font-sans rounded-sm font-medium  capitalize hover:opacity-70 md:text-xs w-2/4"
-                    btnName="activate"
+                    btnName={t('activate')}
                     display={activeButton.display}
                     handleSend={hundleActiveUser}
                   />
                 ) : (
                   <Button
                     className="text-xs bg-slate-400 py-1 text-white font-sans rounded-sm font-medium  capitalize hover:opacity-70 md:text-xs w-2/4"
-                    btnName="disable"
+                    btnName={t('disable')}
                     display={disableButton.display}
                     handleSend={hundleDisableUser}
                   />

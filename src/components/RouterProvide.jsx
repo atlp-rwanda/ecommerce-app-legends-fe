@@ -20,6 +20,7 @@ import ShopPage from '../views/shoppingPage/shop';
 import ContactPage from '../views/about/ContactPage';
 import AboutPage from '../views/about/AboutPage';
 import CheckoutPage from '../views/checkoutPage/checkoutpage';
+import NotificatonContainer from './NotificatonContainer';
 
 // dotenv.config();
 const RouterProv = () => {
@@ -44,6 +45,7 @@ const RouterProv = () => {
               <Route path="/cart" element={<CartPage />} />
               <Route path="/wishlist" element={<WishListPage />} />
             </Route>
+            <Route path="/notifications" element={<NotificatonContainer />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/verify-otp" element={<TwoFaForm />} />

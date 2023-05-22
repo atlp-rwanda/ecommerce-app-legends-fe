@@ -1,9 +1,11 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import FormInput from '../../components/formControlscomponents/formInput/FormInput';
 import NavBar from '../../components/Navbar';
 import Footer from '../../components/FrontFooter';
 
 const ContactPage = () => {
+  const { t } = useTranslation();
   return (
     <>
       <NavBar />
@@ -12,17 +14,15 @@ const ContactPage = () => {
           <div className="flex justify-center">
             <div className="lg:max-w-3xl md:max-w-xl">
               <h2 className="text-3xl font-bold mb-12 px-6 -ml-[22vw] md:ml-0">
-                Contact us
+                {t('contactUs')}
               </h2>
             </div>
           </div>
           <div className="flex flex-col justify-center items-center mb-[5vh]">
             <h1 className="font-light mr-[30vw] w-2/4 text-gray-600 text-lg">
-              Looking to take your e-commerce business to new heights? Look no
-              further! Introducing ATLP, your ultimate solution for all things
-              e-commerce.
+              {t('contactUsText')}
               <span className="text-slate-900 font-normal">
-                reach out to us possibly via the following
+                {t('contactUsText2')}
               </span>
             </h1>
           </div>
@@ -45,7 +45,7 @@ const ContactPage = () => {
                  rounded
      
                  focus:text-gray-700 focus:bg-white focus:border-slate-900 focus:outline-none"
-                    placeholder="Name"
+                    placeholder={t('name')}
                   />
                 </div>
                 <div className="form-group mb-6">
@@ -64,7 +64,7 @@ const ContactPage = () => {
                  rounded
      
                  focus:text-gray-700 focus:bg-white focus:border-slate-900 focus:outline-none"
-                    placeholder="email address"
+                    placeholder={t('email')}
                   />
                 </div>
                 <div className="form-group mb-6">
@@ -83,7 +83,7 @@ const ContactPage = () => {
                  rounded
      
                  focus:text-gray-700 focus:bg-white focus:border-slate-900 focus:outline-none"
-                    placeholder="phone number"
+                    placeholder={t('phoneLabel')}
                   />
                 </div>
                 <div className="form-group mb-6">
@@ -102,7 +102,7 @@ const ContactPage = () => {
                  rounded
 
                  focus:text-gray-700 focus:bg-white focus:border-slate-900 focus:outline-none"
-                    placeholder="Loaction"
+                    placeholder={t('location')}
                   />
                 </div>
                 <div className="form-group mb-6">
@@ -123,7 +123,7 @@ const ContactPage = () => {
             focus:text-gray-700 focus:bg-white focus:border-slate-700 focus:outline-none
           "
                     rows="5"
-                    placeholder="Message"
+                    placeholder={t('message')}
                   />
                 </div>
 
@@ -145,7 +145,7 @@ const ContactPage = () => {
           hover:bg-slate-500 hover:shadow-lg
           "
                 >
-                  Send Message
+                  {t('sendMsg')}
                 </button>
               </form>
             </div>
@@ -173,7 +173,7 @@ const ContactPage = () => {
                       </div>
                     </div>
                     <div className="grow ml-6">
-                      <p className="font-bold mb-1">Technical support</p>
+                      <p className="font-bold mb-1">{t('techSupport')}</p>
                       <p className="text-gray-500 md:text-xs">
                         ecommerceandelaproject@gmail.com
                       </p>
@@ -203,7 +203,7 @@ const ContactPage = () => {
                       </div>
                     </div>
                     <div className="grow ml-6">
-                      <p className="font-bold mb-1">Sales questions</p>
+                      <p className="font-bold mb-1">{t('selesquestion')}</p>
                       <p className="text-gray-500 md:text-xs">
                         ecommerceandelaproject@gmail.com
                       </p>
@@ -233,7 +233,7 @@ const ContactPage = () => {
                       </div>
                     </div>
                     <div className="grow ml-6">
-                      <p className="font-bold mb-1">Press</p>
+                      <p className="font-bold mb-1">{t('press')} </p>
                       <p className="text-gray-500 md:text-xs">
                         ecommerceandelaproject@gmail.com
                       </p>
@@ -263,7 +263,7 @@ const ContactPage = () => {
                       </div>
                     </div>
                     <div className="grow ml-6">
-                      <p className="font-bold mb-1">Bug report</p>
+                      <p className="font-bold mb-1">{t('bugSupport')} </p>
                       <p className="text-gray-500 md:text-xs">
                         ecommerceandelaproject@gmail.com
                       </p>

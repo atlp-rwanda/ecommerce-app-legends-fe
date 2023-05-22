@@ -19,6 +19,7 @@ import sellersProductReducer from './reducers/seller/viewAllSellersProduct';
 import selectSearchKeySlice from './reducers/products/DrowSearchkey';
 import adminOrderSlice from './reducers/admin/AdminOrders';
 import checkout from './reducers/checkout';
+import NotificationSlice from './reducers/seller/NotificationSlice';
 
 const store = configureStore({
   reducer: {
@@ -43,6 +44,7 @@ const store = configureStore({
     searchKey: selectSearchKeySlice,
     adminOrders: adminOrderSlice,
     checkout,
+    notifications: NotificationSlice,
   },
 
   middleware: (getDefaultMiddleware) => {

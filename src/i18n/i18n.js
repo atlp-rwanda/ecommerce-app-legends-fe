@@ -133,6 +133,32 @@ const translationEn = {
   amount: 'Amount',
   location: 'Location',
   items: 'Items',
+  activate: 'Activate',
+  disable: 'Disable',
+  aboutUs: 'About us',
+  aboutUsText:
+    'At ALTP Ecommerce, we believe in providing a platform that enables anyone to sell their products easily. Whether you are an individual with unique handmade items or a business looking to expand your online presence, we have got you covered.',
+  ourMission: 'Our Mission',
+  ourMissionText:
+    'Our mission is to provide a platform that enables anyone to sell their products easily. Whether you are an individual with unique handmade items or a business looking to expand your online presence, we have got you covered.',
+  ourVision: 'Our Vision',
+  ourVisionText:
+    'Our vision is to be the leading ecommerce platform in the world. We want to be the go-to platform for anyone looking to sell their products online.',
+  ourVisionText2:
+    'Join our community of sellers today and start monetizing your products. Whether itis fashion, electronics, art, or any other category, ALTP Ecommerce is the platform for you. We are excited to have you on board!',
+  contactUs: 'Contact us',
+  contactUsText:
+    "We're always happy to hear from you! If you have any questions or concerns, please feel free to contact us at any time.",
+  contactUsText2: 'reach out to us possibly via the following',
+  fullname: 'name',
+  message: 'Message',
+  sendMsg: 'Send message',
+  techSupport: 'Technical Support',
+  salesQuestion: 'Sales Question',
+  press: 'Press',
+  bugSupport: 'Bug Support',
+  quick_links: 'Quick Links',
+  footer_message: 'Legends E-commerce',
 };
 
 const translationFr = {
@@ -270,6 +296,32 @@ const translationFr = {
   amount: 'Montant',
   location: 'Emplacement',
   items: 'éléments',
+  activate: 'Activer',
+  disable: 'Désactiver',
+  aboutUs: 'À propos de nous',
+  aboutUsText:
+    "Chez ALTP Ecommerce, nous croyons en la fourniture d'une plate-forme qui permet n'importe qui de vendre ses produits facilement. Que vous soyez un particulier avec des objets uniques faits à la main ou une entreprise cherchant à développez votre présence en ligne, nous avons ce qu'il vous faut.",
+  ourMission: 'Notre mission',
+  ourMissionText:
+    'Notre mission est de fournir une plate-forme de commerce électronique qui permet à quiconque de vendre ses produits en ligne facilement. Nous voulons que vous puissiez vendre vos produits en ligne sans avoir à vous soucier de la technologie. Nous nous occupons de la technologie afin que vous puissiez vous concentrer sur la vente de vos produits.',
+  ourVision: 'Notre vision',
+  ourVisionText:
+    "Avec ALTP Ecommerce, vous pouvez créer votre propre boutique en ligne, gérer votre inventaire et atteignez un public plus large sans complexités de la construction d'un site Web à partir de zéro. Nous fournissons un interface conviviale, outils puissants et backend robuste infrastructure pour soutenir votre parcours entrepreneurial.",
+  ourVisionText2:
+    'Nous croyons que tout le monde devrait avoir la possibilité de vendre en ligne. Nous croyons que les petites entreprises et les particuliers devraient avoir la possibilité de vendre en ligne sans avoir à se soucier de la technologie. Nous croyons que les petites entreprises et les particuliers devraient avoir la possibilité de vendre en ligne sans avoir à se soucier de la technologie.',
+  contactUs: 'Contactez nous',
+  contactUsText:
+    "Si vous avez des questions, des commentaires ou des préoccupations, n'hésitez pas à nous contacter. Nous sommes toujours heureux d'avoir de vos nouvelles.",
+  contactUsText2: 'contactez-nous éventuellement via les éléments suivants',
+  fullname: 'Nom',
+  message: 'Message',
+  sendMsg: 'Envoyer le message',
+  techSupport: 'Support technique',
+  salesQuestion: 'Questions de vente',
+  press: 'Presse',
+  bugSupport: 'Support de bogues',
+  quick_links: 'Liens rapides',
+  footer_message: 'Légendes E-commerce',
 };
 
 i18n.use(initReactI18next).init({
