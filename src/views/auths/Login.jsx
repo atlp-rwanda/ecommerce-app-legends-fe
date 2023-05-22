@@ -11,6 +11,7 @@ import GOOGLE from '../../assets/GOOGLE.png';
 // eslint-disable-next-line import/no-cycle
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/FrontFooter';
+import ChatButton from '../../components/ChatButton';
 
 export const URL = `https://ecommerce-app-legends-bn-production.up.railway.app`;
 const Login = () => {
@@ -207,6 +208,7 @@ const Login = () => {
               </p>
             </div>
           </div>
+          <ChatButton />
         </div>
       </main>
       <footer>

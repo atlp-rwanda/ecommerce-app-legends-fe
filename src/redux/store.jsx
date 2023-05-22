@@ -20,6 +20,8 @@ import selectSearchKeySlice from './reducers/products/DrowSearchkey';
 import adminOrderSlice from './reducers/admin/AdminOrders';
 import checkout from './reducers/checkout';
 import NotificationSlice from './reducers/seller/NotificationSlice';
+import socketSlice from './reducers/socketSlice';
+import chatSlice from './reducers/chatSlice';
 
 const store = configureStore({
   reducer: {
@@ -45,6 +47,8 @@ const store = configureStore({
     adminOrders: adminOrderSlice,
     checkout,
     notifications: NotificationSlice,
+    chat: chatSlice,
+    socket: socketSlice,
   },
 
   middleware: (getDefaultMiddleware) => {

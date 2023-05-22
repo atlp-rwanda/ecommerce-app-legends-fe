@@ -21,6 +21,7 @@ import SingleUserView from '../../../table/singleUserView';
 import { URL } from '../../../../views/auths/Login';
 import FilterUsers from '../../../table/FilterUsers';
 import Loading from '../../../Loading';
+import ChatButton from '../../../ChatButton';
 
 const Users = () => {
   const users = useSelector(selectUsers);
@@ -91,6 +92,7 @@ const Users = () => {
   }, [dispatch, selctedUser]);
   return (
     <div className="bg-gray-200 pt-20 ml-2 md:w-full md:overflow-scroll">
+      <ChatButton />
       <div>
         <FilterUsers FilterUsers={handleFilteredValues} />
       </div>

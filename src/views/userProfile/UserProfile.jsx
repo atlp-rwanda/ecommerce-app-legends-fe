@@ -6,6 +6,7 @@ import Navbar from '../../components/Navbar';
 import Button from '../../components/formControlscomponents/Button/Button';
 import FormInput from '../../components/formControlscomponents/formInput/FormInput';
 import { URL } from '../auths/Login';
+import ChatButton from '../../components/ChatButton';
 
 const UserProfile = () => {
   const { t } = useTranslation();
@@ -223,6 +224,7 @@ const UserProfile = () => {
           </form>
         </div>
       </div>
+      <ChatButton />
     </div>
   );
 };

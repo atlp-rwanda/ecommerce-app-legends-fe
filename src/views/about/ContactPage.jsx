@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import FormInput from '../../components/formControlscomponents/formInput/FormInput';
 import NavBar from '../../components/Navbar';
 import Footer from '../../components/FrontFooter';
+import ChatButton from '../../components/ChatButton';
 
 const ContactPage = () => {
   const { t } = useTranslation();
@@ -275,6 +276,7 @@ const ContactPage = () => {
             </div>
           </div>
         </section>
+        <ChatButton />
       </div>
       <Footer />
     </>

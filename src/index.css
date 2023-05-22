@@ -26,9 +26,9 @@
   }
 }
 
-@layer responsive {
+@layer layer {
   .container {
-    /* Styles for responsive variants */
+    /* Styles for layer variants */
     @apply mx-auto px-20 sm:px-2;
     max-width: 100%;
   }
@@ -36,4 +36,27 @@
 
 input[type='number'] {
   -moz-appearance: textfield;
+}
+
+.chat__users > * {
+  margin-bottom: 10px;
+  color: #607eaa;
+  font-size: 14px;
+}
+.online__users > * {
+  margin-bottom: 10px;
+  color: rgb(238, 102, 102);
+  font-style: italic;
+}
+
+.message__container {
+  background-image: url('./assets/back.jpg');
+}
+.user__circle {
+  width: 10px;
+  height: 10px;
+  background-color: green;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
 }

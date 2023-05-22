@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import NavBar from '../../components/Navbar';
 import Footer from '../../components/FrontFooter';
+import ChatButton from '../../components/ChatButton';
 
 const AboutPage = () => {
   const { t } = useTranslation();
@@ -32,6 +33,7 @@ const AboutPage = () => {
             </p>
           </div>
         </section>
+        <ChatButton />
       </div>
       <Footer />
     </>

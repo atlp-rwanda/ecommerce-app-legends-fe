@@ -20,6 +20,7 @@ import {
 } from '../../redux/reducers/WishListSlice';
 import { postRating } from '../../redux/reducers/rateProduct';
 import Loading from '../../components/Loading';
+import ChatButton from '../../components/ChatButton';
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -95,6 +96,7 @@ const SingleProduct = () => {
   if (passed) {
     return (
       <div className="">
+        <ChatButton />
         <header className="mb-14">
           <Navbar />
         </header>

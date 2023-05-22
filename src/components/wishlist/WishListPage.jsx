@@ -11,6 +11,7 @@ import {
 import Navbar from '../Navbar';
 import FrontFooter from '../FrontFooter';
 import Loading from '../Loading';
+import ChatButton from '../ChatButton';
 
 const WishListPage = () => {
   const { items, status, error } = useSelector((state) => state.wishlist);
@@ -32,6 +33,7 @@ const WishListPage = () => {
   return (
     <div className="">
       <Navbar />
+      <ChatButton />
       <div className="pt-8 mb-52">
         {status === 'loading' && <Loading />}
         {status === 'failed' && <div>{error}</div>}
