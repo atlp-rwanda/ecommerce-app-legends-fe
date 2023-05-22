@@ -17,6 +17,7 @@ import AddProducts from './addProducts';
 import ProductCategoryPick from './productCategoryview';
 import ProductVariationAdd from './ProductVariationAdd';
 import SellerProductPage from './SellerProductPage';
+import Categories from './Categories';
 
 const DashBoardIndex = () => {
   return (
@@ -53,6 +54,7 @@ const DashBoardIndex = () => {
             <Route element={<AdminRoutes />}>
               <Route path="/dashboard/users" element={<Users />} />
               <Route path="/dashboard/orders" element={<Orders />} />
+              <Route path="/dashboard/categories" element={<Categories />} />
             </Route>
             <Route path="/dashboard/messages" element={<Messages />} />
           </Routes>

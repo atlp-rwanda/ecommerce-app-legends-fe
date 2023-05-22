@@ -12,7 +12,7 @@ const ShopingHeader = ({ onSearch, handleSort, fetchStatus, products }) => {
           <div>
             <input
               type="search"
-              className="block w-full px-8 py-2 text-sm text-gray-900 border bg-gray-200 border-gray-300 rounded-full dark:placeholder-gray-500 md:text-xs md:p-1"
+              className="block w-full px-8 py-2 text-sm text-gray-900 border bg-gray-200 border-gray-300 rounded-full dark:placeholder-gray-500 md:text-xs md:p-1 focus:outline-none"
               placeholder="Search product..."
               required
               onChange={(e) => onSearch(e)}
