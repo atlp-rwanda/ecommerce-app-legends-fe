@@ -3,12 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import TableColumn from './tableColumn';
 import { fetchShoppableProducts } from '../../redux/reducers/products/AvailbleProducts';
+import { diselect } from '../../redux/reducers/products/DrowCategories';
+import { setsearchParam } from '../../redux/reducers/products/DrowSearchkey';
 
 const ShowCategories = ({ categories, handleOnClick, isActive }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const handleClick = () => {
     dispatch(fetchShoppableProducts());
+    dispatch(diselect(null));
+    dispatch(setsearchParam(null));
   };
   return (
     <div className="w-[100%]">

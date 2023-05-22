@@ -13,7 +13,6 @@ import '../i18n/i18n';
 import { fetchProducts } from '../redux/reducers/fronUser/productsReducer';
 import ChatButton from '../components/ChatButton';
 
-
 const App = () => {
   const [params, setParams] = useState({ page: 1, limit: 20 });
   const dispatch = useDispatch();

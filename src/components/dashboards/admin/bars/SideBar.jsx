@@ -50,7 +50,10 @@ const SideBar = ({ isOpen }) => {
     dispatch(clearUser());
     window.location.reload(navigate('/'));
   };
-
+  const handleHandleCategories = () => {
+    navigate('/dashboard/categories');
+    dispatch(setActiveButton('categories'));
+  };
   const isButtonActive = (buttonName) => {
     return activeButton === buttonName
       ? 'border-r-4 border-orange-500 text-white'
@@ -85,7 +88,7 @@ const SideBar = ({ isOpen }) => {
           <div
             className={`flex space-x-4 logo basis-full  h-12 mt-0.5 p-3 ${isButtonActive(
               'product'
-            )}`}
+            )} ${role !== 'vendor' ? 'hidden' : ''}`}
           >
             <div className="icon">
               <button type="button">
@@ -98,6 +101,23 @@ const SideBar = ({ isOpen }) => {
               </button>
             </div>
           </div>
+          <div
+            className={`flex space-x-4 logo basis-full  h-12 mt-0.5 p-3 ${isButtonActive(
+              'category'
+            )} ${role !== 'admin' ? 'hidden' : ''}`}
+          >
+            <div className="icon">
+              <button type="button">
+                <AiFillShopping className="text-3xl" />
+              </button>
+            </div>
+            <div className="link text-xl">
+              <button type="button" onClick={handleHandleCategories}>
+                {t('category')}
+              </button>
+            </div>
+          </div>
+
           <div
             className={`flex space-x-4 logo basis-full bg-slate-900 h-12 mt-0.5 p-3 ${isButtonActive(
               'customer'
