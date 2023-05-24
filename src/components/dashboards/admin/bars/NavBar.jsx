@@ -19,7 +19,9 @@ import {
   selectNotifications,
 } from '../../../../redux/reducers/seller/NotificationSlice';
 
-const socket = io('http://localhost:5000');
+const socket = io(
+  'https://ecommerce-app-legends-bn-production.up.railway.app/'
+);
 const NavBar = () => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
@@ -52,7 +54,7 @@ const NavBar = () => {
   };
   return (
     <>
-      <div className="fixed top-0 left-0 w-full h-16 bg-white shadow-sm shadow-gray-900  flex items-center justify-between pl-0 md:justify-end pr-4">
+      <div className="fixed top-0 left-0 w-full h-16 bg-white shadow-sm shadow-gray-900  flex items-center justify-between pl-0 md:justify-end pr-4 z-50">
         {!isSmallScreen && (
           <div className="relative logo w-full ml-2 h-1/12 pl-2 text-3xl left-0 float-left">
             <button type="button" onClick={handleHome}>
@@ -68,27 +70,6 @@ const NavBar = () => {
             </button>
           </div>
         )}
-        {!isMediumScreen && (
-          <div className="mr-28">
-            <form className="search">
-              <div className="relative search-div flex w-80">
-                <input
-                  type="text"
-                  placeholder={t('search_text')}
-                  className="search-bar bg-gray-200 px-3 py-2 mr-2 w-full rounded-l-md"
-                />
-                <button
-                  type="button"
-                  className="search-btn px-3 py-2 rounded-r-md bg-orange-500 text-salite-500 font-semibold"
-                >
-                  {' '}
-                  {t('search')}
-                </button>
-              </div>
-            </form>
-          </div>
-        )}
-
         <div className="flex items-center mr-4 sm:mr-2 space-x-12 sm:space-x-4 ">
           <div className="relative">
             <button type="button" onClick={handleMessages}>

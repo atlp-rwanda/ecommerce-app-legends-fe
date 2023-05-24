@@ -282,6 +282,7 @@ const SingleProduct = () => {
                 return (
                   <Review
                     key={rev.id}
+                    userName={rev.userName}
                     rating={rev.rating}
                     comment={rev.comment}
                     date={rev.createdAt}

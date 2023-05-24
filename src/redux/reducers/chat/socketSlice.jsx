@@ -37,13 +37,9 @@ export const connectSocket = () => (dispatch) => {
   if (!socket) {
     socket = io('https://ecommerce-app-legends-bn-production.up.railway.app');
 
-    socket.on('connect', () => {
-      console.log('Connected to server');
-    });
+    socket.on('connect', () => {});
 
-    socket.on('disconnect', () => {
-      console.log('Disconnected from server');
-    });
+    socket.on('disconnect', () => {});
 
     socket.on('user joined', (name) => {
       dispatch(userJoined(name));

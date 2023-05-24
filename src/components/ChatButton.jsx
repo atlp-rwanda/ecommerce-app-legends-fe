@@ -18,11 +18,7 @@ const ChatButton = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Handle form submission here
-    console.log('Email submitted:', email);
-    // Reset the email input
     setEmail('');
-    // Close the panel after form submission
     toggleJoinPanel();
     navigate('/chat');
   };

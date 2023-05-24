@@ -22,7 +22,8 @@ import ContactPage from '../views/about/ContactPage';
 import AboutPage from '../views/about/AboutPage';
 import CheckoutPage from '../views/checkoutPage/checkoutpage';
 import NotificatonContainer from './NotificatonContainer';
-import ChatBody from '../views/ChatBody'; // Replace with your server URL
+import ChatBody from '../views/chat/ChatBody';
+
 import PasswordUpdate from '../views/passwordUpdatePage/passwordUpdate';
 
 const socket = io('https://ecommerce-app-legends-bn-production.up.railway.app');

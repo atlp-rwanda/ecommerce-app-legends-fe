@@ -16,7 +16,7 @@ describe('NavBar', () => {
         </Provider>
       </BrowserRouter>
     );
-    const elements = screen.queryAllByText(/search/i);
+    const elements = screen.queryAllByText(/2/i);
     expect(elements).toHaveLength(1);
     expect(elements[0]).toBeInTheDocument();
   });

@@ -53,6 +53,22 @@ export const sendMessage = createAsyncThunk(
   }
 );
 
+export const clearChatMessages = createAsyncThunk(
+  'chat/clearChatMessages',
+  async () => {
+    const token = JSON.parse(localStorage.getItem('token'));
+
+    const response = await fetch(`${URL}chat/messages/clear`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response);
+  }
+);
+
 export const setInputMessage = (inputMessage) => ({
   type: 'chat/setInputMessage',
   payload: inputMessage,
@@ -111,6 +127,27 @@ const chatSlice = createSlice({
         };
       })
       .addCase(sendMessage.rejected, (state, action) => {
+        return {
+          ...state,
+          isLoading: false,
+          error: action.payload,
+        };
+      })
+      .addCase(clearChatMessages.pending, (state) => {
+        return {
+          ...state,
+          isLoading: true,
+          error: null,
+        };
+      })
+      .addCase(clearChatMessages.fulfilled, (state, action) => {
+        return {
+          ...state,
+          isLoading: false,
+          messages: [...state.messages, action.payload],
+        };
+      })
+      .addCase(clearChatMessages.rejected, (state, action) => {
         return {
           ...state,
           isLoading: false,

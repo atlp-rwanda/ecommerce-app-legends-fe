@@ -5,8 +5,6 @@ import { useDispatch } from 'react-redux';
 import CART from '../assets/CART.png';
 import { URL } from './auths/Login';
 import { setUser, setRole, setToken } from '../redux/reducers/AuthUser';
-import Navbar from '../components/Navbar';
-import Footer from '../components/FrontFooter';
 import ChatButton from '../components/ChatButton';
 
 class FormField {
@@ -93,9 +91,7 @@ const SignUpBuyer = () => {
 
   return (
     <>
-      <header>
-        <Navbar />
-      </header>
+      <header />
       <main>
         <div className="bg-[#D9D9D9]  min-h-[100vh] py-[15vh] ">
           <ChatButton />
@@ -154,9 +150,7 @@ const SignUpBuyer = () => {
           </div>
         </div>
       </main>
-      <footer>
-        <Footer />
-      </footer>
+      <footer />
     </>
   );
 };
