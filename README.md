@@ -1,11 +1,15 @@
 # E-commerce Web App
+# Maintainability
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/6295162785e9ca59c83f/maintainability)](https://codeclimate.com/github/atlp-rwanda/ecommerce-app-legends-fe/maintainability)
 
 [![CI/CD Pipeline](https://github.com/atlp-rwanda/ecommerce-app-legends-fe/actions/workflows/testing.yml/badge.svg)](https://github.com/atlp-rwanda/ecommerce-app-legends-fe/actions/workflows/testing.yml)
 
-This is a front-end web application built with React and Vite for an e-commerce website. The website is a standard e-commerce platform with three types of users: admin, vendors, and buyers.
+# Description 
 
+This legend's project,is a comprehensive e-commerce platform designed for buyers, sellers, and administrators. The platform includes a login functionality, product listings, a shopping cart for buyers, notifications, a public chat feature, order management, and role-specific dashboards. Administrators have the authority to manage all users, including changing roles and activating/deactivating users. Sellers can view and manage their own products, marking them as available or unavailable, while buyers have the ability to browse available products, add items to their cart, create wishlists, and track their orders seamlessly.
+
+# Setup
 ## Installation
 
 To install the application, follow these steps:
