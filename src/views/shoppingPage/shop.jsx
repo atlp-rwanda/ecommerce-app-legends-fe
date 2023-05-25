@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ShowCategories from '../../components/table/categories';
 import ProductListings from '../../components/products/ProductListings';
@@ -14,11 +14,11 @@ import {
   fetchShoppableProducts,
   fetchShoppableProductsStatus,
   selectProducts,
-  IsfetchFromSearch,
 } from '../../redux/reducers/products/AvailbleProducts';
 import {
   setSortBy,
   setsearchParam,
+  setIsSearching,
 } from '../../redux/reducers/products/DrowSearchkey';
 import { select, diselect } from '../../redux/reducers/products/DrowCategories';
 import ChatButton from '../../components/ChatButton';
@@ -29,10 +29,10 @@ const ShopPage = () => {
   const { selector } = useSelector((state) => state.selector);
   const { sortBy } = useSelector((state) => state.searchKey);
   const { searchParam } = useSelector((state) => state.searchKey);
+  const { isSearcching } = useSelector((state) => state.searchKey);
   const fetchStatus = useSelector(fetchShoppableProductsStatus);
   const products = useSelector(selectProducts);
   const vendors = useSelector(selectVendors);
-  const IsSearched = useSelector(IsfetchFromSearch);
   let detailedProducts = [];
   products?.forEach((product) => {
     product.ProductAttributes.forEach((attribute) => {
@@ -40,30 +40,35 @@ const ShopPage = () => {
         ...attribute,
         userId: product.userId,
         categoryId: product.categoryId,
+        productId: product.id,
       });
     });
   });
   useEffect(() => {
     dispatch(fetchVendors()).unwrap();
-    if (!IsSearched) {
+    if (!isSearcching) {
       dispatch(fetchShoppableProducts()).unwrap();
     }
-  }, []);
+  }, [dispatch, isSearcching]);
   const handleFilterByseller = (id) => {
-    dispatch(select(id));
     dispatch(setsearchParam(null));
+    dispatch(setIsSearching(false));
+    dispatch(select(id));
   };
   const handleFilterByCategory = (id) => {
-    dispatch(select(id));
     dispatch(setsearchParam(null));
+    dispatch(setIsSearching(false));
+    dispatch(select(id));
   };
   const handleSearch = (e) => {
     dispatch(diselect(null));
-    dispatch(setsearchParam(e.target.value));
     setSortBy(null);
+    dispatch(setIsSearching(false));
+    dispatch(setsearchParam(e.target.value));
   };
   const handleSort = (e) => {
     dispatch(diselect(null));
+    dispatch(setIsSearching(false));
     dispatch(setsearchParam(null));
     dispatch(setSortBy(e.target.value));
   };
@@ -74,12 +79,12 @@ const ShopPage = () => {
     );
   }
   if (searchParam !== null) {
-    // eslint-disable-next-line array-callback-return
     detailedProducts = detailedProducts.filter((product) => {
       const result = product.varitationName.includes(searchParam);
       if (result) {
         return result;
       }
+      return false;
     });
   }
   if (sortBy !== null) {

@@ -5,6 +5,7 @@ const selectSearchKeySlice = createSlice({
   initialState: {
     sortBy: null,
     searchParam: null,
+    isSearcching: false,
   },
   reducers: {
     setSortBy: (state, action) => {
@@ -16,8 +17,15 @@ const selectSearchKeySlice = createSlice({
     setSortAndSearchParam: (state) => {
       return { ...state, sortBy: null, searchParam: null };
     },
+    setIsSearching: (state, action) => {
+      return { ...state, isSearcching: action.payload };
+    },
   },
 });
-export const { setSortBy, setsearchParam, setSortAndSearchParam } =
-  selectSearchKeySlice.actions;
+export const {
+  setSortBy,
+  setsearchParam,
+  setSortAndSearchParam,
+  setIsSearching,
+} = selectSearchKeySlice.actions;
 export default selectSearchKeySlice.reducer;

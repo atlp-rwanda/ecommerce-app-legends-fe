@@ -29,7 +29,7 @@ const ShowCategories = ({ categories, handleOnClick, isActive }) => {
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b-2 border-gray-400" onClick={handleClick}>
+            <tr className="border-b-1 border-gray-400" onClick={handleClick}>
               <th className="px-4 py-2 font-normal flex justify-between gap-20 text-gray-500 whitespace-nowrap bg-white hover:bg-gray-200 hover:text-gray-700 hover:cursor-pointer shadow-md dark:bg-white active:bg-gray-400">
                 <span>All</span>
               </th>

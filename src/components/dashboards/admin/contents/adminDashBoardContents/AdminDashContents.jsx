@@ -1,16 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import SalesChart from './chart/SalesChart';
 import ProfiteChart from './chart/ProfiteChart';
+import {
+  selectUsers,
+  fetchUsers,
+} from '../../../../../redux/reducers/appUsersManager/manageUsersReducer';
+import {
+  fetchShoppableProducts,
+  selectProducts,
+} from '../../../../../redux/reducers/products/AvailbleProducts';
 
 const AdminDashContents = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchUsers());
+    dispatch(fetchShoppableProducts()).unwrap();
+  }, [dispatch]);
+  const users = useSelector(selectUsers);
+  const product = useSelector(selectProducts);
   return (
-    <div className="flex mt-[15vh] ml-2">
+    <div className="flex mt-[15vh] ml-2 md:ml-auto -z-10">
       <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
         <main>
           <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
+            <div className="grid grid-cols-4 gap-2 md:grid-cols-1">
               <div className="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default border-strokedark bg-boxdark px-4 -z-10">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-400 dark:bg-meta-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-400 dark:bg-meta-4 ">
                   <svg
                     className="fill-slate-500"
                     width="22"
@@ -114,7 +130,7 @@ const AdminDashContents = () => {
               </div>
 
               <div className="rounded-sm border border-stroke bg-white py-6 px-0 shadow-default  -z-10">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-400 mx-7">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-400 mx-7 ">
                   <svg
                     className="fill-slate-500"
                     width="22"
@@ -137,7 +153,7 @@ const AdminDashContents = () => {
                 <div className="mt-4 flex items-end justify-between mx-6">
                   <div>
                     <h4 className="text-title-md font-bold text-black">
-                      2.450
+                      {product.length}
                     </h4>
                     <span className="text-sm font-medium text-gray-600">
                       Total Product
@@ -191,7 +207,7 @@ const AdminDashContents = () => {
                 <div className="mt-4 flex items-end justify-between mx-6">
                   <div>
                     <h4 className="text-title-md font-bold text-black">
-                      3.456
+                      {users.length}
                     </h4>
                     <span className="text-sm font-medium text-gray-600">
                       Total Users
@@ -218,10 +234,13 @@ const AdminDashContents = () => {
               </div>
             </div>
 
-            <div className="mt-10 grid grid-cols-12 md:mt-6 md:gap-3 2xl:mt-7.5 2xl:gap-7.5">
-              <SalesChart />
-
-              <ProfiteChart />
+            <div className="flex flex-row mt-[3vh] md:flex-col mx-auto md:-mx-[1vw]">
+              <div>
+                <SalesChart />
+              </div>
+              <div className="ml-[2vw] md:ml-0 md:my-2">
+                <ProfiteChart />
+              </div>
             </div>
           </div>
         </main>
