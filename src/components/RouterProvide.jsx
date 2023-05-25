@@ -14,7 +14,7 @@ import TwoFaForm from '../views/auths/2FaForm';
 import VendorRoutes from '../middlewares/authMiddlewares/VendorRoutes';
 import SingleProduct from '../views/SingleProduct/singleproduct';
 import CartPage from './cart/CartPage';
-import UserProfile from '../views/userProfile/UserProfile';
+import CustomerProfilePage from '../views/userProfile/CustomerProfilePage';
 import WishListPage from './wishlist/WishListPage';
 import ValidatedBuyer from '../middlewares/authMiddlewares/ValidatedBuyer';
 import ShopPage from '../views/shoppingPage/shop';
@@ -22,11 +22,10 @@ import ContactPage from '../views/about/ContactPage';
 import AboutPage from '../views/about/AboutPage';
 import CheckoutPage from '../views/checkoutPage/checkoutpage';
 import NotificatonContainer from './NotificatonContainer';
-import ChatBody from '../views/ChatBody';
-
-const socket = io('https://ecommerce-app-legends-bn-production.up.railway.app'); // Replace with your server URL
-
+import ChatBody from '../views/ChatBody'; // Replace with your server URL
 import PasswordUpdate from '../views/passwordUpdatePage/passwordUpdate';
+
+const socket = io('https://ecommerce-app-legends-bn-production.up.railway.app');
 // dotenv.config();
 const RouterProv = () => {
   return (
@@ -54,7 +53,7 @@ const RouterProv = () => {
             </Route>
             <Route path="/notifications" element={<NotificatonContainer />} />
             <Route path="/Login" element={<Login />} />
-            <Route path="/profile" element={<UserProfile />} />
+            <Route path="/profile" element={<CustomerProfilePage />} />
             <Route path="/verify-otp" element={<TwoFaForm />} />
             <Route path="/sign-up-buyer" element={<SignUpBuyer />} />
           </Routes>

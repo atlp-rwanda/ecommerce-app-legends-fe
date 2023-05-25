@@ -75,9 +75,8 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="">
-      <Navbar />
-      <div className="container px-12 flex items-center justify-center text-neutral-800 font-medium mt-16  md:px-8 sm:px-4 flex-grow">
+    <div className="py-8">
+      <div className="container px-12 flex items-center justify-center md:h-[90vh] text-neutral-800 font-medium mt-[6rem] lg:mt-[8rem]  md:px-8 sm:px-4 flex-grow">
         <div className=" rounded-lg  shadow-lg p-6 w-[60vw] md:w-[80vw] sm:w-[99vw] sm:p-3">
           <h2 className="font-semibold text-xl mb-3 md:text-l sm:mb-1 text-center capitalize sm:text-left">
             {t('profileTitle')}
@@ -173,7 +172,6 @@ const UserProfile = () => {
                   className="peer bg-lightGrey invalid:focus:border-red-400 valid:focus:border-green-400 h-full w-full rounded-[7px] border mt-2 px-3 py-3.5 sm:py-3 font-sans text-md font-normal text-blue-gray-700 outline outline-0 transition-all placeholder:font-thin placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-1 focus:outline-0 disabled:border-0 disabled:shadow-sm"
                   placeholder={t('phonePlaceholder')}
                   type="text"
-                  required
                   value={formValue.address}
                   onChange={(e) => hundleOnChanges(e)}
                 />
@@ -193,7 +191,6 @@ const UserProfile = () => {
                   className="peer bg-lightGrey invalid:focus:border-red-400 valid:focus:border-green-400 h-full w-full rounded-[7px] border mt-2 px-3 py-3.5 sm:py-3 font-sans text-md font-normal text-blue-gray-700 outline outline-0 transition-all placeholder:font-thin placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-1 focus:outline-0 disabled:border-0 disabled:shadow-sm"
                   placeholder={t('passwordPlaceholder')}
                   type="date"
-                  required
                   value={formValue.dob}
                   onChange={(e) => hundleOnChanges(e)}
                 />
