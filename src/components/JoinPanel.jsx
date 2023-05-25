@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 
-const JoinPanel = ({
-  showJoinPanel,
-  toggleJoinPanel,
-  handleSubmit,
-  email,
-  handleEmailChange,
-}) => {
+const JoinPanel = ({ showJoinPanel, toggleJoinPanel, handleSubmit }) => {
+  const { user } = useSelector((state) => state.currentUser);
+  const joinedUser = `${user?.firstname} ${user?.lastname}`;
   const [socket, setSocket] = useState(null);
-  const [name, setName] = useState('');
-
+  const [name, setName] = useState(joinedUser);
+  const handleUserLoggedIn = () => {
+    return !!joinedUser;
+  };
   const connectToSocket = () => {
     const newSocket = io(
       'https://ecommerce-app-legends-bn-production.up.railway.app'
-    ); // Replace with your server URL
+    );
     setSocket(newSocket);
 
     newSocket.on('connect', () => {
@@ -26,19 +26,22 @@ const JoinPanel = ({
     });
   };
 
-  // Connect to the socket when the component mounts
   useEffect(() => {
     connectToSocket();
   }, []);
 
   const handleJoinChat = () => {
     if (socket && name) {
-      // Emit the 'user joined' event to the server
       socket.emit('user joined', name);
       console.log(`name: ${name}`);
       // Save the name in local storage
       localStorage.setItem('userName', name);
     }
+  };
+
+  const navigate = useNavigate();
+  const handleLogin = () => {
+    navigate('/login');
   };
 
   return (
@@ -72,26 +75,53 @@ const JoinPanel = ({
                   htmlFor="email"
                   className="block mb-2 font-bold text-white"
                 >
-                  Join ATLP-Legend chat room
+                  <h1 className="font font-bold text-2xl md:text-sm text-center">
+                    Welcome to ATLP-Legend Chat room
+                  </h1>
+                  {handleUserLoggedIn() && (
+                    <p className="font font-light mt-4 text-center">
+                      you are going to join as:
+                    </p>
+                  )}
                 </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-white"
-                  placeholder="join with your name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                />
+                {handleUserLoggedIn() && (
+                  <input
+                    type="text"
+                    id="email"
+                    className="w-full px-3 py-2 border text-center border-gray-300 rounded-md focus:outline-none focus:border-white"
+                    placeholder="join with your name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    readOnly
+                    required
+                  />
+                )}
+
+                {!handleUserLoggedIn() && (
+                  <p className="font font-light mt-4 text-center text-white">
+                    You are not yet logged in
+                  </p>
+                )}
               </div>
               <div className="flex justify-center">
-                <button
-                  type="submit"
-                  onClick={handleJoinChat}
-                  className="px-4 py-2 text-white bg-orange-500 rounded-md hover:bg-orange-600"
-                >
-                  Join Chat
-                </button>
+                {handleUserLoggedIn() && (
+                  <button
+                    type="submit"
+                    onClick={handleJoinChat}
+                    className="px-4 py-2 text-white bg-orange-500 rounded-md hover:bg-orange-600"
+                  >
+                    Join Chat
+                  </button>
+                )}
+                {!handleUserLoggedIn() && (
+                  <button
+                    type="submit"
+                    onClick={handleLogin}
+                    className="px-4 py-2 text-white bg-orange-500 rounded-md hover:bg-orange-600"
+                  >
+                    Login First
+                  </button>
+                )}
               </div>
             </form>
           </div>

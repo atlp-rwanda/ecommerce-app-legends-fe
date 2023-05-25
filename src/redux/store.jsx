@@ -20,8 +20,8 @@ import selectSearchKeySlice from './reducers/products/DrowSearchkey';
 import adminOrderSlice from './reducers/admin/AdminOrders';
 import checkout from './reducers/checkout';
 import NotificationSlice from './reducers/seller/NotificationSlice';
-import socketSlice from './reducers/socketSlice';
-import chatSlice from './reducers/chatSlice';
+import socketSlice from './reducers/chat/socketSlice';
+import chatSlice from './reducers/chat/chatSlice';
 import passwdUpdate from './reducers/updatePassword';
 
 const store = configureStore({

@@ -172,7 +172,7 @@ const SellerProductPage = () => {
               className="overflow-hidden hover:overflow-y-auto shadow-sm pl-16 h-fit py-3 md:pl-5"
               key={rating.id}
             >
-              <h2 className="text-sm font-bold">{t('name')}</h2>
+              <h2 className="text-sm font-bold">{rating.userName}</h2>
               <p className="text-sm">{rating.comment}</p>
               <p className="texxting text-xs text-stone-500">
                 {new Date(rating.createdAt).toLocaleString()}

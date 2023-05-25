@@ -8,9 +8,6 @@ import Button from '../../components/formControlscomponents/Button/Button';
 import { setUser, setRole, setToken } from '../../redux/reducers/AuthUser';
 import CART from '../../assets/CART.png';
 import GOOGLE from '../../assets/GOOGLE.png';
-// eslint-disable-next-line import/no-cycle
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/FrontFooter';
 import ChatButton from '../../components/ChatButton';
 
 export const URL = `https://ecommerce-app-legends-bn-production.up.railway.app`;
@@ -116,9 +113,7 @@ const Login = () => {
 
   return (
     <>
-      <header>
-        <Navbar />
-      </header>
+      <header />
       <main>
         <div className="bg-darkGrey h-[100vh] m-0 p-0 flex items-center justify-center w-full overflow-hidden relative">
           <div className="w-[60vw] h-[150vh]  bg-[#011B32] absolute right-0   -top-[25vh] rounded-[50%] overflow-hidden rounded-r" />
@@ -211,9 +206,7 @@ const Login = () => {
           <ChatButton />
         </div>
       </main>
-      <footer>
-        <Footer />
-      </footer>
+      <footer />
     </>
   );
 };

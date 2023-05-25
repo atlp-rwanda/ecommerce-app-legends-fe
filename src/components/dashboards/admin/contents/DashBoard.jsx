@@ -82,7 +82,7 @@ const DashBoard = () => {
           </div>
 
           <div className="search flex justify-end mt-4">
-            <div className="relative">
+            <div className="relative z-30">
               <input
                 type="search"
                 placeholder={t('search_product')}
@@ -173,6 +173,7 @@ const DashBoard = () => {
           </div>
         </div>
       )}
+      <ChatButton />
     </>
   );
 };

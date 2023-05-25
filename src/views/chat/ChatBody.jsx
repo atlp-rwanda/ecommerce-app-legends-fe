@@ -4,22 +4,23 @@ import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import { io } from 'socket.io-client';
 import { BiSend } from 'react-icons/bi';
-import { FaBars } from 'react-icons/fa';
 import { useMediaQuery } from 'react-responsive';
+import { FaCheck } from 'react-icons/fa';
 import {
   setInputMessage,
   sendMessage,
   fetchPreviousMessages,
-} from '../redux/reducers/chatSlice';
+  clearChatMessages,
+} from '../../redux/reducers/chat/chatSlice';
 import {
   connectSocket,
   addMessage,
   disconnectSocket,
   addUser,
-} from '../redux/reducers/socketSlice';
-import Navbar from '../components/Navbar';
+} from '../../redux/reducers/chat/socketSlice';
+import Navbar from '../../components/Navbar';
 import ChatBar from './ChatBar';
-import BurgerButton from '../components/dashboards/admin/bars/BurgerButton';
+import BurgerButton from '../../components/dashboards/admin/bars/BurgerButton';
 
 const socket = io('https://ecommerce-app-legends-bn-production.up.railway.app'); // Replace with your server URL
 
@@ -97,7 +98,7 @@ const ChatBody = () => {
   useEffect(() => {
     dispatch(fetchPreviousMessages());
     dispatch(connectSocket());
-
+    scrollToBottom();
     return () => {
       dispatch(disconnectSocket());
     };
@@ -109,7 +110,7 @@ const ChatBody = () => {
       <ChatBar users={users} isOpen={isOpen} />
       <header className="chat__mainHeader h-20  flex w-10/12 md:w-full md:h-14 items-center justify-between  md:space-x-3 p-5 float-right right-0 text-white bg-slate-900 fixed">
         {isMediumScreen && (
-          <div className="text-red-500 text-3xl">
+          <div className="text-white text-3xl">
             <BurgerButton isOpen={isOpen} setIsOpen={setIsOpen} />
           </div>
         )}
@@ -125,7 +126,7 @@ const ChatBody = () => {
 
       <div
         ref={messageContainerRef}
-        className="message__container ml-[16%] md:ml-0  mt-16 h-screen pt-28 pb-20 px-16 md:px-2 bg-cover bg-no-repeat bg-center overflow-y-auto"
+        className="message__container ml-[16%] md:ml-0  mt-16 h-screen pt-28 pb-24 px-16 md:px-2 bg-cover bg-no-repeat bg-center overflow-y-auto"
       >
         {messages.map((message) => (
           <div className="message__chats" key={message.id}>
@@ -139,6 +140,10 @@ const ChatBody = () => {
                   <span className="text-gray-500 text-xs">
                     {getTimeAgo(message.createdAt)}
                   </span>
+                  <div className="ticks text-sm font-light flex justify-end mt-1">
+                    <FaCheck className="text-gray-500 mr-1" />
+                    <FaCheck className="text-gray-500" />
+                  </div>
                 </div>
               </>
             ) : (
@@ -160,14 +165,12 @@ const ChatBody = () => {
             className="form w-full h-full flex md:justify-center px-14 md:px-3 md:space-x-1 space-x-3"
             onSubmit={handleSendMessage}
           >
-            <input
-              type="text"
+            <textarea
               placeholder="Write message"
               className="w-full flex-1 h-full bg-gray-800 border bg-opacity-70 backdrop-blur-md rounded-lg border-3 border-white text-white outline-none px-4 md:px-0 py-2 md:py-0"
               value={localInputMessage}
               onChange={(e) => setLocalInputMessage(e.target.value)}
             />
-
             <button
               type="submit"
               className="sendBtn w-12 py-0 px-0 text-3xl border-none  outline-none text-gray-100 cursor-pointer"
