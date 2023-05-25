@@ -7,6 +7,7 @@ const ProfiteChart = () => {
     options: {
       chart: {
         id: 'basic-bar',
+        width: '100%',
       },
       xaxis: {
         categories: [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029],
@@ -23,18 +24,13 @@ const ProfiteChart = () => {
     ],
   });
   return (
-    <div className="col-span-12 -ml-[12vw] rounded-sm border border-stroke bg-white p-7.5 w-[40vw] shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4">
+    <div className="rounded-sm  border border-stroke px-5 pt-7.5 pb-5 w-[40vw] md:w-[90vw] shadow-default dark:border-strokedark md:mr-[10vw] md:px-0 xl:col-span-8">
       <div>
         <span className="text-lg ml-24 uppercase py-4 font-medium mt-6">
           Revenue stats
         </span>
-        <div id="chartTwo" className="ml-5 -mb-9">
-          <Chart
-            options={chart.options}
-            series={chart.series}
-            type="bar"
-            width="500"
-          />
+        <div id="chartTwo" className="ml-0 md:-ml-4">
+          <Chart options={chart.options} series={chart.series} type="bar" />
         </div>
       </div>
       <div className="flex justify-center flex-row gap-2 pt-8">

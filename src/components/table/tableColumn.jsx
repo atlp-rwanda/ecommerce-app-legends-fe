@@ -3,7 +3,7 @@ import React from 'react';
 const TableColumn = ({ categoryName, productsCounting, id, handleOnClick }) => {
   return (
     <tr
-      className="border-b-2 border-gray-400"
+      className="border-b-1 border-gray-400"
       onClick={() => handleOnClick(id)}
     >
       <th

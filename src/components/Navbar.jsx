@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Icon } from '@iconify/react';
@@ -6,7 +7,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import logo from '../assets/logo.svg';
 import SearchBar from './SearchBar';
 import LocalizationSwicher from './LocalizationSwicher';
-import TopSearchProducts from './TopSearchProducts';
 import FrontCategoryDrawer from './FrontCategoryDrawer';
 import UserAvatar from './UserAvatar';
 import { viewCart } from '../redux/reducers/CartSlice';
@@ -15,7 +15,6 @@ import { viewWishList } from '../redux/reducers/WishListSlice';
 const Navbar = () => {
   const [isCategoryOpen, setCategoryOpen] = useState(false);
   const [isMenuOpen, setisMenuOpen] = useState(false);
-  const hasFocus = useSelector((state) => state.searchFocused.isSearchOpen);
   const user = useSelector((state) => state.currentUser);
   const { items } = useSelector((state) => state.cart);
   const wishlistItems = useSelector((state) => state.wishlist.items);
@@ -25,10 +24,10 @@ const Navbar = () => {
 
   useEffect(() => {
     dispatch(viewCart());
-  }, []);
+  }, [dispatch]);
   useEffect(() => {
     dispatch(viewWishList());
-  }, []);
+  }, [dispatch]);
 
   const { t } = useTranslation();
   const pages = [
@@ -143,11 +142,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <TopSearchProducts
-        className={`absolute transition-all ${
-          hasFocus ? 'flex' : 'hidden'
-        } min-h-[15vh] justify-center shadow-xl  bg-[#f8f8f8] p-3 z-30 top-16 left-0   w-[100%] `}
-      />
       <FrontCategoryDrawer
         categories={categories.payload}
         isCategoryOpen={isCategoryOpen}

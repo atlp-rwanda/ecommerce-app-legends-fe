@@ -8,6 +8,7 @@ const SalesChart = () => {
     options: {
       chart: {
         id: 'basic-bar',
+        width: '100%',
       },
       xaxis: {
         categories: [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029],
@@ -24,19 +25,13 @@ const SalesChart = () => {
     ],
   });
   return (
-    <div className="rounded-sm  border border-stroke px-5 pt-7.5 pb-5 w-[40vw] shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-8">
-      <div className="flex flex-wrap items-start justify-between sm:flex-nowrap" />
-      <span className="text-lg ml-24 uppercase py-4 font-medium mt-6">
+    <div className="rounded-sm  border border-stroke px-5 pt-7.5 pb-5 w-[40vw] md:w-[90vw] shadow-default dark:border-strokedark md:mr-[10vw] md:px-0 xl:col-span-8">
+      <span className="text-lg ml-24 uppercase font-medium mt-6">
         sales stats
       </span>
       <div>
-        <div id="chartOne" className="ml-10">
-          <Chart
-            options={chart.options}
-            series={chart.series}
-            type="bar"
-            width="500"
-          />
+        <div className="ml-0 md:-ml-4">
+          <Chart options={chart.options} series={chart.series} type="bar" />
         </div>
         <div className="flex justify-center flex-row gap-2">
           <div className="h-4 w-4 bg-slate-500" />

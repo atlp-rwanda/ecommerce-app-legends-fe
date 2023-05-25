@@ -7,7 +7,10 @@ import { toogleSearchForm } from '../redux/reducers/searchFormToogle';
 // eslint-disable-next-line import/no-cycle
 import { fetchSearchProducts } from '../redux/reducers/products/AvailbleProducts';
 import { diselect } from '../redux/reducers/products/DrowCategories';
-import { setSortAndSearchParam } from '../redux/reducers/products/DrowSearchkey';
+import {
+  setSortAndSearchParam,
+  setIsSearching,
+} from '../redux/reducers/products/DrowSearchkey';
 
 const SearchBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,14 +19,23 @@ const SearchBar = () => {
 
   // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dispatch = useDispatch();
-  const hasFocus = useSelector((state) => state.searchFocused.isSearchOpen);
   const handleTyping = (value) => {
     setSearchValue(value);
+  };
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      dispatch(fetchSearchProducts(searchValue));
+      dispatch(diselect(null));
+      dispatch(setIsSearching(true));
+      dispatch(setSortAndSearchParam());
+      navigate('/shop');
+    }
   };
   const handleSearch = () => {
     if (searchValue !== '') {
       dispatch(fetchSearchProducts(searchValue));
       dispatch(diselect(null));
+      dispatch(setIsSearching(true));
       dispatch(setSortAndSearchParam());
       navigate('/shop');
     }
@@ -44,8 +56,9 @@ const SearchBar = () => {
       <input
         type="search"
         onChange={(e) => handleTyping(e.target.value)}
-        onFocus={(e) => dispatch(toogleSearchForm(true))}
-        onBlur={(e) => dispatch(toogleSearchForm(false))}
+        onFocus={() => dispatch(toogleSearchForm(true))}
+        onBlur={() => dispatch(toogleSearchForm(false))}
+        onKeyDown={handleKeyDown}
         className={`${
           isOpen ? ' h-9 mr-2 pl-2 pr-2  bg-neutral-100' : 'w-0 h-0'
         } absolute  right-0  top-1/2 transform  -translate-y-1/2 md:translate-y-[40px] md:translate-x-1/2 rounded-full focus:outline-none transition-all duration-500 ease-in-out`}
