@@ -43,7 +43,7 @@ const SideBar = ({ isOpen }) => {
     dispatch(setActiveButton('dashboard'));
   };
   const handleSettings = () => {
-    navigate('/dashboard/settings');
+    navigate('/dashboard/profile');
     dispatch(setActiveButton('setting'));
   };
   const handleLogout = () => {
