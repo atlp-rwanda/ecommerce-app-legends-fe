@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AiOutlineShoppingCart, AiOutlineArrowLeft } from 'react-icons/ai';
 import { IoIosRemoveCircleOutline } from 'react-icons/io';
-import { Navigate, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
@@ -96,7 +96,7 @@ const CartPage = () => {
   };
 
   const handleToStartShopping = () => {
-    navigate('/');
+    navigate('/shop');
   };
 
   return (

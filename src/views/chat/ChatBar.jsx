@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { clearChatMessages } from '../../redux/reducers/chat/chatSlice';
 
 const ChatBar = ({ users, isOpen }) => {
+  const { t } = useTranslation();
   const [activeUsers, setActiveUsers] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -20,7 +22,9 @@ const ChatBar = ({ users, isOpen }) => {
       }`}
     >
       <div className="">
-        <h4 className="chat__header mt-30 md:mt-2 mb-20">ACTIVE USERS</h4>
+        <h4 className="chat__header mt-30 md:mt-2 mb-20">
+          {t('active_users')}
+        </h4>
         <div className="chat__users ">
           {activeUsers?.map((user) => (
             <div key={user.name} className="user__container flex">

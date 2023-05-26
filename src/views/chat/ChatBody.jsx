@@ -6,6 +6,7 @@ import { io } from 'socket.io-client';
 import { BiSend } from 'react-icons/bi';
 import { useMediaQuery } from 'react-responsive';
 import { FaCheck } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 import {
   setInputMessage,
   sendMessage,
@@ -25,6 +26,7 @@ import BurgerButton from '../../components/dashboards/admin/bars/BurgerButton';
 const socket = io('https://ecommerce-app-legends-bn-production.up.railway.app'); // Replace with your server URL
 
 const ChatBody = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { messages } = useSelector((state) => state.chat);
@@ -98,7 +100,6 @@ const ChatBody = () => {
   useEffect(() => {
     dispatch(fetchPreviousMessages());
     dispatch(connectSocket());
-    scrollToBottom();
     return () => {
       dispatch(disconnectSocket());
     };
@@ -114,7 +115,7 @@ const ChatBody = () => {
             <BurgerButton isOpen={isOpen} setIsOpen={setIsOpen} />
           </div>
         )}
-        <p className="text-sm">WELCOME LEGENDS</p>
+        <p className="text-sm">{t('welcome_legends')}</p>
         <button
           type="button"
           className="leaveChat__btn px-4 md:px-2 md:py-1 py-2 w-36 md:w-28 border-none md:text-sm outline-none bg-orange-600 cursor-pointer text-white"

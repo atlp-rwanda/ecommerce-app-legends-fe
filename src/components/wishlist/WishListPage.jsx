@@ -4,6 +4,7 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FaTimes } from 'react-icons/fa';
 import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import {
   viewWishList,
   removeToWishList,
@@ -12,6 +13,7 @@ import Navbar from '../Navbar';
 import FrontFooter from '../FrontFooter';
 import Loading from '../Loading';
 import ChatButton from '../ChatButton';
+import Button from '../formControlscomponents/Button/Button';
 
 const WishListPage = () => {
   const { items, status, error } = useSelector((state) => state.wishlist);
@@ -27,7 +29,7 @@ const WishListPage = () => {
   }, [dispatch]);
 
   const handleToStartShopping = () => {
-    navigate('/product-variation');
+    navigate('/shop');
   };
 
   return (
@@ -58,13 +60,12 @@ const WishListPage = () => {
                       items.data.map((item) => (
                         <tr key={item.id} className="bg-gray-100">
                           <td className="border-y px-4 md:px-2 md:text-sm py-2 text-center">
-                            <button
+                            <Button
                               type="button"
                               className=" hover:text-red-500"
-                              onClick={() => handleRemoveToWishList(item.id)}
-                            >
-                              <FaTimes />
-                            </button>
+                              handleSend={() => handleRemoveToWishList(item.id)}
+                              btnName={<FaTimes />}
+                            />
                           </td>
                           <td className="border-y px-4 md:px-2 md:text-sm py-2 text-center">
                             <img
@@ -80,13 +81,13 @@ const WishListPage = () => {
                             {t(item.status)}
                           </td>
                           <td className="border-y px-4 md:px-2 md:text-sm py-2 text-center">
-                            <button
-                              onClick={handleToStartShopping}
+                            <Link
+                              to={`/product/${item.id}`}
                               type="button"
                               className="bg-slate-700 hover:bg-slate-500 text-white font-bold py-1 px-2 md:text-sm md:px-1 rounded"
                             >
                               {t('view_variatios')}
-                            </button>
+                            </Link>
                           </td>
                         </tr>
                       ))}
@@ -95,14 +96,17 @@ const WishListPage = () => {
               </div>
               <div className="flex justify-between px-4 mt-10 md:justify-start md:space-x-12 md:px-0.5">
                 <div className="continue-shopping">
-                  <button
+                  <Button
                     type="button"
                     className=" hover:bg-slate-700 hover:rounded hover:text-white text-slate-700 font-bold py-2 px-4 md:px-1  flex space-x-4 justify-center text-center self-center mx-auto"
-                    onClick={handleToStartShopping}
-                  >
-                    <AiOutlineArrowLeft className="mt-1" />
-                    <span>{t('continue_shopping')}</span>
-                  </button>
+                    handleSend={handleToStartShopping}
+                    btnName={
+                      <>
+                        <AiOutlineArrowLeft className="mt-1" />
+                        <span>{t('continue_shopping')}</span>
+                      </>
+                    }
+                  />
                 </div>
               </div>
             </>
@@ -114,14 +118,17 @@ const WishListPage = () => {
                 </h1>
               </div>
               <div className="flex justify-center mt-7">
-                <button
+                <Button
                   type="button"
                   className=" hover:bg-slate-700 hover:rounded hover:text-white text-slate-700 font-bold py-2 px-4 md:text-sm md:px-2 md:py-1 flex space-x-4 md:space-x-2 justify-center text-center self-center mx-auto"
-                  onClick={handleToStartShopping}
-                >
-                  <AiOutlineArrowLeft className="mt-1" />
-                  <span>{t('start_shopping')}</span>
-                </button>
+                  handleSend={handleToStartShopping}
+                  btnName={
+                    <>
+                      <AiOutlineArrowLeft className="mt-1" />
+                      <span>{t('start_shopping')}</span>
+                    </>
+                  }
+                />
               </div>
             </>
           ))}

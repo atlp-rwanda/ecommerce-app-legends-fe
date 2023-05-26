@@ -188,6 +188,13 @@ const translationEn = {
   DeliveryTime: 'Estimated Delivery time:',
   shippingCompany: 'shipping Company:',
   tracking: 'tracking#',
+  join_chat: 'Join Chat',
+  you_are_going_to_join_as: 'You are going to join as',
+  welcome_to_chat: ' Welcome to ATLP-Legends Chat room',
+  login_first: 'Login first',
+  you_are_not_logged_in: 'You are not logged in',
+  active_users: 'ACTIVE USERS',
+  welcome_legends: 'WELCOME LEGENDS',
 };
 
 const translationFr = {
@@ -380,6 +387,13 @@ const translationFr = {
   DeliveryTime: 'Délai de livraison estimé:',
   shippingCompany: 'Compagnie maritime:',
   tracking: 'pistage#',
+  join_chat: 'Rejoindre le chat',
+  you_are_going_to_join_as: 'Vous allez rejoindre en tant que',
+  welcome_to_chat: 'Bienvenue dans la salle de chat ATLP-Legends',
+  login_first: 'Connectez-vous d abord',
+  you_are_not_logged_in: 'Vous n êtes pas connecté',
+  active_users: 'UTILISATEURS ACTIFS',
+  welcome_legends: 'BIENVENUE LÉGENDES',
 };
 
 i18n.use(initReactI18next).init({
