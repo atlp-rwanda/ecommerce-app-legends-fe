@@ -3,6 +3,8 @@ import { NavLink, useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import jwtDecode from 'jwt-decode';
 import FormInput from '../../components/formControlscomponents/formInput/FormInput';
 import Button from '../../components/formControlscomponents/Button/Button';
 import { setUser, setRole, setToken } from '../../redux/reducers/AuthUser';
@@ -11,6 +13,7 @@ import GOOGLE from '../../assets/GOOGLE.png';
 import ChatButton from '../../components/ChatButton';
 
 export const URL = `https://ecommerce-app-legends-bn-production.up.railway.app`;
+const FRONT_URL = `https://ecommerce-app-legends-fe.vercel.app`;
 const Login = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -53,9 +56,11 @@ const Login = () => {
           dispatch(setUser(data.data));
           dispatch(setRole(data.role));
           dispatch(setToken(data.token));
-          setTimeout(() => {
-            window.location.reload(navigate('/'));
-          }, 2000);
+          if (data.role === 'admin') {
+            window.location.href = `${FRONT_URL}/dashboard`;
+          } else {
+            window.location.href = `${FRONT_URL}/shop`;
+          }
         } else {
           toast.error(data.message, { theme: 'colored' });
         }
@@ -89,8 +94,16 @@ const Login = () => {
   const Token = findParams('token');
   const role = findParams('role');
   if (Token && role) {
-    localStorage.setItem('token', JSON.stringify(Token));
-    localStorage.setItem('role', JSON.stringify(role));
+    const googleUser = jwtDecode(Token);
+    googleUser.user.token = Token;
+    dispatch(setUser(googleUser.user));
+    dispatch(setRole(googleUser.user.role));
+    dispatch(setToken(Token));
+    if (googleUser.role === 'vendor' || googleUser.role === 'admin') {
+      window.location.href = `${FRONT_URL}/dashboard`;
+    } else {
+      window.location.href = `${FRONT_URL}/`;
+    }
   }
   // Google Login
   useEffect(() => {
@@ -100,17 +113,6 @@ const Login = () => {
       setUserRole(role);
     }
   }, [role]);
-
-  if (userToken) {
-    if (userRole === 'vendor') {
-      navigate('/vendor-dashboard');
-    } else if (userRole === 'admin') {
-      window.location.reload(navigate('/admin/dashboard'));
-    } else {
-      window.location.reload(navigate('/'));
-    }
-  }
-
   return (
     <>
       <header />
