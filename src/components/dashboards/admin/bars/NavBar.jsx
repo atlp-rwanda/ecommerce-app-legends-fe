@@ -96,17 +96,6 @@ const NavBar = () => {
               <LocalizationSwicher />
             </div>
           </div>
-          {/* <div className="flex top-0">
-            <div className="cursor-pointer mr-8 md:mr-0 mt-0 text-3xl md:text-2xl mb-2">
-              <FaUserCircle />
-            </div>
-          </div>
-          {isMediumScreen && (
-            <div className="md:mr-12 md:text-3xl md:mb-2 md:right-0">
-              {' '}
-              <BurgerButton isOpen={isOpen} setIsOpen={setIsOpen} />
-            </div>
-          )} */}
         </div>
       </div>
       {isMediumScreen && <SideBar isOpen={isOpen} />}

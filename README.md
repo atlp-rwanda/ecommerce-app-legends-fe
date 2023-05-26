@@ -2,9 +2,9 @@
 
 ## Maintanibility
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/6295162785e9ca59c83f/maintainability)](https://codeclimate.com/github/atlp-rwanda/ecommerce-app-legends-fe/maintainability)
+![check-code-coverage](https://img.shields.io/badge/code--coverage-60.57%25-orange)
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/6295162785e9ca59c83f/test_coverage)](https://codeclimate.com/github/atlp-rwanda/ecommerce-app-legends-fe/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6295162785e9ca59c83f/maintainability)](https://codeclimate.com/github/atlp-rwanda/ecommerce-app-legends-fe/maintainability)
 
 [![CI/CD Pipeline](https://github.com/atlp-rwanda/ecommerce-app-legends-fe/actions/workflows/testing.yml/badge.svg)](https://github.com/atlp-rwanda/ecommerce-app-legends-fe/actions/workflows/testing.yml)
 
