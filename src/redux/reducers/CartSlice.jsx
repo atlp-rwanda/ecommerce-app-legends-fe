@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
 const token = JSON.parse(localStorage.getItem('token'));
+const userRole = JSON.parse(localStorage.getItem('role'));
+console.log(userRole);
 const URL =
   'https://ecommerce-app-legends-bn-production.up.railway.app/api/v1/';
 
@@ -17,8 +19,13 @@ export const addToCart = createAsyncThunk(
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(response);
     const data = await response.json();
+    if (userRole !== 'buyer') {
+      toast.error('You are not allowed to add items to cart', {
+        theme: 'colored',
+      });
+      return rejectWithValue(data.message);
+    }
     if (response.status !== 201) {
       if (response.status === 401) {
         toast.error(`${data.message} Login first!`, {
