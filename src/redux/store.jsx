@@ -23,6 +23,7 @@ import NotificationSlice from './reducers/seller/NotificationSlice';
 import socketSlice from './reducers/chat/socketSlice';
 import chatSlice from './reducers/chat/chatSlice';
 import passwdUpdate from './reducers/updatePassword';
+import ClientSlice from './reducers/vendor/mycustomerSlice';
 
 const store = configureStore({
   reducer: {
@@ -51,6 +52,7 @@ const store = configureStore({
     notifications: NotificationSlice,
     chat: chatSlice,
     socket: socketSlice,
+    client: ClientSlice,
   },
 
   middleware: (getDefaultMiddleware) => {
