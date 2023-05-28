@@ -9,6 +9,7 @@ import {
 } from '../../../../redux/reducers/admin/AdminOrders';
 import Loading from '../../../Loading';
 import BreadCumb from '../../../BreadCumb';
+import socket from '../../../../middlewares/socket';
 
 const Orders = () => {
   const [loader, setLoader] = useState(false);
@@ -17,7 +18,7 @@ const Orders = () => {
   const { adminOrders } = useSelector((state) => state.adminOrders);
   const { orders, status, error, message } = adminOrders;
   const [rowData, setRowData] = useState([]);
-
+  console.log(orders.order);
   // Handle select input change
   const handleSelectChange = (event, order) => {
     const { value } = event.target;
@@ -34,6 +35,8 @@ const Orders = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(adminChangeOrderStatus({ id: order.id, status: value }));
+        socket.emit('status', { id: order.id, status: value });
+
         if (status === 'succeeded' && message) {
           toast.success(message, { theme: 'colored' });
 
@@ -103,50 +106,48 @@ const Orders = () => {
           </thead>
           <tbody>
             {orders?.order &&
-              orders.order
-                .filter((ele) => ele.detail.length > 0)
-                .map((order) => (
-                  <tr
-                    className="border px-1 py-1 text-center hover:cursor-pointer hover:bg-slate-100 transition-shadow animate"
-                    key={order.id}
-                  >
-                    <td className="border px-2 py-1">{order.amount}</td>
-                    <td className="border px-2 py-1">{order.location}</td>
-                    <td className="border px-2 py-1">
-                      {`${order.detail.length} ${t('item')}`}{' '}
-                    </td>
-                    <td className="border px-2 py-1">
-                      <div className="dropdown">
-                        <select
-                          value={
-                            orders?.order &&
-                            orders.order.find((elem) => order.id === elem.id)
-                              .status
-                          }
-                          onChange={(event) => handleSelectChange(event, order)}
-                          className={`${
-                            order.status === 'completed' ? 'bg-green-100' : ''
-                          } block w-full px-4 py-2 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:bg-lightGrey`}
-                          // onChange={handleOptionChange}
-                        >
-                          {possibleStatus.map((orderStatus) => {
-                            const isStatusReached =
-                              possibleStatus.indexOf(orderStatus) >=
-                              possibleStatus.indexOf(order.status);
-                            return (
-                              <option
-                                disabled={!isStatusReached}
-                                key={orderStatus}
-                              >
-                                {t(orderStatus)}
-                              </option>
-                            );
-                          })}
-                        </select>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+              orders.order.map((order) => (
+                <tr
+                  className="border px-1 py-1 text-center hover:cursor-pointer hover:bg-slate-100 transition-shadow animate"
+                  key={order.id}
+                >
+                  <td className="border px-2 py-1">{order.amount}</td>
+                  <td className="border px-2 py-1">{order.location}</td>
+                  <td className="border px-2 py-1">
+                    {`${order.detail.length} ${t('item')}`}{' '}
+                  </td>
+                  <td className="border px-2 py-1">
+                    <div className="dropdown">
+                      <select
+                        value={
+                          orders?.order &&
+                          orders.order.find((elem) => order.id === elem.id)
+                            .status
+                        }
+                        onChange={(event) => handleSelectChange(event, order)}
+                        className={`${
+                          order.status === 'completed' ? 'bg-green-100' : ''
+                        } block w-full px-4 py-2 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:bg-lightGrey`}
+                        // onChange={handleOptionChange}
+                      >
+                        {possibleStatus.map((orderStatus) => {
+                          const isStatusReached =
+                            possibleStatus.indexOf(orderStatus) >=
+                            possibleStatus.indexOf(order.status);
+                          return (
+                            <option
+                              disabled={!isStatusReached}
+                              key={orderStatus}
+                            >
+                              {t(orderStatus)}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

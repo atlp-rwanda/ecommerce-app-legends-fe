@@ -185,6 +185,9 @@ const translationEn = {
   passwordUlTd: 'Never repeat passwords.',
   passwordUlTe: 'Avoid using real words.',
   passwordUpdate: 'Update',
+  DeliveryTime: 'Estimated Delivery time:',
+  shippingCompany: 'shipping Company:',
+  tracking: 'tracking#',
 };
 
 const translationFr = {
@@ -374,6 +377,9 @@ const translationFr = {
   passwordUlTd: 'Ne répétez jamais les mots de passe.',
   passwordUlTe: 'Évitez d utiliser de vrais mots.',
   passwordUpdate: 'Mise à jour',
+  DeliveryTime: 'Délai de livraison estimé:',
+  shippingCompany: 'Compagnie maritime:',
+  tracking: 'pistage#',
 };
 
 i18n.use(initReactI18next).init({

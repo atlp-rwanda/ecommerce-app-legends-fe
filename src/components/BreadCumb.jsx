@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const BreadCumb = ({ crumbs }) => {
   const { t } = useTranslation();
+  console.log('crumb', crumbs);
   return (
     <div>
       <nav className="items-center justify-between bg-gray-900 p-4 mb-8 rounded shadow">
