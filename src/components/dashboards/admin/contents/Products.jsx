@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import BreadCumb from '../../../BreadCumb';
 import FormInput from '../../../formControlscomponents/formInput/FormInput';
 import imgInputController from '../../../formControlscomponents/formInput/imgInputController';
+import Loading from '../../../Loading';
 
 /* eslint import/no-webpack-loader-syntax: off */
 import {
@@ -18,9 +19,15 @@ import {
 } from '../../../../redux/reducers/seller/SellerProductSlice';
 
 const Products = () => {
+  const ITEMS_PER_PAGE = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalProduct, setModalProduct] = useState(null);
 
@@ -32,8 +39,6 @@ const Products = () => {
 
   const [productImg, setproductImg] = useState('');
   const [newProductImg, setNewProductImg] = useState(null);
-  const [productAttributeImgs, setproductAttributeImgs] = useState('');
-  // const [newProductAttributeImg, setNewProductAttributeImg] = useState('');
 
   const [updateProductbtn, setUpdateProductbtn] = useState({
     text: 'Update',
@@ -42,6 +47,9 @@ const Products = () => {
   });
   const { products, status, error } = sellerProducts;
   const data = products?.data;
+
+  const { updateProductStatus, updateProductAttributeStatus, deleteStatus } =
+    sellerProducts;
 
   const handleChangePage = (page) => setCurrentPage(page);
 
@@ -56,15 +64,13 @@ const Products = () => {
       cancelButtonColor: '#3085d6',
       cancelButtonText: t('cancel'),
       confirmButtonText: t('yes_delete_it'),
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        dispatch(deleteSellerProducts(product.id));
-        if (status === 'succeeded') {
-          if (status === 'succeeded') {
-            toast.success(products?.message, { theme: 'colored' });
-          } else toast.error(error, { theme: 'colored' });
-          dispatch(fetchSellerProducts());
-        }
+        await dispatch(deleteSellerProducts(product.id));
+        if (status === 'succeeded' && deleteStatus) {
+          toast.success(deleteStatus, { theme: 'colored' });
+        } else toast.error(error, { theme: 'colored' });
+        await dispatch(fetchSellerProducts());
       }
     });
   };
@@ -109,11 +115,13 @@ const Products = () => {
     const formDataObject = Object.fromEntries(fromData.entries());
     setProductFormValue(formDataObject);
 
-    dispatch(
-      updateSellerProducts({ id: formDataObject.id, body: fromData })
-    ).the(() => {
-      dispatch(fetchSellerProducts());
-    });
+    await dispatch(
+      await updateSellerProducts({ id: formDataObject.id, body: fromData })
+    );
+    if (status === 'succeeded' && updateProductStatus) {
+      toast.success(updateProductStatus, { theme: 'colored' });
+    } else toast.error(error, { theme: 'colored' });
+    await dispatch(fetchSellerProducts());
   };
 
   // Handle product attribute update
@@ -124,11 +132,14 @@ const Products = () => {
       formData.append('attrImage', event.target[0].files[0]);
     }
     const formDataObject = Object.fromEntries(formData.entries());
-    dispatch(
-      updateProductAttribute({ id: formDataObject.id, body: formData })
-    ).then(() => {
-      dispatch(fetchSellerProducts());
-    });
+    await dispatch(
+      await updateProductAttribute({ id: formDataObject.id, body: formData })
+    );
+
+    if (status === 'succeeded' && updateProductAttributeStatus) {
+      toast.success(updateProductAttributeStatus, { theme: 'colored' });
+    } else toast.error(error, { theme: 'colored' });
+    await dispatch(fetchSellerProducts());
   };
 
   // On product image  change
@@ -159,13 +170,32 @@ const Products = () => {
     });
   };
 
+  // filtred products
+
+  const filteredProducts = data?.products?.filter(
+    (product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const currentProducts = filteredProducts?.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(
+    (filteredProducts?.length ?? 0) / ITEMS_PER_PAGE
+  );
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
   useEffect(() => {
-    function handleOutsideClick(event) {
+    const handleOutsideClick = (event) => {
       if (!event.target.closest('.modal-content')) {
         setIsModalOpen(false);
         setModalProduct(null);
       }
-    }
+    };
     if (isModalOpen) {
       document.addEventListener('mousedown', handleOutsideClick);
     } else {
@@ -178,7 +208,7 @@ const Products = () => {
 
   useEffect(() => {
     dispatch(fetchSellerProducts());
-  }, [currentPage]);
+  }, []);
 
   useEffect(() => {
     setProductFormValue(modalProduct);
@@ -189,8 +219,8 @@ const Products = () => {
   if (status === 'loading') {
     return (
       <div className="h-[100vh]">
-        <div className="absolute top-1/2 left-1/2 translate-x-1/2 translate-y-1/2">
-          {t('loaidng')}
+        <div className="">
+          <Loading />
         </div>
       </div>
     );
@@ -199,7 +229,7 @@ const Products = () => {
   if (status === 'failed') {
     return (
       <div className="h-[100vh]">
-        <div className="absolute top-1/2 left-1/2 translate-x-1/2 translate-y-1/2">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-1/2">
           Error: {error}
         </div>
       </div>
@@ -216,12 +246,13 @@ const Products = () => {
           <div className="table-nav flex justify-between px-[5%] items-center p-2">
             {' '}
             <form action="">
-              {' '}
-              <FormInput
+              {/* <FormInput
                 type="text"
+                value={searchTerm}
                 className="px-3 py-2 rounded border"
-                placeholder="search..."
-              />{' '}
+                placeholder="Search product"
+                onChange={(event) => handleSearchChange(event)}
+              /> */}
             </form>{' '}
             <div>
               {' '}
@@ -382,7 +413,7 @@ const Products = () => {
                     <div className="sm:px-3 p-2 m-2">
                       <label
                         htmlFor="name"
-                        className=" text-[#2b2b2b] text-sm block "
+                        className=" text-[#2b2b2b] text-sm block"
                       >
                         {t('name')}
                       </label>
@@ -460,6 +491,9 @@ const Products = () => {
                       <select
                         id="status"
                         name="status"
+                        defaultValue={
+                          productFormValue && productFormValue.status
+                        }
                         onChange={(event) => handleTyping(event)}
                         className=" inputFormClass placeholder-shown:border-t-blue-gray-200 focus:border-1"
                       >
@@ -468,14 +502,7 @@ const Products = () => {
                           -- Select --{' '}
                         </option>
                         {['AVAILABLE', 'UNAVAILABLE'].map((statusElement) => (
-                          <option
-                            key={statusElement}
-                            value={statusElement}
-                            selected={
-                              statusElement ===
-                              (productFormValue && productFormValue.status)
-                            }
-                          >
+                          <option key={statusElement} value={statusElement}>
                             {statusElement}
                           </option>
                         ))}
@@ -530,141 +557,127 @@ const Products = () => {
                 </h1>
                 <hr />
                 {productFormValue?.ProductAttributes ? (
-                  productFormValue?.ProductAttributes.map(
-                    (productAttibute, index, array) => (
-                      <form
-                        key={productAttibute.id}
-                        className=" flex justify-evenly flex-row md:flex-col sm:flex-col md:h-fit items-center sm:items-center py-3 mb-3 border rounded px-2 "
-                        onSubmit={handleUpdateProductAttribute}
-                      >
-                        <div className="w-[33%] md:w-[80%] md:max-h-fit  md:mb-[2%] md md:h-fit relative">
-                          {imgInputController(
-                            imgAttributeDisplay,
-                            productAttibute.attrImage,
-                            false,
-                            t('product_image')
-                          )}
-                        </div>
-                        <div className="relative w-[100%] min-w-[20em flex md:flex-col  items-end md:items-center ">
-                          <div className=" flex md:flex-col flex-wrap ">
-                            <div className="p-2 w-1/2 sm:w-full relative">
-                              <label
-                                htmlFor="name"
-                                className=" text-[#2b2b2b] text-sm block "
-                              >
-                                {t('attr_name')}
-                              </label>
-                              <FormInput
-                                id="varitationName"
-                                onChange={(event) =>
-                                  handleTypingAttribute(
-                                    event,
-                                    productAttibute.id
-                                  )
-                                }
-                                name="varitationName"
-                                value={productAttibute.varitationName}
-                                type="text"
-                                required
-                                className="inputFormClass sm:w-full px-1 placeholder-shown:border-t-blue-gray-200 focus:border-1"
-                              />
-                            </div>
-
-                            <div className="p-2 w-1/2 md:w-full">
-                              <label
-                                htmlFor="quantity"
-                                className=" text-[#2b2b2b] text-sm block "
-                              >
-                                {t('quantity')}
-                              </label>
-                              <FormInput
-                                id="quantity"
-                                onChange={(event) =>
-                                  handleTypingAttribute(
-                                    event,
-                                    productAttibute.id
-                                  )
-                                }
-                                name="quantity"
-                                value={productAttibute.quantity}
-                                type="text"
-                                required
-                                className="inputFormClass sm:w-full px-1 placeholder-shown:border-t-blue-gray-200 focus:border-1"
-                              />
-                            </div>
-
-                            <div className="p-2  w-1/2 md:w-full">
-                              <label
-                                htmlFor="price"
-                                className=" text-[#2b2b2b] text-sm block "
-                              >
-                                {t('price')}
-                              </label>
-                              <FormInput
-                                id="price"
-                                onChange={(event) =>
-                                  handleTypingAttribute(
-                                    event,
-                                    productAttibute.id
-                                  )
-                                }
-                                name="price"
-                                value={productAttibute.price}
-                                type="text"
-                                required
-                                className="inputFormClass sm:w-full px-1 placeholder-shown:border-t-blue-gray-200 focus:border-1"
-                              />
-                            </div>
-
-                            <div className="p-2  w-1/2 md:w-full">
-                              <label
-                                htmlFor="size"
-                                className=" text-[#2b2b2b] text-sm block "
-                              >
-                                {t('size')}
-                              </label>
-                              <FormInput
-                                id="size"
-                                onChange={(event) =>
-                                  handleTypingAttribute(
-                                    event,
-                                    productAttibute.id
-                                  )
-                                }
-                                name="size"
-                                value={productAttibute.size}
-                                type="text"
-                                required
-                                className="inputFormClass sm:w-full px-1 placeholder-shown:border-t-blue-gray-200 focus:border-1"
-                              />
-                            </div>
+                  productFormValue?.ProductAttributes.map((productAttibute) => (
+                    <form
+                      key={productAttibute.id}
+                      className=" flex justify-evenly flex-row md:flex-col sm:flex-col md:h-fit items-center sm:items-center py-3 mb-3 border rounded px-2 "
+                      onSubmit={handleUpdateProductAttribute}
+                    >
+                      <div className="w-[33%] md:w-[80%] md:max-h-fit  md:mb-[2%] md md:h-fit relative">
+                        {imgInputController(
+                          imgAttributeDisplay,
+                          productAttibute.attrImage,
+                          false,
+                          t('product_image')
+                        )}
+                      </div>
+                      <div className="relative w-[100%] min-w-[20em flex flex-col  items-end md:items-center ">
+                        <div className=" flex md:flex-col flex-wrap ">
+                          <div className="p-2 w-1/2 sm:w-full relative">
+                            <label
+                              htmlFor="name"
+                              className=" text-[#2b2b2b] text-sm block "
+                            >
+                              {t('attr_name')}
+                            </label>
                             <FormInput
-                              type="hidden"
-                              name="id"
-                              value={productAttibute.id}
+                              id="varitationName"
                               onChange={(event) =>
                                 handleTypingAttribute(event, productAttibute.id)
                               }
+                              name="varitationName"
+                              value={productAttibute.varitationName}
+                              type="text"
+                              required
+                              className="inputFormClass placeholder-shown:border-t-blue-gray-200 focus:border-1"
                             />
                           </div>
-                          <button
-                            type="submit"
-                            className="mt-2 w-2/5 py-1 text-md float-left bg-[#f97316] font-semibold text-white rounded-md active:bg-white active:border-[#f97316] active:text-[#f97316] active:border-[1px]"
-                          >
-                            <span
-                              id="spin"
-                              className={`${
-                                updateProductbtn && updateProductbtn.loading
-                              } h-5 w-5 animate-spin rounded-full border-white border-2 border-solid border-current border-r-transparent motion-reduce:animate-[spin_1.5s_linear_infinite] mr-3 `}
-                              role="status"
-                              disabled={updateProductbtn.disabled}
+
+                          <div className="p-2 w-1/2 md:w-full">
+                            <label
+                              htmlFor="quantity"
+                              className=" text-[#2b2b2b] text-sm block "
+                            >
+                              {t('quantity')}
+                            </label>
+                            <FormInput
+                              id="quantity"
+                              onChange={(event) =>
+                                handleTypingAttribute(event, productAttibute.id)
+                              }
+                              name="quantity"
+                              value={productAttibute.quantity}
+                              type="text"
+                              required
+                              className="inputFormClass placeholder-shown:border-t-blue-gray-200 focus:border-1"
                             />
-                            {updateProductbtn && updateProductbtn.text}
-                          </button>
+                          </div>
+
+                          <div className="p-2  w-1/2 md:w-full">
+                            <label
+                              htmlFor="price"
+                              className=" text-[#2b2b2b] text-sm block "
+                            >
+                              {t('price')}
+                            </label>
+                            <FormInput
+                              id="price"
+                              onChange={(event) =>
+                                handleTypingAttribute(event, productAttibute.id)
+                              }
+                              name="price"
+                              value={productAttibute.price}
+                              type="text"
+                              required
+                              className="inputFormClass placeholder-shown:border-t-blue-gray-200 focus:border-1"
+                            />
+                          </div>
+
+                          <div className="p-2  w-1/2 md:w-full">
+                            <label
+                              htmlFor="size"
+                              className=" text-[#2b2b2b] text-sm block "
+                            >
+                              {t('size')}
+                            </label>
+                            <FormInput
+                              id="size"
+                              onChange={(event) =>
+                                handleTypingAttribute(event, productAttibute.id)
+                              }
+                              name="size"
+                              value={productAttibute.size}
+                              type="text"
+                              required
+                              className="inputFormClass placeholder-shown:border-t-blue-gray-200 focus:border-1"
+                            />
+                          </div>
+                          <FormInput
+                            type="hidden"
+                            name="id"
+                            value={productAttibute.id}
+                            onChange={(event) =>
+                              handleTypingAttribute(event, productAttibute.id)
+                            }
+                          />
                         </div>
-                      </form>
-                    )
-                  )
+                        <button
+                          type="submit"
+                          className="mt-2 w-2/5 py-1 text-md float-left bg-[#f97316] font-semibold text-white rounded-md active:bg-white active:border-[#f97316] active:text-[#f97316] active:border-[1px]"
+                        >
+                          <span
+                            id="spin"
+                            className={`${
+                              updateProductbtn && updateProductbtn.loading
+                            } h-5 w-5 animate-spin rounded-full border-white border-2 border-solid border-current border-r-transparent motion-reduce:animate-[spin_1.5s_linear_infinite] mr-3 `}
+                            role="status"
+                            disabled={updateProductbtn.disabled}
+                          />
+                          {updateProductbtn && updateProductbtn.text}
+                        </button>
+                      </div>
+                    </form>
+                  ))
                 ) : (
                   <div> {t('no_data_found')} </div>
                 )}

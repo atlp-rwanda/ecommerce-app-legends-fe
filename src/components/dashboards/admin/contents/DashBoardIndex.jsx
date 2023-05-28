@@ -6,6 +6,7 @@ import DashBoard from './DashBoard';
 import Products from './Products';
 import Customers from './Customers';
 import Orders from './Orders';
+import Coupons from './Coupons';
 // import Footer from './Footer';
 import Users from './Users';
 import Messages from './Messages';
@@ -37,6 +38,7 @@ const DashBoardIndex = () => {
               <Route path="/dashboard/products" element={<Products />} />
               <Route path="/dashboard/customers" element={<Customers />} />
               {/* <Route path="/dashboard/orders" element={<Orders />} /> */}
+              <Route path="/dashboard/coupons" element={<Coupons />} />
               <Route path="/dashboard/add/products" element={<AddProducts />} />
               <Route
                 path="/dashboard/products/categories"
