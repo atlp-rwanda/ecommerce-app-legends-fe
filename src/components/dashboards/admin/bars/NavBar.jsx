@@ -35,7 +35,7 @@ const NavBar = () => {
   const notifications = useSelector(selectNotifications);
   const notificationCounter = useSelector(selectNotificationCounter);
   const currentUser = useSelector((state) => state.currentUser);
-  // console.log(currentUser);
+  // (currentUser);
   useEffect(() => {
     socket.on('notification', (data) => {
       dispatch(fetchNotifications(currentUser.user.id));
@@ -96,7 +96,7 @@ const NavBar = () => {
               <LocalizationSwicher />
             </div>
           </div>
-          <div className="flex top-0">
+          {/* <div className="flex top-0">
             <div className="cursor-pointer mr-8 md:mr-0 mt-0 text-3xl md:text-2xl mb-2">
               <FaUserCircle />
             </div>
@@ -106,7 +106,7 @@ const NavBar = () => {
               {' '}
               <BurgerButton isOpen={isOpen} setIsOpen={setIsOpen} />
             </div>
-          )}
+          )} */}
         </div>
       </div>
       {isMediumScreen && <SideBar isOpen={isOpen} />}
