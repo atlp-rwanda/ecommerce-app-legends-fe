@@ -39,9 +39,7 @@ describe('chat slice', () => {
       clearChatMessages.pending.type,
       clearChatMessages.fulfilled.type,
     ];
-
     await store.dispatch(clearChatMessages(1));
-
     const dispatchedActions = store.getState().chat.status;
   });
 });
