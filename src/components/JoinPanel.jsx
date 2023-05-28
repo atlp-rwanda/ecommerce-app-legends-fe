@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 const JoinPanel = ({ showJoinPanel, toggleJoinPanel, handleSubmit }) => {
+  const { t } = useTranslation();
   const { user } = useSelector((state) => state.currentUser);
   const joinedUser = `${user?.firstname} ${user?.lastname}`;
   const [socket, setSocket] = useState(null);
   const [name, setName] = useState(joinedUser);
   const handleUserLoggedIn = () => {
-    return !!joinedUser;
+    return !!user?.email;
   };
   const connectToSocket = () => {
     const newSocket = io(
@@ -76,11 +78,11 @@ const JoinPanel = ({ showJoinPanel, toggleJoinPanel, handleSubmit }) => {
                   className="block mb-2 font-bold text-white"
                 >
                   <h1 className="font font-bold text-2xl md:text-sm text-center">
-                    Welcome to ATLP-Legend Chat room
+                    {t('welcome_to_chat')}
                   </h1>
                   {handleUserLoggedIn() && (
                     <p className="font font-light mt-4 text-center">
-                      you are going to join as:
+                      {t('you_are_going_to_join_as')}
                     </p>
                   )}
                 </label>
@@ -100,6 +102,7 @@ const JoinPanel = ({ showJoinPanel, toggleJoinPanel, handleSubmit }) => {
                 {!handleUserLoggedIn() && (
                   <p className="font font-light mt-4 text-center text-white">
                     You are not yet logged in
+                    {t('you_are_not_logged_in')}
                   </p>
                 )}
               </div>
@@ -110,7 +113,7 @@ const JoinPanel = ({ showJoinPanel, toggleJoinPanel, handleSubmit }) => {
                     onClick={handleJoinChat}
                     className="px-4 py-2 text-white bg-orange-500 rounded-md hover:bg-orange-600"
                   >
-                    Join Chat
+                    {t('join_chat')}
                   </button>
                 )}
                 {!handleUserLoggedIn() && (
@@ -119,7 +122,7 @@ const JoinPanel = ({ showJoinPanel, toggleJoinPanel, handleSubmit }) => {
                     onClick={handleLogin}
                     className="px-4 py-2 text-white bg-orange-500 rounded-md hover:bg-orange-600"
                   >
-                    Login First
+                    {t('login_first')}
                   </button>
                 )}
               </div>

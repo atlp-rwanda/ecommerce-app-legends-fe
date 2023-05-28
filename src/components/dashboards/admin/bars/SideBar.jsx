@@ -66,11 +66,11 @@ const SideBar = ({ isOpen }) => {
 
   return (
     <div
-      className={`fixed max-w-fit h-screen bg-slate-900 shadow-sm shadow-gray-500/50 overflow-hidden px-2 md:right-0 mt-16 md:backdrop-blur-sm md:bg-slate/30 md:pb-24 ${
+      className={`fixed max-w-fit h-screen md:z-50 bg-slate-900 shadow-sm shadow-gray-500/50 overflow-hidden px-2 md:right-0 mt-16 md:backdrop-blur-sm md:bg-slate/30 md:pb-24 ${
         isOpen ? 'md:block' : 'md:hidden'
       }`}
     >
-      <div className=" flex flex-col basis-full h-screen pt-5 space-y-48 ">
+      <div className=" flex flex-col md:flex-col md:justify-between basis-full h-screen pt-5 space-y-48 ">
         <div className="top">
           <div
             className={`flex space-x-4 logo basis-full  h-12 mt-1 p-3 md:mt-0 ${isButtonActive(
