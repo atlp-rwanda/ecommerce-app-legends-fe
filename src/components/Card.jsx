@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const Card = (props) => {
   return (
     <NavLink to={`/product/${props.prodId}`}>
-      <div className="cursor-pointer sm:w-[95%] w-[30vw] md:w-40 max-w-[12em] relative sm:mx-auto sm:my-2 mx-4 my-4 bg-white border border-gray-250 rounded-lg shadow hover:shadow-lg h-fit pb-2">
+      <div className="cursor-pointer lg:w-40 lg:mx-2 w-60 sm:w-[95%] md:w-40  relative sm:mx-auto sm:my-2 mx-4 my-4 bg-white border border-gray-250 rounded shadow hover:shadow-lg h-fit pb-2">
         <img
           className="rounded-t-lg w-full sm:h-[9em] object-contain h-[12em]"
           src={props.image}

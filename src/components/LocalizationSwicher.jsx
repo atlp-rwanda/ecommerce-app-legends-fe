@@ -26,7 +26,7 @@ const LocalizationSwicher = () => {
     <div className="relative z-50 text-neutral-600 hover:text-neutral-900 ">
       <button
         type="button"
-        className="flex items-center justify-between h-auto px-2 py-1 md:h-fit md:px-1 md:py-0 border border-gray-200 rounded-full cursor-pointer"
+        className="flex items-center  h-auto px-2 py-1 md:h-fit md:px-1 md:py-0 border border-gray-200 rounded-full cursor-pointer"
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       >
         <Image
@@ -35,7 +35,7 @@ const LocalizationSwicher = () => {
           src={currentLanguage.flag}
         />
 
-        <span className="mr-2 md:text-[12px]">{currentLanguage.name}</span>
+        <span className="mx-3 md:text-[12px]">{currentLanguage.name}</span>
         <svg
           className={`fill-current h-4 w-4 md:w-2 md:h-2 transition-transform duration-200 transform ${
             isDropdownOpen ? 'rotate-180' : ''

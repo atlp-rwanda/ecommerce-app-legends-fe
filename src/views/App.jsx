@@ -16,7 +16,7 @@ import ChatButton from '../components/ChatButton';
 const App = () => {
   const [params, setParams] = useState({ page: 1, limit: 20 });
   const dispatch = useDispatch();
-  const { status, products, error } = useSelector(
+  const { status, products } = useSelector(
     (state) => state.landingProducts.allProducts
   );
   const allProducts = [];
@@ -98,8 +98,10 @@ const App = () => {
         <div className="bg-cardContainer relative">
           <div className="w-11/12 mx-auto sm:w-full">
             {/* <Language/> */}
-            <h1 className="pt-6 font-bold text-2xl">{t('top_products')}</h1>
-            <div className="flex flex-wrap md: justify-between md:px-4 bg-cardContainer">
+            <h1 className="pt-6 md:ml-4 font-bold text-2xl">
+              {t('top_products')}
+            </h1>
+            <div className="sm:grid sm:grid-cols-2 sm:justify-center flex flex-wrap md:  md:px-4 bg-cardContainer">
               {subset1 &&
                 subset1.map((product) => {
                   return (
@@ -167,11 +169,9 @@ const App = () => {
             {t('latest_products')}
           </h1>
           <hr />
-          <div className="sm:grid sm:grid-cols-2 flex flex-wrap sm:justify-center rounded-lg">
+          <div className="sm:grid sm:grid-cols-2 flex flex-wrap sm:justify-center w-full justify-center">
             {subset2 &&
               subset2.map((product) => {
-                const price = mappingPrices(product.ProductAttributes);
-
                 return (
                   <Card
                     key={product.id}
@@ -188,8 +188,8 @@ const App = () => {
             {t('recommended')}
           </h1>
           <hr />
-          <div className=" rounded-lg relative pb-20">
-            <div className="flex flex-wrap justify-center">
+          <div className=" rounded-lg relative pb-20 mx-auto">
+            <div className="sm:grid sm:grid-cols-2 flex flex-wrap sm:justify-center justify-center">
               {allProducts &&
                 allProducts.slice(9, 20).map((product) => {
                   return (
