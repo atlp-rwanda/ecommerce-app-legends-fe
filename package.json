@@ -21,6 +21,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "apexcharts": "^3.40.0",
     "axios": "^1.4.0",
+    "codeclimate-test-reporter": "^0.5.1",
     "country-flag-icons": "^1.5.7",
     "dotenv": "^16.0.3",
     "emoji-mart": "^5.5.2",
