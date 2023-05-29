@@ -11,7 +11,8 @@
     "format": "npx prettier --write .",
     "prepare": "husky install",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
