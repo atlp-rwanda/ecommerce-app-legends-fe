@@ -4,6 +4,8 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/6295162785e9ca59c83f/maintainability)](https://codeclimate.com/github/atlp-rwanda/ecommerce-app-legends-fe/maintainability)
 
+[![Test Coverage](https://api.codeclimate.com/v1/badges/6295162785e9ca59c83f/test_coverage)](https://codeclimate.com/github/atlp-rwanda/ecommerce-app-legends-fe/test_coverage)
+
 [![CI/CD Pipeline](https://github.com/atlp-rwanda/ecommerce-app-legends-fe/actions/workflows/testing.yml/badge.svg)](https://github.com/atlp-rwanda/ecommerce-app-legends-fe/actions/workflows/testing.yml)
 
 "Discover a seamless and secure online shopping experience - Your go-to destination for all your shopping needs!"
