@@ -3,24 +3,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import socket from 'socket.io-client';
 import {
   adminChangeOrderStatus,
   fetchAdminOrders,
 } from '../../../../redux/reducers/admin/AdminOrders';
 import Loading from '../../../Loading';
 import BreadCumb from '../../../BreadCumb';
-import socket from '../../../../middlewares/socket';
 
 const Orders = () => {
-  const [loader, setLoader] = useState(false);
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { adminOrders } = useSelector((state) => state.adminOrders);
-  const { orders, status, error, message } = adminOrders;
-  const [rowData, setRowData] = useState([]);
-  console.log(orders.order);
+  const { orders, status, error } = adminOrders;
+
   // Handle select input change
-  const handleSelectChange = (event, order) => {
+  const handleSelectChange = async (event, order) => {
     const { value } = event.target;
     Swal.fire({
       title: t('are_you_sure'),
@@ -32,38 +30,19 @@ const Orders = () => {
       cancelButtonColor: '#d33',
       cancelButtonText: t('cancel'),
       confirmButtonText: t('yes_update_it'),
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        dispatch(adminChangeOrderStatus({ id: order.id, status: value }));
+        await dispatch(adminChangeOrderStatus({ id: order.id, status: value }));
         socket.emit('status', { id: order.id, status: value });
-
-        if (status === 'succeeded' && message) {
-          toast.success(message, { theme: 'colored' });
-
-          // setRowData((prevOptions) => {
-          //   const updatedOptions = [...prevOptions];
-
-          //   const orderIndex = updatedOptions.findIndex(
-          //     (option) => option.id === order.id
-          //   );
-
-          //   if (orderIndex !== -1) {
-          //     updatedOptions[orderIndex] = {
-          //       ...updatedOptions[orderIndex],
-          //       status: value,
-          //     };
-          //   }
-          //   return updatedOptions;
-          // });
-          dispatch(fetchAdminOrders());
-        } else toast.error(error, { theme: 'colored' });
-        // dispatch(fetchSellerProducts());
+        await dispatch(fetchAdminOrders());
       }
     });
   };
+
   useEffect(() => {
-    dispatch(fetchAdminOrders());
+    dispatch(fetchAdminOrders()); // Fetch admin orders on component mount
   }, [dispatch]);
+
   const crumbs = [{ text: 'Orders', path: '/dashboard/Orders' }];
   const possibleStatus = ['paid', 'pending', 'shipping', 'completed'];
 
@@ -87,7 +66,7 @@ const Orders = () => {
     );
   }
 
-  return (
+  return orders?.order ? (
     <div className="p-5">
       <div className="pt-16 h-fit md:w-full overflow-x-auto">
         <div>
@@ -106,52 +85,56 @@ const Orders = () => {
           </thead>
           <tbody>
             {orders?.order &&
-              orders.order.map((order) => (
-                <tr
-                  className="border px-1 py-1 text-center hover:cursor-pointer hover:bg-slate-100 transition-shadow animate"
-                  key={order.id}
-                >
-                  <td className="border px-2 py-1">{order.amount}</td>
-                  <td className="border px-2 py-1">{order.location}</td>
-                  <td className="border px-2 py-1">
-                    {`${order.detail.length} ${t('item')}`}{' '}
-                  </td>
-                  <td className="border px-2 py-1">
-                    <div className="dropdown">
-                      <select
-                        value={
-                          orders?.order &&
-                          orders.order.find((elem) => order.id === elem.id)
-                            .status
-                        }
-                        onChange={(event) => handleSelectChange(event, order)}
-                        className={`${
-                          order.status === 'completed' ? 'bg-green-100' : ''
-                        } block w-full px-4 py-2 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:bg-lightGrey`}
-                        // onChange={handleOptionChange}
-                      >
-                        {possibleStatus.map((orderStatus) => {
-                          const isStatusReached =
-                            possibleStatus.indexOf(orderStatus) >=
-                            possibleStatus.indexOf(order.status);
-                          return (
-                            <option
-                              disabled={!isStatusReached}
-                              key={orderStatus}
-                            >
-                              {t(orderStatus)}
-                            </option>
-                          );
-                        })}
-                      </select>
-                    </div>
-                  </td>
-                </tr>
-              ))}
+              orders.order
+                .filter((ele) => ele.detail.length > 0)
+                .map((order) => (
+                  <tr
+                    className="border px-1 py-1 text-center hover:cursor-pointer hover:bg-slate-100 transition-shadow animate"
+                    key={order.id}
+                  >
+                    <td className="border px-2 py-1">{order.amount}</td>
+                    <td className="border px-2 py-1">{order.location}</td>
+                    <td className="border px-2 py-1">
+                      {`${order.detail.length} ${t('item')}`}{' '}
+                    </td>
+                    <td className="border px-2 py-1">
+                      <div className="dropdown">
+                        <select
+                          value={
+                            orders?.order &&
+                            orders.order.find((elem) => order.id === elem.id)
+                              .status
+                          }
+                          onChange={(event) => handleSelectChange(event, order)}
+                          className={`${
+                            order.status === 'completed' ? 'bg-green-100' : ''
+                          } block w-full px-4 py-2 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:bg-lightGrey`}
+                          // onChange={handleOptionChange}
+                        >
+                          {possibleStatus.map((orderStatus) => {
+                            const isStatusReached =
+                              possibleStatus.indexOf(orderStatus) >=
+                              possibleStatus.indexOf(order.status);
+                            return (
+                              <option
+                                disabled={!isStatusReached}
+                                key={orderStatus}
+                              >
+                                {t(orderStatus)}
+                              </option>
+                            );
+                          })}
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
           </tbody>
         </table>
       </div>
     </div>
+  ) : (
+    <div className="m-32">Hatali jkfkgjfgkdfgdkfjgkdfgjdfkgjdkfgjdkfgjdkg</div>
   );
 };
 export default Orders;

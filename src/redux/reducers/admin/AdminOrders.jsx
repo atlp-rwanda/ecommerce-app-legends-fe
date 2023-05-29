@@ -10,7 +10,6 @@ export const fetchAdminOrders = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await client.get('/api/v1/admin/orders');
-
       return data;
     } catch (error) {
       rejectWithValue(error.response.data);
@@ -56,8 +55,15 @@ const adminOrdersSlice = createSlice({
       })
       .addCase(fetchAdminOrders.fulfilled, (state, { payload }) => {
         state.adminOrders = {
-          orders: payload,
+          ...state.adminOrders,
+          orders: {
+            ...payload,
+            order: payload.order.sort(
+              (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+            ),
+          },
           status: 'succeeded',
+          message: '',
         };
       })
       .addCase(fetchAdminOrders.rejected, (state, { error }) => {
@@ -69,7 +75,11 @@ const adminOrdersSlice = createSlice({
       })
       // update product
       .addCase(adminChangeOrderStatus.pending, (state) => {
-        state.adminOrders = { ...state.adminOrders, status: 'loading' };
+        state.adminOrders = {
+          ...state.adminOrders,
+          status: 'loading',
+          message: '',
+        };
       })
       .addCase(adminChangeOrderStatus.fulfilled, (state, { payload }) => {
         state.adminOrders = {
