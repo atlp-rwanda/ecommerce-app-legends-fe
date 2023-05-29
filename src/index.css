@@ -17,6 +17,9 @@
   .inputFormClass {
     @apply invalid:focus:border-red-400 valid:focus:border-green-400 h-[2.5em] w-full md:px-2 rounded-[5px] border py-2 font-sans font-extralight outline-none outline-[.2px] transition-all focus:border-blue-500 focus:outline-0 sm:w-full px-1;
   }
+  .table-header {
+    @apply border px-4 py-2;
+  }
 }
 
 /* Apply the class to multiple variants */

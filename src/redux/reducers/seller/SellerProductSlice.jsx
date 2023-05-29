@@ -2,6 +2,7 @@
 // productsSlice.jsx
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import { client } from '../../API/client';
 
 // get all products
@@ -54,7 +55,6 @@ export const updateSellerProducts = createAsyncThunk(
 
   async (product, { rejectWithValue }) => {
     try {
-      console.log(product);
       const { data } = await client.put(
         `/api/v1/products/update/${product.id}`,
         product.body,
@@ -105,25 +105,29 @@ const sellersProductsSlice = createSlice({
       fetchProductStatus: '',
       deleteStatus: '',
     },
-    searchedProducts: {
-      products: [],
-      status: 'idle',
-      error: null,
-      message: '',
-    },
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
       // Load products
       .addCase(fetchSellerProducts.pending, (state) => {
-        state.sellerProducts.status = 'loading';
+        state.sellerProducts = {
+          ...state.sellerProducts,
+          status: 'loading',
+          updateProductStatus: '',
+          updateProductAttributeStatus: '',
+          deleteStatus: '',
+          fetchProductStatus: '',
+        };
       })
       .addCase(fetchSellerProducts.fulfilled, (state, { payload }) => {
         state.sellerProducts = {
           ...state.sellerProducts,
           products: payload,
           status: 'succeeded',
+          updateProductStatus: '',
+          updateProductAttributeStatus: '',
+          deleteStatus: '',
           fetchProductStatus: payload.status,
         };
       })
@@ -142,6 +146,9 @@ const sellersProductsSlice = createSlice({
         state.sellerProducts = {
           status: 'succeeded',
           message: payload.message,
+          updateProductStatus: '',
+          updateProductAttributeStatus: '',
+          fetchProductStatus: '',
           deleteStatus: payload.message,
         };
       })
@@ -154,15 +161,26 @@ const sellersProductsSlice = createSlice({
       })
       // update product
       .addCase(updateSellerProducts.pending, (state) => {
-        state.sellerProducts.status = 'loading';
+        state.sellerProducts = {
+          ...state.sellerProducts,
+          status: 'loading',
+          updateProductStatus: '',
+          updateProductAttributeStatus: '',
+          fetchProductStatus: '',
+        };
       })
       .addCase(updateSellerProducts.fulfilled, (state, { payload }) => {
         state.sellerProducts = {
           ...state.sellerProducts,
           status: 'succeeded',
+          updateProductAttributeStatus: '',
+          fetchProductStatus: '',
+          deleteStatus: '',
           updateProductStatus: payload.message,
-          message: payload.message,
         };
+        toast.success(payload.message, {
+          theme: 'colored',
+        });
       })
       .addCase(updateSellerProducts.rejected, (state, { error }) => {
         state.sellerProducts = {
@@ -170,6 +188,7 @@ const sellersProductsSlice = createSlice({
           status: 'failed',
           error: error.message,
         };
+        toast.error(error.message, { theme: 'colored' });
       })
       // update product variations
       .addCase(updateProductAttribute.pending, (state) => {
@@ -179,9 +198,15 @@ const sellersProductsSlice = createSlice({
         state.sellerProducts = {
           ...state.sellerProducts,
           status: 'succeeded',
+          updateProductStatus: '',
+          fetchProductStatus: '',
+          deleteStatus: '',
           updateProductAttributeStatus: payload.message,
           message: payload.message,
         };
+        toast.success(payload.message, {
+          theme: 'colored',
+        });
       })
       .addCase(updateProductAttribute.rejected, (state, { error }) => {
         state.sellerProducts = {
@@ -189,6 +214,7 @@ const sellersProductsSlice = createSlice({
           status: 'failed',
           error: error.message,
         };
+        toast.error(error.message, { theme: 'colored' });
       });
   },
 });

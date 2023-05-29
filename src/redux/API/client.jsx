@@ -7,9 +7,6 @@ export default { remoteURL };
 const token = localStorage.getItem('token');
 const client = axios.create({
   baseURL: remoteURL,
-  headers: {
-    'Content-Type': 'multipart/form-data',
-  },
 });
 
 let tokenPromise;
@@ -22,7 +19,6 @@ client.interceptors.request.use(
       // config.headers['Content-Type'] = `application/json`;
       // config.headers['Content-Type'] = `multipart/form-data`;
     }
-    console.log(config);
     return config;
   },
   (error) => {
@@ -45,7 +41,6 @@ function getTokenPromise() {
 
 client.interceptors.response.use(
   (response) => {
-    console.log(response);
     return response;
   },
   (error) => {
@@ -55,7 +50,6 @@ client.interceptors.response.use(
       error.response.status === 401
     ) {
       // Clear the token and state fields from local storage
-      console.log(error.response.status);
       // localStorage.removeItem('token');
       // localStorage.removeItem('state');
     }

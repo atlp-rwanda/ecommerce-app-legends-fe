@@ -109,12 +109,7 @@ const AddProducts = () => {
       >
         {/* {imgInputController(imgDisplay, productImg, true)} */}
         <div className="w-[33%] md:w-[50%]  md:max-h-fit max-h-[500px] max-w-fit  relative">
-          {imgInputController(
-            imgDisplay,
-            productImg,
-            false,
-            t('product_image')
-          )}
+          {imgInputController(imgDisplay, productImg, true, t('product_image'))}
         </div>
         <div className="w-[50%] min-w-[20em]">
           {allFields.map(({ label, placeholder, type }) => {

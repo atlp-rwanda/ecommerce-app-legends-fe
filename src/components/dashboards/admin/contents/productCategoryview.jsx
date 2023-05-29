@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { URL } from '../../../../views/auths/Login';
 
-function ProductCategoryPick() {
+const ProductCategoryPick = () => {
   const [categories, setcategories] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
@@ -39,6 +39,6 @@ function ProductCategoryPick() {
       </div>
     </div>
   );
-}
+};
 
 export default ProductCategoryPick;

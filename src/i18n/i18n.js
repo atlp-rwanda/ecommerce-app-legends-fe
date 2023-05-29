@@ -70,7 +70,7 @@ const translationEn = {
   clear_cart: 'clear cart',
   start_shopping: 'start shopping',
   your_cart_is_empty: 'YOUR CART IS EMPTY',
-  status: 'Satatus',
+  status: 'Status',
   add_to_cart: 'add to cart',
   view_variatios: 'Variations',
   your_wishlist_is_empty: 'YOUR WISHLIST IS EMPTY!',

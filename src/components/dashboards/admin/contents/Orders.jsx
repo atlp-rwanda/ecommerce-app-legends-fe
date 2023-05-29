@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import socket from 'socket.io-client';
 import {
   adminChangeOrderStatus,
   fetchAdminOrders,
@@ -11,15 +12,13 @@ import Loading from '../../../Loading';
 import BreadCumb from '../../../BreadCumb';
 
 const Orders = () => {
-  const [loader, setLoader] = useState(false);
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { adminOrders } = useSelector((state) => state.adminOrders);
-  const { orders, status, error, message } = adminOrders;
-  const [rowData, setRowData] = useState([]);
+  const { orders, status, error } = adminOrders;
 
   // Handle select input change
-  const handleSelectChange = (event, order) => {
+  const handleSelectChange = async (event, order) => {
     const { value } = event.target;
     Swal.fire({
       title: t('are_you_sure'),
@@ -31,36 +30,19 @@ const Orders = () => {
       cancelButtonColor: '#d33',
       cancelButtonText: t('cancel'),
       confirmButtonText: t('yes_update_it'),
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        dispatch(adminChangeOrderStatus({ id: order.id, status: value }));
-        if (status === 'succeeded' && message) {
-          toast.success(message, { theme: 'colored' });
-
-          // setRowData((prevOptions) => {
-          //   const updatedOptions = [...prevOptions];
-
-          //   const orderIndex = updatedOptions.findIndex(
-          //     (option) => option.id === order.id
-          //   );
-
-          //   if (orderIndex !== -1) {
-          //     updatedOptions[orderIndex] = {
-          //       ...updatedOptions[orderIndex],
-          //       status: value,
-          //     };
-          //   }
-          //   return updatedOptions;
-          // });
-          dispatch(fetchAdminOrders());
-        } else toast.error(error, { theme: 'colored' });
-        // dispatch(fetchSellerProducts());
+        await dispatch(adminChangeOrderStatus({ id: order.id, status: value }));
+        socket.emit('status', { id: order.id, status: value });
+        await dispatch(fetchAdminOrders());
       }
     });
   };
+
   useEffect(() => {
-    dispatch(fetchAdminOrders());
+    dispatch(fetchAdminOrders()); // Fetch admin orders on component mount
   }, [dispatch]);
+
   const crumbs = [{ text: 'Orders', path: '/dashboard/Orders' }];
   const possibleStatus = ['paid', 'pending', 'shipping', 'completed'];
 
@@ -84,7 +66,7 @@ const Orders = () => {
     );
   }
 
-  return (
+  return orders?.order ? (
     <div className="p-5">
       <div className="pt-16 h-fit md:w-full overflow-x-auto">
         <div>
@@ -151,6 +133,8 @@ const Orders = () => {
         </table>
       </div>
     </div>
+  ) : (
+    <div className="m-32">Hatali jkfkgjfgkdfgdkfjgkdfgjdfkgjdkfgjdkfgjdkg</div>
   );
 };
 export default Orders;
