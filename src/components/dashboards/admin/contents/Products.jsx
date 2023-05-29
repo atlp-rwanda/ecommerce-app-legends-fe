@@ -230,35 +230,21 @@ const Products = () => {
           </table>
         </div>
         {data?.products?.length ? (
-          <div className="flex justify-center mt-4 items-center">
-            <Icon
-              className="cursor-pointer text-[30px]"
-              icon="material-symbols:keyboard-double-arrow-left-rounded"
-            />
-            <nav
-              className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
-              aria-label="Pagination"
-            >
-              {[...Array(data.totalPages)].map((_, i) => (
-                <button
-                  type="button"
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={`page_${i}`}
-                  onClick={() => handleChangePage(i + 1)}
-                  className={`relative inline-flex items-center px-3 py-1 border border-gray-300 bg-darkBlueColor text-sm font-medium text-whiteColor hover:bg-gray-50 hover:text-darkBlueColor ${
-                    i + 1 === currentPage
-                      ? 'z-10 bg-whiteColor text-darkBlueColor'
-                      : ''
-                  }`}
-                >
-                  {i + 1}
-                </button>
-              ))}
-            </nav>
-            <Icon
-              className="cursor-pointer text-[30px]"
-              icon="material-symbols:keyboard-double-arrow-right-rounded"
-            />
+          <div className="flex justify-center mt-12">
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                type="button"
+                key={index}
+                className={`mr-2 px-4 py-1 mb-4 rounded ${
+                  currentPage === index + 1
+                    ? 'bg-orange-500 text-white'
+                    : 'bg-gray-300'
+                }`}
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </button>
+            ))}
           </div>
         ) : (
           ''

@@ -167,11 +167,11 @@ const SideBar = ({ isOpen }) => {
                 <AiOutlineBorderBottom className="text-3xl" />{' '}
               </button>
             </div>
-            <div className="link text-xl">
+            {/* <div className="link text-xl">
               <button type="button" onClick={handleCoupon}>
                 Coupon
               </button>
-            </div>
+            </div> */}
           </div>
           <div
             className={`flex space-x-4 logo basis-full  h-12 mt-0.5 p-3 ${isButtonActive(
