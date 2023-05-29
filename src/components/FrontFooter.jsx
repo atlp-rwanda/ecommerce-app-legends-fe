@@ -19,7 +19,7 @@ const FrontFooter = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className="relative  w-full  bg-denimBlue py-2 text-footerTextDim">
+    <footer className="relative  w-full mb-0 bg-denimBlue pb-0 text-footerTextDim">
       <img className="rounded-t-lg w-20 h-16" src={logo} alt="" />
       <div className="flex md:flex-col flex-wrap w-3/4 justify-between mx-auto">
         <div className="flex-initial w-1/3 md:w-full">
@@ -36,7 +36,7 @@ const FrontFooter = () => {
             </p>
           </div>
         </div>
-        <div className="flex-initial w-1/6 text-center md:w-full">
+        <div className="flex-initial w-1/6  md:w-full">
           <h5 className="mb-2 text-xl font-bold  pb-5 text-primaryWhiteColor">
             {t('quick_links')}
           </h5>
@@ -96,10 +96,14 @@ const FrontFooter = () => {
           </div>
         </div>
       </div>
-      <hr className="my-5 border-footerLine" />
-      <div className="flex px-10 justify-between m-auto">
+      <hr className="my-3 border-gray-600" />
+      <div className="flex px-10 justify-between m-auto text-center h-8 relative">
+        <img
+          className="rounded-t-lg w-100 h-16 md:right-6 lg:right-6 bottom-10 absolute"
+          src="/paymethods.png"
+          alt=""
+        />
         <p>&copy; {t('footer_copyright')} </p>
-        <img className="rounded-t-lg w-100 h-16" src="/paymethods.png" alt="" />
       </div>
     </footer>
   );
