@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 import imgInputController from './formControlscomponents/formInput/imgInputController';
 /* eslint import/no-webpack-loader-syntax: off */
 import {
@@ -13,12 +12,16 @@ import FormInput from './formControlscomponents/formInput/FormInput';
 const FullProductAttribute = ({ product }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [productFormValue, setProductFormValue] = useState(product);
   const { sellerProducts } = useSelector((state) => state.sellerProducts);
   const { error } = sellerProducts;
   const data = sellerProducts.products?.data;
 
-  // Handle product attribute update
+  const [productFormValue, setProductFormValue] = useState(product);
+
+  useEffect(() => {
+    setProductFormValue(data?.products.find((elem) => elem.id === product.id));
+  }, [product]);
+
   const handleUpdateProductAttribute = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -32,14 +35,11 @@ const FullProductAttribute = ({ product }) => {
     await dispatch(fetchSellerProducts());
   };
 
-  // Handle product attribute
-  const handleTypingAttribute = (event, productAttibuteId) => {
-    const newAttributes = productFormValue.ProductAttributes.map(
-      (attribute) => {
-        if (attribute.id === productAttibuteId)
-          return { ...attribute, [event.target.name]: event.target.value };
-        return attribute;
-      }
+  const handleTypingAttribute = (event, productAttributeId) => {
+    const newAttributes = productFormValue.ProductAttributes.map((attribute) =>
+      attribute.id === productAttributeId
+        ? { ...attribute, [event.target.name]: event.target.value }
+        : attribute
     );
     setProductFormValue({
       ...productFormValue,
@@ -47,21 +47,17 @@ const FullProductAttribute = ({ product }) => {
     });
   };
 
-  // On product image attribute change
   const imgAttributeDisplay = (event) => {
     const formElement = event.target
       .closest('form')
       .querySelector('input[name="id"]');
-    const newAttributes = productFormValue.ProductAttributes.map(
-      (attribute) => {
-        if (Number(attribute.id) === Number(formElement.value)) {
-          return {
+    const newAttributes = productFormValue.ProductAttributes.map((attribute) =>
+      Number(attribute.id) === Number(formElement.value)
+        ? {
             ...attribute,
             attrImage: window.URL.createObjectURL(event.target.files[0]),
-          };
-        }
-        return attribute;
-      }
+          }
+        : attribute
     );
     setProductFormValue({
       ...productFormValue,
@@ -69,14 +65,11 @@ const FullProductAttribute = ({ product }) => {
     });
   };
 
-  const [updateProductbtn, setUpdateProductbtn] = useState({
+  const [updateProductbtn, setUpdateProdutbtn] = useState({
     text: 'Update',
     loading: 'hidden',
     disabled: false,
   });
-  useEffect(() => {
-    setProductFormValue(data?.products.find((elem) => elem.id === product.id));
-  }, [product]);
 
   return (
     <div className="product z-[99] border-2 rounded p-3">

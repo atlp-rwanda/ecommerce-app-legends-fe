@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 import FormInput from './formControlscomponents/formInput/FormInput';
 import imgInputController from './formControlscomponents/formInput/imgInputController';
 import {
@@ -12,13 +11,13 @@ import {
 const FullProduct = ({ product }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [productImg, setproductImg] = useState(product.image);
+  const [productImg, setProductImg] = useState(product.image);
   const [newProductImg, setNewProductImg] = useState(null);
 
   const [productFormValue, setProductFormValue] = useState(product);
   const { sellerProducts } = useSelector((state) => state.sellerProducts);
-  const { status, error, updateProductStatus } = sellerProducts;
   const data = sellerProducts.products?.data;
+
   const handleTyping = (event) => {
     setProductFormValue({
       ...productFormValue,
@@ -26,52 +25,36 @@ const FullProduct = ({ product }) => {
     });
   };
 
-  // Handle product Update event
   const handleUpdateProduct = async (event) => {
     event.preventDefault();
-    const formElement = event.target;
-    const fromData = new FormData(formElement);
+    const formData = new FormData(event.target);
+
     if (newProductImg) {
-      fromData.append('image', event.target[0].files[0]);
+      formData.set('image', event.target[0].files[0]);
     }
-    const formDataObject = Object.fromEntries(fromData.entries());
+
+    const formDataObject = Object.fromEntries(formData.entries());
     setProductFormValue(formDataObject);
+
     try {
       await dispatch(
-        updateSellerProducts({ id: formDataObject.id, body: fromData })
+        updateSellerProducts({ id: formDataObject.id, body: formData })
       );
       await dispatch(fetchSellerProducts());
-    } catch (errors) {
+    } catch (err) {
       // Handle error if necessary
     }
   };
 
-  // On product image  change
   const imgDisplay = (e) => {
-    setproductImg(window.URL.createObjectURL(e.target.files[0]));
+    setProductImg(window.URL.createObjectURL(e.target.files[0]));
     setNewProductImg(window.URL.createObjectURL(e.target.files[0]));
   };
 
-  const [updateProductbtn, setUpdateProductbtn] = useState({
-    text: 'Update',
-    loading: 'hidden',
-    disabled: false,
-  });
-
   useEffect(() => {
     setProductFormValue(data?.products.find((elem) => elem.id === product.id));
-    setproductImg(product.image);
+    setProductImg(product.image);
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   if (status === 'succeeded' && updateProductStatus !== '') {
-  //     toast.success(sellerProducts.updateProductStatus, {
-  //       theme: 'colored',
-  //     });
-  //   } else if (sellerProducts.status === 'failed' && sellerProducts.error) {
-  //     toast.error(sellerProducts.error, { theme: 'colored' });
-  //   }
-  // }, [updateProductStatus]);
 
   return (
     <div className="product z-[99] mb-4 border-2 rounded p-3">
