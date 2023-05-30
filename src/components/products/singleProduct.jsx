@@ -13,7 +13,7 @@ const SingleProduct = ({ product }) => {
   };
   return (
     <NavLink to={`/product/${product.productId}`}>
-      <div className="flex-shrink-0 m-6 h-[30vh] relative overflow-hidden bg-white rounded-sm w-[15vw] shadow-lg md:w-[47vw] md:m-2 hover:bg-slate-100 hover:cursor-pointer">
+      <div className="flex-shrink-0 m-6 h-[30vh] rounded relative overflow-hidden bg-white rounded-sm w-[15vw] shadow-lg md:w-[47vw] md:m-2 hover:bg-slate-100 hover:cursor-pointer">
         <div className="relative pt-[1vh] mx-[1vw] mt-[1vh] flex items-center justify-center shadow-sm">
           <img
             className="relative w-30 h-[15vh]"

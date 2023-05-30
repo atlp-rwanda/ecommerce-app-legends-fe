@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../i18n/i18n';
 
@@ -41,17 +42,50 @@ const FrontFooter = () => {
             {t('quick_links')}
           </h5>
           <div className="flex justify-between lg:flex-col">
-            <ul>
-              <li className="hover:text-footerText"> {t('home')} </li>
-              <li className="hover:text-footerText"> {t('shop')} </li>
-              <li className="hover:text-footerText"> {t('cart')} </li>
-              <li className="hover:text-footerText"> {t('login')} </li>
+            <ul className="footer-menu">
+              <li>
+                <NavLink to="/" className="hover:text-footerText">
+                  {t('home')}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/shop" className="hover:text-footerText">
+                  {t('shop')}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/cart" className="hover:text-footerText">
+                  {t('cart')}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/login" className="hover:text-footerText">
+                  {t('login')}
+                </NavLink>
+              </li>
             </ul>
-            <ul>
-              <li className="hover:text-footerText"> {t('about_us')} </li>
-              <li className="hover:text-footerText"> {t('sign_up')} </li>
-              <li className="hover:text-footerText"> {t('contact_us')} </li>
-              <li className="hover:text-footerText"> {t('faq')} </li>
+
+            <ul className="footer-menu">
+              <li>
+                <NavLink to="/about" className="hover:text-footerText">
+                  {t('about_us')}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/sign-up-buyer" className="hover:text-footerText">
+                  {t('sign_up')}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/contact_us" className="hover:text-footerText">
+                  {t('contact_us')}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/wishlist" className="hover:text-footerText">
+                  WishList
+                </NavLink>
+              </li>
             </ul>
           </div>
         </div>
