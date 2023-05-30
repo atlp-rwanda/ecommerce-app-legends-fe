@@ -55,7 +55,7 @@ const RouterProv = () => {
               <Route element={<ValidatedBuyer />}>
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/wishlist" element={<WishListPage />} />
-              <Route path="/track/order" element={<TrackingOrder />} />
+                <Route path="/track/order" element={<TrackingOrder />} />
               </Route>
               <Route element={<Validateduser />}>
                 <Route path="/profile" element={<CustomerProfilePage />} />
